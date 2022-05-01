@@ -91,7 +91,6 @@ public class GraphingPanel extends JPanel implements MouseWheelListener, MouseMo
             @Override
             public void mouseMoved(MouseEvent e) {
                 mousePt = e.getPoint();
-                System.out.println("sjksj");
             }
 
         });
@@ -116,18 +115,12 @@ public class GraphingPanel extends JPanel implements MouseWheelListener, MouseMo
 
         parser = new ExpressionParser();
         textBox = "0";
-        function = parser.parse(textBox);
 
         windowX = 0.0;
         windowY = 0.0;
         windowHeight = 2.0;
         windowWidth = windowHeight * width / height;
         updateScale();
-        Object[] l = new Object[3];
-        l[FUNC] = parser.parse("0");
-        l[COLOR] = Color.BLUE;
-        l[STYLE] = '_';
-        functions.add(l);
     }
 
     // Time variables
@@ -212,13 +205,14 @@ public class GraphingPanel extends JPanel implements MouseWheelListener, MouseMo
 
             int yAxisX = (int) toScreenX(0.0);
             int xAxisY = (int) toScreenY(0.0);
-            double scaling = yAxisX % (scaleX * 5);
-            double showX = toRealX(0) - (toRealX(0) % showScaleX == 0 ? showScaleX : (toRealX(0) % showScaleX));
+            double scaling = yAxisX % (scaleX * 5.);
+            double showX = toRealX(0.) - (toRealX(0.) % showScaleX == 0 ? showScaleX : (toRealX(0.) % showScaleX));
+            System.out.println("[POW]"+powX+"");
             for (int i = 0; i <= width; i += scaleX) {
                 if (i > (scaling - scaleX)) {
                     g2d.setColor(TEXT_COLOR);
                     g2d.setFont(FONT);
-                    g2d.drawString(Exact(showX) + "", yAxisX % scaleX + i + 3, xAxisY + 17);
+                    g2d.drawString(Exact(new RoundingOff(showX, new PlaceValue(PlaceValue.PREFPLACE, Math.abs(powX))).getNumber()) + "", yAxisX % scaleX + i + 3, xAxisY + 17);
                     g2d.setColor(M_AXIS_COLOR);
                     scaling += scaleX * 5;
                     showX += showScaleX;
@@ -235,7 +229,7 @@ public class GraphingPanel extends JPanel implements MouseWheelListener, MouseMo
                     g2d.setColor(TEXT_COLOR);
                     g2d.setFont(FONT);
                     if (showX != 0) {
-                        g2d.drawString(Exact(new RoundingOff(showX, new PlaceValue(PlaceValue.PREFPLACE, powX)).getPlainString()) + "", yAxisX + 15, xAxisY % scaleY + i);
+                        g2d.drawString(Exact(new RoundingOff(showX, new PlaceValue(PlaceValue.PREFPLACE, Math.abs(powY))).getNumber()) + "", yAxisX + 15, xAxisY % scaleY + i);
                     }
                     g2d.setColor(M_AXIS_COLOR);
                     scaling += scaleY * 5;
@@ -318,8 +312,8 @@ public class GraphingPanel extends JPanel implements MouseWheelListener, MouseMo
     }
 
     public String getPoint(){
-        return "("+new RoundingOff(toRealX(mousePt.getX()), new PlaceValue(PlaceValue.PREFPLACE, Math.abs(powX))).getPlainString()+
-                ","+new RoundingOff(toRealY(mousePt.getY()), new PlaceValue(PlaceValue.PREFPLACE, Math.abs(powY))).getPlainString()+")";
+        return "("+new RoundingOff(toRealX(mousePt.getX()), new PlaceValue(PlaceValue.PREFPLACE, 5)).getPlainString()+
+                ","+new RoundingOff(toRealY(mousePt.getY()), new PlaceValue(PlaceValue.PREFPLACE, 5)).getPlainString()+")";
     }
     
     @Override
