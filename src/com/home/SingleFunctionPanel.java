@@ -25,6 +25,7 @@ public class SingleFunctionPanel extends javax.swing.JPanel {
 
     public Color color = Color.GRAY;
     public Function function = null;
+    public int id=-1;
 
     public SingleFunctionPanel() {
         initComponents();
@@ -488,7 +489,7 @@ public class SingleFunctionPanel extends javax.swing.JPanel {
             jPanel3.add(jTextField1);
             jPanel3.add(jButton1);
             jPanel3.add(jButton2);
-            setPanelColor(Color.BLUE);
+            setPanelColor(color);
         }
     }
 
@@ -499,19 +500,19 @@ public class SingleFunctionPanel extends javax.swing.JPanel {
         color = c;
     }
 
-    public void setFuncStyle(char c) {
+    public void setFuncStyle(int id,char c) {
         //override code
     }
 
-    public void setFuncColor(Color c) {
+    public void setFuncColor(int id,Color c) {
         //override code
     }
 
-    public void removeFunc() {
+    public void removeFunc(int id) {
 
     }
 
-    public void setFuncVisible(boolean b) {
+    public void setFuncVisible(int id,boolean b) {
 
     }
 
@@ -523,8 +524,8 @@ public class SingleFunctionPanel extends javax.swing.JPanel {
         return jComboBox1.getSelectedItem().toString().charAt(0);
     }
 
-    public void setFunction(Function fnc, Color c, char style) {
-
+    public int setFunction(int id,Function fnc, Color c, char style,boolean vis) {
+        return 0;
     }
 
     private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
@@ -547,12 +548,12 @@ public class SingleFunctionPanel extends javax.swing.JPanel {
             btn1.setSelected(false);
         }
         btn.setBorder(new LineBorder(FrontFrame.APP_HOVER));
-        setFuncColor(color);
+        setFuncColor(id,color);
         jButton3.setBackground(color);
     }//GEN-LAST:event_setColor
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        setFuncStyle(jComboBox1.getSelectedItem().toString().charAt(0));
+        setFuncStyle(id,jComboBox1.getSelectedItem().toString().charAt(0));
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
@@ -596,12 +597,12 @@ public class SingleFunctionPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField1MouseExited
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        removeFunc();
+        removeFunc(id);
         this.getParent().remove(this);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        setFuncVisible(funcIsVisible());
+        setFuncVisible(id,funcIsVisible());
         jButton3.setName(funcIsVisible() ? "0" : "1");
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -640,7 +641,7 @@ public class SingleFunctionPanel extends javax.swing.JPanel {
             ExpressionParser parser = new ExpressionParser();
             function = parser.parse(funcTxt);
             if (function != null) {
-                setFunction(function, color, getFunctionStyle());
+                id=setFunction(id,function, color, getFunctionStyle(),funcIsVisible());
             }
         }
         setEnable();

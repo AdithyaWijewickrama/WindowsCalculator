@@ -46,6 +46,7 @@ public class GraphingPanel extends JPanel implements MouseWheelListener, MouseMo
     public static final int FUNC = 0;
     public static final int STYLE = 1;
     public static final int COLOR = 2;
+    public static final int VISIBLE = 3;
 
     public BufferedImage buff;
     public Graphics2D g2d;
@@ -104,10 +105,10 @@ public class GraphingPanel extends JPanel implements MouseWheelListener, MouseMo
             }
         });
         setFocusable(true);
-        setBackground(Color.white);
+        setBackground(BACKGROUND_COLOR);
         requestFocusInWindow();
-        setPreferredSize(new Dimension(width, 450));
-        setMinimumSize(new Dimension(0, 450));
+        setPreferredSize(new Dimension(width, 2039392));
+        setMinimumSize(new Dimension(0, 0));
         setMaximumSize(new Dimension(2039392, 2039392));
 
         buff = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -198,9 +199,6 @@ public class GraphingPanel extends JPanel implements MouseWheelListener, MouseMo
         g2d.fillRect(0, 0, getWidth(), getHeight());
         super.paintComponent(g);
         synchronized (this) {
-//            if (mousePt != null) {
-//                setToolTipText(getPoint());
-//            }
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
             int yAxisX = (int) toScreenX(0.0);
@@ -247,44 +245,45 @@ public class GraphingPanel extends JPanel implements MouseWheelListener, MouseMo
             g2d.drawLine(yAxisX, 5, yAxisX, height - 5);
 
             for (Object[] func : functions) {
-                List<Double> xs = new ArrayList<>();
-                List<Double> ys = new ArrayList<>();
-                function = (Function) func[FUNC];
-                Color color = (Color) func[COLOR];
-                char style = (char) func[STYLE];
-                for (int x = 0; x < width; x++) {
-                    double xx = toRealX(x);
-
-                    double yy = 0.0;
-                    if (function != null) {
-                        yy = function.evaluateAt(xx, yVar, zVar);
+                if ((boolean)func[VISIBLE]) {
+                    List<Double> xs = new ArrayList<>();
+                    List<Double> ys = new ArrayList<>();
+                    function = (Function) func[FUNC];
+                    Color color = (Color) func[COLOR];
+                    char style = (char) func[STYLE];
+                    for (int x = 0; x < width; x++) {
+                        double xx = toRealX(x);
+                        
+                        double yy = 0.0;
+                        if (function != null) {
+                            yy = function.evaluateAt(xx, yVar, zVar);
+                        }
+                        
+                        double scaledX = x;
+                        double scaledY = toScreenY(yy);
+                        scaledY = Math.min(Math.max(scaledY, -5), height + 5);
+                        
+                        xs.add(scaledX);
+                        ys.add(scaledY);
                     }
-
-                    double scaledX = x;
-                    double scaledY = toScreenY(yy);
-                    scaledY = Math.min(Math.max(scaledY, -5), height + 5);
-
-                    xs.add(scaledX);
-                    ys.add(scaledY);
+                    int[] xa = new int[xs.size()];
+                    int[] ya = new int[ys.size()];
+                    for (int i = 0; i < xa.length; i++) {
+                        xa[i] = xs.get(i).intValue();
+                    }
+                    for (int i = 0; i < ya.length; i++) {
+                        ya[i] = ys.get(i).intValue();
+                    }
+                    g2d.setColor(color);
+                    Stroke stroke;
+                    if (style == '_') {
+                        stroke = new BasicStroke(3.0f, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_ROUND);
+                    } else {
+                        stroke = new BasicStroke(3.0f, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_ROUND, 0, new float[]{style == '-' ? 9 : 3}, 1);
+                    }
+                    g2d.setStroke(stroke);
+                    g2d.drawPolyline(xa, ya, xa.length);
                 }
-                int[] xa = new int[xs.size()];
-                int[] ya = new int[ys.size()];
-                for (int i = 0; i < xa.length; i++) {
-                    xa[i] = xs.get(i).intValue();
-                }
-                for (int i = 0; i < ya.length; i++) {
-                    ya[i] = ys.get(i).intValue();
-                }
-                g2d.setColor(color);
-                Stroke stroke;
-                if (style == '_') {
-                    stroke = new BasicStroke(3.0f, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_ROUND);
-                } else {
-                    stroke = new BasicStroke(3.0f, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_ROUND, 0, new float[]{style == '-' ? 9 : 3}, 0);
-                }
-                g2d.setStroke(stroke);
-                g2d.drawPolyline(xa, ya, xa.length);
-
             }
             g2d.setFont(FONT);
             g2d.setColor(Color.LIGHT_GRAY);

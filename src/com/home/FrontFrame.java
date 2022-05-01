@@ -99,6 +99,8 @@ public final class FrontFrame extends javax.swing.JFrame {
 
         };
         graphingPanel = new GraphingPanel();
+        new Thread(graphingPanel).start();
+        jPanel2.add(graphingPanel);
         jScrollPane3.setViewportView(histryPanel);
         jScrollPane4.setViewportView(memoryPanel);
         jScrollPane3.getHorizontalScrollBar().setUnitIncrement(100);
@@ -1326,6 +1328,7 @@ public final class FrontFrame extends javax.swing.JFrame {
         jButton24 = new javax.swing.JButton();
         jButton25 = new javax.swing.JButton();
         jButton26 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         calculator = new javax.swing.JPanel();
         topBar = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
@@ -1394,7 +1397,6 @@ public final class FrontFrame extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         jPanel9 = new javax.swing.JPanel();
         jButton31 = new javax.swing.JButton();
-        graphingPanel1 = new window.GraphingPanel();
 
         otherPad.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -4188,6 +4190,9 @@ public final class FrontFrame extends javax.swing.JFrame {
 
         getContentPane().add(Navigation);
 
+        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.LINE_AXIS));
+        getContentPane().add(jPanel2);
+
         calculator.setMinimumSize(new java.awt.Dimension(300, 460));
         calculator.setPreferredSize(new java.awt.Dimension(335, 460));
         calculator.setLayout(new javax.swing.BoxLayout(calculator, javax.swing.BoxLayout.PAGE_AXIS));
@@ -4239,7 +4244,7 @@ public final class FrontFrame extends javax.swing.JFrame {
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CalType, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                 .addComponent(histryBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         topBarLayout.setVerticalGroup(
@@ -5007,7 +5012,6 @@ public final class FrontFrame extends javax.swing.JFrame {
         hisAndMem.add(jTabbedPane1);
 
         getContentPane().add(hisAndMem);
-        getContentPane().add(graphingPanel1);
 
         bindingGroup.bind();
 
@@ -6116,7 +6120,6 @@ public final class FrontFrame extends javax.swing.JFrame {
     private javax.swing.JButton floor;
     private javax.swing.JPanel formatBar;
     private javax.swing.JPanel funcs;
-    private window.GraphingPanel graphingPanel1;
     private javax.swing.JPanel hexBar;
     private javax.swing.JLabel hexLabel;
     private javax.swing.JSeparator hexSelected;
@@ -6193,6 +6196,7 @@ public final class FrontFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel24;

@@ -23,6 +23,6 @@ public enum Images {
     }
 
     public static String getColor() {
-        return UIManager.getLookAndFeel().getName().contains("light") ? "white" : "black";
+        return UIManager.getLookAndFeel().getName().contains("dark") ? "white" : "black";
     }
 }
