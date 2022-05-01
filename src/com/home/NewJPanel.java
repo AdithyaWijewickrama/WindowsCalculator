@@ -5,6 +5,8 @@
  */
 package com.home;
 
+import window.GraphingPanel;
+
 /**
  *
  * @author adith
@@ -16,6 +18,7 @@ public class NewJPanel extends javax.swing.JPanel {
      */
     public NewJPanel() {
         initComponents();
+        
     }
 
     /**
