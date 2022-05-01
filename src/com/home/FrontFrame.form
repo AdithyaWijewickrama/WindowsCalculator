@@ -6638,9 +6638,5 @@
         </Container>
       </SubComponents>
     </Container>
-    <Container class="window.GraphingPanel" name="graphingPanel1">
-
-      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
-    </Container>
   </SubComponents>
 </Form>
