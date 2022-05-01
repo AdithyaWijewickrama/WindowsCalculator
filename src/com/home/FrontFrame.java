@@ -1394,6 +1394,7 @@ public final class FrontFrame extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         jPanel9 = new javax.swing.JPanel();
         jButton31 = new javax.swing.JButton();
+        graphingPanel1 = new window.GraphingPanel();
 
         otherPad.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -4179,7 +4180,7 @@ public final class FrontFrame extends javax.swing.JFrame {
             .addGroup(NavigationLayout.createSequentialGroup()
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton26, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -4238,7 +4239,7 @@ public final class FrontFrame extends javax.swing.JFrame {
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CalType, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addComponent(histryBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         topBarLayout.setVerticalGroup(
@@ -5006,10 +5007,11 @@ public final class FrontFrame extends javax.swing.JFrame {
         hisAndMem.add(jTabbedPane1);
 
         getContentPane().add(hisAndMem);
+        getContentPane().add(graphingPanel1);
 
         bindingGroup.bind();
 
-        setBounds(0, 0, 975, 615);
+        setBounds(0, 0, 975, 489);
     }// </editor-fold>//GEN-END:initComponents
 
     private void b2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b2ActionPerformed
@@ -6114,6 +6116,7 @@ public final class FrontFrame extends javax.swing.JFrame {
     private javax.swing.JButton floor;
     private javax.swing.JPanel formatBar;
     private javax.swing.JPanel funcs;
+    private window.GraphingPanel graphingPanel1;
     private javax.swing.JPanel hexBar;
     private javax.swing.JLabel hexLabel;
     private javax.swing.JSeparator hexSelected;

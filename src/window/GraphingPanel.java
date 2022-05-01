@@ -29,7 +29,6 @@ import java.awt.Stroke;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.MouseMotionListener;
-import java.awt.geom.Rectangle2D;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import parser.ExpressionParser;
@@ -108,8 +107,8 @@ public class GraphingPanel extends JPanel implements MouseWheelListener, MouseMo
         setFocusable(true);
         setBackground(Color.white);
         requestFocusInWindow();
-        setPreferredSize(new Dimension(width, height));
-        setMinimumSize(new Dimension(0, 0));
+        setPreferredSize(new Dimension(width, 450));
+        setMinimumSize(new Dimension(0, 450));
         setMaximumSize(new Dimension(2039392, 2039392));
 
         buff = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -308,8 +307,8 @@ public class GraphingPanel extends JPanel implements MouseWheelListener, MouseMo
                 Double y = toRealY(mousePt.getY());
                 FontMetrics fm = g2d.getFontMetrics(FONT);
                 g2d.setColor(AXIS_COLOR);
-                g2d.fillRect((int)mousePt.getX() + 20,
-                        (int)mousePt.getY() + 20, fm.stringWidth(x.toString() + "," + y.toString()), 20);
+//                g2d.fillRect((int)mousePt.getX() + 20,
+//                        (int)mousePt.getY() + 20, fm.stringWidth(x.toString() + "," + y.toString()), 20);
                 g2d.setColor(TEXT_COLOR);
                 g2d.drawString(getPoint(), (int)mousePt.getX() + 20, (int)mousePt.getY() + 20);
             }
