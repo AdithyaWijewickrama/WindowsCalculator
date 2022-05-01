@@ -308,7 +308,7 @@ public class GraphingPanel extends JPanel implements MouseWheelListener, MouseMo
                 Double y = toRealY(mousePt.getY());
                 FontMetrics fm = g2d.getFontMetrics(FONT);
                 g2d.setColor(AXIS_COLOR);
-                g2d.fillRect((int)mousePt.getX( + 20,
+                g2d.fillRect((int)mousePt.getX() + 20,
                         (int)mousePt.getY() + 20, fm.stringWidth(x.toString() + "," + y.toString()), 20);
                 g2d.setColor(TEXT_COLOR);
                 g2d.drawString(getPoint(), (int)mousePt.getX() + 20, (int)mousePt.getY() + 20);
