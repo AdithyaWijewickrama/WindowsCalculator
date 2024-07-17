@@ -283,13 +283,7 @@ public class DateCalculation extends javax.swing.JPanel {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
-    public static void main(String[] args) {
-        test f = new test();
-        DateCalculation dc = new DateCalculation();
-        f.add(dc);
-        f.setVisible(true);
-        System.out.println(toNormal(Commons.date));
-    }
+ 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JRadioButton add;

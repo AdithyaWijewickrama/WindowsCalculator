@@ -5,7 +5,7 @@
  */
 package com.codes;
 
-import static com.home.FrontFrame.Exact;
+import static com.main.FrontFrame.Exact;
 
 /**
  *

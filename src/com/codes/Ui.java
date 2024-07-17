@@ -4,9 +4,15 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.StringTokenizer;
-import javax.swing.JLabel;
+import javax.swing.JButton;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 public class Ui {
 
@@ -36,8 +42,8 @@ public class Ui {
         for (char c : string.toCharArray()) {
             word = word + c;
             if (word.length() > maxLineWidth) {
-                r = r+ word+"<br>";
-                word="";
+                r = r + word + "<br>";
+                word = "";
             }
         }
         r = ("<html> <p align=\"" + align + "\">" + r + "</p></html>");
@@ -76,10 +82,64 @@ public class Ui {
     }
 
     public static Dimension getTextSize(JTextField l, Font f) {
-        Dimension size = new Dimension();
-        FontMetrics fm = l.getGraphics().getFontMetrics(f);
-        size.width = fm.stringWidth(l.getText());
-        size.height = fm.getHeight();
+        Dimension size = new Dimension(10,20);
+        try {
+            FontMetrics fm = l.getGraphics().getFontMetrics(f);
+            size.width = fm.stringWidth(l.getText());
+            size.height = fm.getHeight();
+        } catch (Exception e) {
+        }
         return size;
     }
+
+    public static void setNumberTexting(JTextField t, JButton b) {
+        b.setVisible(false);
+        b.setBorder(null);
+        t.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                t.setSelectionStart(0);
+                t.setSelectionEnd(t.getText().length());
+                b.setVisible(true);
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                try {
+                    Double.valueOf(t.getText());
+                } catch (NumberFormatException ex) {
+                    for (ActionListener l : t.getActionListeners()) {
+                        l.actionPerformed(null);
+                    }
+                }
+                b.setVisible(false);
+            }
+        });
+        t.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                changedUpdate(e);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                changedUpdate(e);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                Dimension textSize = getTextSize(t, t.getFont());
+                textSize.setSize(textSize.width + 20, textSize.height + 4);
+                t.setPreferredSize(textSize);
+                t.setMinimumSize(textSize);
+                t.setMaximumSize(textSize);
+                t.getParent().getParent().revalidate();
+                t.getParent().getParent().repaint();
+            }
+        });
+        b.addActionListener((ActionEvent e) -> {
+            t.setText("0");
+        });
+    }
+
 }
