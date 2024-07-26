@@ -17,7 +17,7 @@ public static Connection conn=DbConnect.connect();
         return "\"" + str + "\"";
     }
 
-    public static String getCoveredt(String str) {
+    public static String getCoveredTable(String str) {
         return "`" + str + "`";
     }
 
@@ -100,6 +100,7 @@ public static Connection conn=DbConnect.connect();
     }
 
     public static String getValueS(String sql) {
+        System.out.println("d");
         Object val = getValue(sql);
         return val == null ? null : val.toString();
     }

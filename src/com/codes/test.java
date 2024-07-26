@@ -38,6 +38,7 @@ public class test extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(204, 153, 0));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

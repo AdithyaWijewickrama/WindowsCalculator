@@ -1,6 +1,6 @@
 
 import com.formdev.flatlaf.FlatDarkLaf;
-import com.main.VariablePanel;
+import com.calculator.graphing.VariablePanel;
 import javax.swing.UIManager;
 
 

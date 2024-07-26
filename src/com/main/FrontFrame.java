@@ -1,9 +1,13 @@
 package com.main;
 
+import com.calculator.HistoryPanel;
+import com.calculator.MemoryPanel;
+import com.calculator.graphing.FunctionPanel;
+import com.calculator.graphing.Graphical;
 import Programmer.Base;
 import static Programmer.Base.OCT;
 import Programmer.Decimal;
-import com.codes.DateCalculation;
+import com.calculator.dateCalculation.DateCalculation;
 import com.codes.Scifi;
 import com.codes.Trigonometry;
 import com.codes.Ui;
@@ -22,11 +26,14 @@ import java.sql.SQLException;
 import static com.main.Converts.forgetFocus;
 import static com.main.Converts.getComboModel;
 import static com.main.Converts.getFocus;
-import static com.main.Graphical.getUIColor;
-import static com.main.Graphical.getUIColorType;
+import static com.calculator.graphing.Graphical.getUIColor;
+import static com.calculator.graphing.Graphical.getUIColorType;
 import grapher.GraphPanel;
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -72,7 +79,7 @@ public final class FrontFrame extends javax.swing.JFrame {
     static boolean scifi_notation = false;
     public boolean startNew = false;
     public Double value = 0.;
-    String COLOR = "Wight";
+    String COLOR = "White";
     Prog prog = new Prog(Base.DEC);
     JTextField calTxt;
     public static final char PLUS = '+';
@@ -80,7 +87,7 @@ public final class FrontFrame extends javax.swing.JFrame {
     public static final char MULT = '*';
     public static final char DIV = '÷';
     public Trigonometry trig;
-    public HistryPanel histryPanel;
+    public HistoryPanel histryPanel;
     public MemoryPanel memoryPanel;
     public DateCalculation dateCalculation;
     public GraphPanel graphingPanel;
@@ -91,19 +98,18 @@ public final class FrontFrame extends javax.swing.JFrame {
         initComponents();
         trig = new Trigonometry();
         conn = DbConnect.connect();
-        histryPanel = new HistryPanel();
+        histryPanel = new HistoryPanel();
         memoryPanel = new MemoryPanel();
         dateCalculation = new DateCalculation();
         functionPanel = new FunctionPanel();
         graphingPanel = new GraphPanel();
-        jPanel2.add(graphingPanel);
         jScrollPane3.setViewportView(histryPanel);
         jScrollPane4.setViewportView(memoryPanel);
         jScrollPane3.getHorizontalScrollBar().setUnitIncrement(100);
         jScrollPane4.getHorizontalScrollBar().setUnitIncrement(100);
-        this.calTxt = cal;
+        this.calTxt = numberText;
         MemoryPanel.calTxt = calTxt;
-        MemoryPanel.eqtTxt = eqtTxt;
+        MemoryPanel.eqtTxt = equationTxt;
         calTxt.requestFocus();
         calTxt.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -143,35 +149,38 @@ public final class FrontFrame extends javax.swing.JFrame {
         for (Component c : navBtns.getComponents()) {
             if (c instanceof JButton) {
                 JButton btn = (JButton) c;
-                btn.addActionListener((ActionEvent e) -> {
-                    setCalType(btn.getText());
-                    for (Component c1 : navBtns.getComponents()) {
-                        if (c1 instanceof JButton) {
-                            ((JButton) c1).setSelected(false);
+                btn.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        setCalType(btn.getText());
+                        for (Component c1 : navBtns.getComponents()) {
+                            if (c1 instanceof JButton) {
+                                ((JButton) c1).setSelected(false);
+                            }
                         }
-                    }
-                    btn.setSelected(true);
-                    if (getCalType().idx >= 5) {
-                        int type = getCalType().idx - 5;
-                        boolean b = false;
-                        if (type != Converts.SPEED && type != Converts.POWER) {
-                            unitSelection1.setModel(new DefaultComboBoxModel<>(getComboModel(type)));
-                            unitSelection2.setModel(new DefaultComboBoxModel<>(getComboModel(type)));
-                        } else {
-                            b = true;
-                            unitSelection1.setModel(new DefaultComboBoxModel<>(getComboModel(Converts.LENGTH)));
-                            unitSelection2.setModel(new DefaultComboBoxModel<>(getComboModel(Converts.LENGTH)));
-                            ConCombo3.setModel(new DefaultComboBoxModel<>(getComboModel(Converts.TIME)));
-                            ConCombo4.setModel(new DefaultComboBoxModel<>(getComboModel(Converts.TIME)));
+                        btn.setSelected(true);
+                        if (getCalType().idx >= 5) {
+                            int type = getCalType().idx - 5;
+                            boolean b = false;
+                            if (type != Converts.SPEED && type != Converts.POWER) {
+                                unitSelection1.setModel(new DefaultComboBoxModel<>(getComboModel(type)));
+                                unitSelection2.setModel(new DefaultComboBoxModel<>(getComboModel(type)));
+                            } else {
+                                b = true;
+                                unitSelection1.setModel(new DefaultComboBoxModel<>(getComboModel(Converts.LENGTH)));
+                                unitSelection2.setModel(new DefaultComboBoxModel<>(getComboModel(Converts.LENGTH)));
+                                ConCombo3.setModel(new DefaultComboBoxModel<>(getComboModel(Converts.TIME)));
+                                ConCombo4.setModel(new DefaultComboBoxModel<>(getComboModel(Converts.TIME)));
 
+                            }
+                            ConCombo4.setVisible(b);
+                            ConCombo3.setVisible(b);
+                            per.setVisible(b);
+                            per1.setVisible(b);
+                            setConvertedValue(Double.parseDouble(calTxt.getText()), type, getOpasite());
                         }
-                        ConCombo4.setVisible(b);
-                        ConCombo3.setVisible(b);
-                        per.setVisible(b);
-                        per1.setVisible(b);
-                        setConvertedValue(Double.valueOf(calTxt.getText()), type, getOpasite());
+                        navigation(false);
                     }
-                    navigation(false);
                 });
             }
         }
@@ -392,7 +401,7 @@ public final class FrontFrame extends javax.swing.JFrame {
     }
 
     public void setFirstNum(Double fn, Double sn, String arithExp) {
-        eqtTxt.setText(getFirstNum(fn, sn, arithExp));
+        equationTxt.setText(getFirstNum(fn, sn, arithExp));
     }
 
     public String getFirstNum(Double d, String arithExp) {
@@ -400,7 +409,7 @@ public final class FrontFrame extends javax.swing.JFrame {
     }
 
     public void setFirstNum(Double d, String arithExp) {
-        eqtTxt.setText(getFirstNum(d, arithExp));
+        equationTxt.setText(getFirstNum(d, arithExp));
     }
 
     public void DBload() {
@@ -707,7 +716,7 @@ public final class FrontFrame extends javax.swing.JFrame {
         }
         if (!constn) {
             String eqt = arithExp == null ? ((pre ? func : "") + (parenthesis ? "(" + Exact(val) + ")" : Exact(val)) + (!pre ? func : "") + " = ")
-                    : eqtTxt.getText() + " " + (pre ? func : "") + (parenthesis ? "(" + Exact(val) + ")" : Exact(val)) + (!pre ? func : "");
+                    : equationTxt.getText() + " " + (pre ? func : "") + (parenthesis ? "(" + Exact(val) + ")" : Exact(val)) + (!pre ? func : "");
             setEqt(eqt);
 
         }
@@ -899,10 +908,22 @@ public final class FrontFrame extends javax.swing.JFrame {
                 for (int i = 0; i < mPanels.size(); i++) {
                     mPanels.remove(i);
                 }
-                mPanels.add(Navigation);
-                mPanels.add(graphingPanel);
-                mPanels.add(calculator);
 
+                jPanel2.add(graphingPanel);
+//                graphingPanel.setMaximumSize(new Dimension(500, 500));
+//                graphingPanel.setPreferredSize(new Dimension(500, 500));
+//                graphingPanel.setMinimumSize(new Dimension(500, 500));
+                graphingPanel.setAlignmentX(0);
+                graphingPanel.setAlignmentY(0);
+                graphingPanel.setVisible(true);
+                jPanel2.revalidate();
+                jPanel2.repaint();
+                Thread t = new Thread(graphingPanel);
+                t.start();
+
+                mPanels.add(Navigation);
+                mPanels.add(jPanel2);
+                mPanels.add(calculator);
                 panels.add(topBar);
                 panels.add(functionPanel);
                 panels.add(funcs);
@@ -952,9 +973,10 @@ public final class FrontFrame extends javax.swing.JFrame {
         }
         getContentPane().removeAll();
         for (Container mPanel : mPanels) {
-            getContentPane().add(mPanel);
+            mPanel.setVisible(true);
+            getContentPane().add(mPanel, BorderLayout.CENTER);
         }
-        validate();
+        revalidate();
         repaint();
 
         row0.setVisible(r0.visible);
@@ -998,7 +1020,7 @@ public final class FrontFrame extends javax.swing.JFrame {
 
     public void clear() {
         calTxt.setText("0");
-        eqtTxt.setText("");
+        equationTxt.setText("");
         equation.setText("");
         equation2.setText("");
         arithExp = null;
@@ -1070,7 +1092,7 @@ public final class FrontFrame extends javax.swing.JFrame {
     }
 
     public void setEqt(String Eqt) {
-        eqtTxt.setText(Eqt);
+        equationTxt.setText(Eqt);
     }
 
     public void navigation(boolean flag) {
@@ -1331,8 +1353,8 @@ public final class FrontFrame extends javax.swing.JFrame {
         histryBtn = new javax.swing.JButton();
         showBar = new javax.swing.JPanel();
         pad1 = new javax.swing.JPanel();
-        eqtTxt = new javax.swing.JTextField();
-        cal = new javax.swing.JTextField();
+        equationTxt = new javax.swing.JTextField();
+        numberText = new javax.swing.JTextField();
         formatBar = new javax.swing.JPanel();
         jToggleButton3 = new javax.swing.JToggleButton();
         jButton29 = new javax.swing.JButton();
@@ -3888,6 +3910,7 @@ public final class FrontFrame extends javax.swing.JFrame {
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
         Navigation.setBackground(getUIColor());
+        Navigation.setAlignmentY(0.0F);
         Navigation.setMaximumSize(new java.awt.Dimension(265, 32816));
         Navigation.setMinimumSize(new java.awt.Dimension(265, 0));
         Navigation.setPreferredSize(new java.awt.Dimension(265, 0));
@@ -3936,6 +3959,11 @@ public final class FrontFrame extends javax.swing.JFrame {
         jButton2.setMaximumSize(new java.awt.Dimension(260, 50));
         jButton2.setMinimumSize(new java.awt.Dimension(260, 50));
         jButton2.setPreferredSize(new java.awt.Dimension(260, 50));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         navBtns.add(jButton2);
 
         jButton12.setBackground(getUIColor());
@@ -4154,7 +4182,7 @@ public final class FrontFrame extends javax.swing.JFrame {
             .addGroup(NavigationLayout.createSequentialGroup()
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton26, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -4162,9 +4190,15 @@ public final class FrontFrame extends javax.swing.JFrame {
 
         getContentPane().add(Navigation);
 
-        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.LINE_AXIS));
+        jPanel2.setAlignmentX(0.0F);
+        jPanel2.setAlignmentY(0.0F);
+        jPanel2.setMaximumSize(new java.awt.Dimension(500000, 500000));
+        jPanel2.setMinimumSize(new java.awt.Dimension(350, 960));
+        jPanel2.setPreferredSize(new java.awt.Dimension(500, 500));
+        jPanel2.setLayout(new java.awt.CardLayout());
         getContentPane().add(jPanel2);
 
+        calculator.setAlignmentY(0.0F);
         calculator.setMinimumSize(new java.awt.Dimension(300, 460));
         calculator.setPreferredSize(new java.awt.Dimension(335, 460));
         calculator.setLayout(new javax.swing.BoxLayout(calculator, javax.swing.BoxLayout.PAGE_AXIS));
@@ -4216,7 +4250,7 @@ public final class FrontFrame extends javax.swing.JFrame {
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CalType, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(histryBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         topBarLayout.setVerticalGroup(
@@ -4237,34 +4271,39 @@ public final class FrontFrame extends javax.swing.JFrame {
 
         pad1.setLayout(new javax.swing.BoxLayout(pad1, javax.swing.BoxLayout.PAGE_AXIS));
 
-        eqtTxt.setEditable(false);
-        eqtTxt.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        eqtTxt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        eqtTxt.setBorder(javax.swing.BorderFactory.createLineBorder(calculator.getBackground(), 4));
-        eqtTxt.setMargin(new java.awt.Insets(10, 10, 10, 10));
-        eqtTxt.setMaximumSize(new java.awt.Dimension(32816, 50));
-        eqtTxt.addActionListener(new java.awt.event.ActionListener() {
+        equationTxt.setEditable(false);
+        equationTxt.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        equationTxt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        equationTxt.setBorder(javax.swing.BorderFactory.createLineBorder(calculator.getBackground(), 4));
+        equationTxt.setMargin(new java.awt.Insets(10, 10, 10, 10));
+        equationTxt.setMaximumSize(new java.awt.Dimension(32816, 50));
+        equationTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eqtTxtActionPerformed(evt);
+                equationTxtActionPerformed(evt);
             }
         });
-        pad1.add(eqtTxt);
+        pad1.add(equationTxt);
 
-        cal.setEditable(false);
-        cal.setFont(new java.awt.Font("Dialog", 1, 40)); // NOI18N
-        cal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        cal.setText("0");
-        cal.setBorder(javax.swing.BorderFactory.createLineBorder(calculator.getBackground(), 4));
-        cal.setMargin(new java.awt.Insets(10, 10, 10, 10));
-        cal.setMaximumSize(new java.awt.Dimension(2147483647, 120));
-        cal.setMinimumSize(new java.awt.Dimension(320, 52));
-        cal.setPreferredSize(new java.awt.Dimension(320, 60));
-        cal.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                calKeyTyped(evt);
+        numberText.setEditable(false);
+        numberText.setFont(new java.awt.Font("Dialog", 1, 40)); // NOI18N
+        numberText.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        numberText.setText("0");
+        numberText.setBorder(javax.swing.BorderFactory.createLineBorder(calculator.getBackground(), 4));
+        numberText.setMargin(new java.awt.Insets(10, 10, 10, 10));
+        numberText.setMaximumSize(new java.awt.Dimension(2147483647, 120));
+        numberText.setMinimumSize(new java.awt.Dimension(320, 52));
+        numberText.setPreferredSize(new java.awt.Dimension(320, 60));
+        numberText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                numberTextActionPerformed(evt);
             }
         });
-        pad1.add(cal);
+        numberText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                numberTextKeyTyped(evt);
+            }
+        });
+        pad1.add(numberText);
 
         showBar.add(pad1);
 
@@ -4896,6 +4935,7 @@ public final class FrontFrame extends javax.swing.JFrame {
 
         getContentPane().add(calculator);
 
+        hisAndMem.setAlignmentY(0.0F);
         hisAndMem.setMaximumSize(new java.awt.Dimension(350, 32767));
         hisAndMem.setPreferredSize(new java.awt.Dimension(330, 548));
         hisAndMem.setLayout(new javax.swing.BoxLayout(hisAndMem, javax.swing.BoxLayout.LINE_AXIS));
@@ -4930,7 +4970,7 @@ public final class FrontFrame extends javax.swing.JFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(256, Short.MAX_VALUE)
+                .addContainerGap(248, Short.MAX_VALUE)
                 .addComponent(jButton30)
                 .addContainerGap())
         );
@@ -4969,7 +5009,7 @@ public final class FrontFrame extends javax.swing.JFrame {
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addGap(0, 262, Short.MAX_VALUE)
+                .addGap(0, 254, Short.MAX_VALUE)
                 .addComponent(jButton31))
         );
         jPanel9Layout.setVerticalGroup(
@@ -4985,7 +5025,7 @@ public final class FrontFrame extends javax.swing.JFrame {
 
         getContentPane().add(hisAndMem);
 
-        setBounds(0, 0, 975, 489);
+        setBounds(0, 0, 1308, 489);
     }// </editor-fold>//GEN-END:initComponents
 
     private void b2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b2ActionPerformed
@@ -5142,12 +5182,12 @@ public final class FrontFrame extends javax.swing.JFrame {
         String SelIt = logorithms.getSelectedItem().toString();
         String ans;
         switch (SelIt) {
-            case LOG:
-                calculateTrig(LOG);
+            case "Log":
+                calculateTrig("Log");
                 calTxt.requestFocus();
                 break;
-            case ANTILOG:
-                calculateTrig(ANTILOG);
+            case "AntLog":
+                calculateTrig("Antilog");
                 calTxt.requestFocus();
                 break;
 
@@ -5158,7 +5198,7 @@ public final class FrontFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_mainTabMouseClicked
 
-    private void calKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_calKeyTyped
+    private void numberTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numberTextKeyTyped
         Message.setText("");
         String text = calTxt.getText();
         char key = evt.getKeyChar();
@@ -5220,7 +5260,7 @@ public final class FrontFrame extends javax.swing.JFrame {
                 equal.doClick();
                 break;
         }
-    }//GEN-LAST:event_calKeyTyped
+    }//GEN-LAST:event_numberTextKeyTyped
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         navigation(true);
@@ -5255,7 +5295,7 @@ public final class FrontFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_convertsText1KeyTyped
 
     private void b10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b10ActionPerformed
-        cal.setText(Exact(-1 * Double.valueOf(cal.getText())));
+        numberText.setText(Exact(-1 * Double.valueOf(numberText.getText())));
         watch();
     }//GEN-LAST:event_b10ActionPerformed
 
@@ -5339,9 +5379,9 @@ public final class FrontFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formComponentResized
 
-    private void eqtTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eqtTxtActionPerformed
+    private void equationTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_equationTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_eqtTxtActionPerformed
+    }//GEN-LAST:event_equationTxtActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
@@ -5357,7 +5397,7 @@ public final class FrontFrame extends javax.swing.JFrame {
 
     private void cActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cActionPerformed
         setValue(0.);
-        eqtTxt.setText("");
+        equationTxt.setText("");
         firstNum = 0.;
     }//GEN-LAST:event_cActionPerformed
 
@@ -5682,7 +5722,7 @@ public final class FrontFrame extends javax.swing.JFrame {
 
     private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
         setCalType(jButton34.getText());
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jButton34ActionPerformed
 
     private void jButton35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton35ActionPerformed
@@ -5692,6 +5732,14 @@ public final class FrontFrame extends javax.swing.JFrame {
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void numberTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numberTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_numberTextActionPerformed
 
     public void setBinKey(JButton b) {
 
@@ -6063,7 +6111,6 @@ public final class FrontFrame extends javax.swing.JFrame {
     private javax.swing.JButton bracL;
     private javax.swing.JButton bracR;
     private javax.swing.JButton c;
-    private javax.swing.JTextField cal;
     private javax.swing.JPanel calculator;
     private javax.swing.JButton ce;
     private javax.swing.JButton ceil;
@@ -6081,10 +6128,10 @@ public final class FrontFrame extends javax.swing.JFrame {
     private javax.swing.JButton div;
     private javax.swing.JButton dot;
     private javax.swing.JButton e;
-    private javax.swing.JTextField eqtTxt;
     private javax.swing.JButton equal;
     private javax.swing.JTextField equation;
     private javax.swing.JTextField equation2;
+    private javax.swing.JTextField equationTxt;
     private javax.swing.JButton exp;
     private javax.swing.JButton fact;
     private javax.swing.JButton floor;
@@ -6200,6 +6247,7 @@ public final class FrontFrame extends javax.swing.JFrame {
     private javax.swing.JPanel navBtns;
     private javax.swing.JButton nor;
     private javax.swing.JButton not;
+    private javax.swing.JTextField numberText;
     private javax.swing.JPanel octBar;
     private javax.swing.JLabel octLabel;
     private javax.swing.JSeparator octSelected;
