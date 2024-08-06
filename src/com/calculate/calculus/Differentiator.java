@@ -2,10 +2,10 @@ package com.calculate.calculus;
 
 import com.calculate.equation.ExpressionEvaluator;
 import com.calculate.*;
-import com.Tokenizing.Token;
-import com.Tokenizing.TokenList;
-import com.Tokenizing.TokenParser;
-import com.Tokenizing.TokenType;
+import com.tokenizing.Token;
+import com.tokenizing.TokenList;
+import com.tokenizing.TokenParser;
+import com.tokenizing.TokenType;
 import com.calculate.Number;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -17,13 +17,12 @@ import java.util.logging.Logger;
  *
  * @author AW Developer
  */
-public class Differentiator extends TokenParser {
+public final class Differentiator extends TokenParser {
 
-    private Number x;
+    private ExpressionEvaluator expEv;
 
     public Differentiator(String exp) throws Exception {
         super(exp);
-        parse();
     }
 
     public Differentiator(TokenList tokens) throws Exception {
@@ -31,12 +30,12 @@ public class Differentiator extends TokenParser {
     }
 
     public TokenList differentiate(int coefficient) throws Exception {
-        if(coefficient<=0){
+        if (coefficient <= 0) {
             return this;
         }
-        if (hasIndependent()) {
+        if (hasIndependent()||hasDependent()) {
             setTokenList(parseTokens(this));
-            return differentiate(coefficient-1);
+            return differentiate(coefficient - 1);
         } else {
             TokenList t = new TokenList();
             t.addToken(new Token(TokenType.NUMBER, Number.parseNumber(0.)));
@@ -46,7 +45,10 @@ public class Differentiator extends TokenParser {
     }
 
     public Number evaluateAt(Number x) throws Exception {
-        return new ExpressionEvaluator(this).evaluateAt(x);
+        if (expEv == null) {
+            expEv = new ExpressionEvaluator(this);
+        }
+        return expEv.evaluateAt(x);
     }
 
     private TokenList parseTokens(TokenList tokens) throws ParseException {
@@ -104,13 +106,20 @@ public class Differentiator extends TokenParser {
                     case INDEPENDENT:
                         list.addToken(new Token(TokenType.NUMBER, Number.parseNumber(1.)));
                         break;
+                    case DY_BY_DX:
+                        token.number=token.number.add(Number.parseNumber(1));
+                        list.addToken(token);
+                        break;
                     case DEPENDENT:
+                        list.addToken(new Token(TokenType.DY_BY_DX,"dx/dy", Number.parseNumber(1.)));
                         break;
                     default:
                         throw new Error("Unparsable token for " + tokens);
                 }
             }
         }
+        System.out.println("Done...");
+        System.out.println("\t" + tokens.toLocalString().replaceAll("\n", "\n\t"));
         return list;
     }
 
@@ -156,7 +165,7 @@ public class Differentiator extends TokenParser {
         while (true) {
             int j = scanFor(p, Token.COMMA);
             if (j != -1) {
-                params.add(p.split(j+1, p.size()));
+                params.add(p.split(j + 1, p.size()));
                 p.deleteToken(j);
                 if (p.size() != 0) {
                     p = p.split(0, j);
@@ -210,7 +219,7 @@ public class Differentiator extends TokenParser {
             }
             try {
                 t = new Differentiator(cmd);
-                t.differentiate(1);
+                t.differentiate(2);
 //                System.out.print("\nValue at/(n for next space for extit):\n\t");
 //                cmd = s.nextLine();
 //                switch (cmd) {

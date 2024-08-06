@@ -1,10 +1,10 @@
 package com.calculate.equation;
 
-import com.Tokenizing.Token;
-import static com.Tokenizing.Token.LOGBASEY;
-import static com.Tokenizing.Token.MODULO;
-import static com.Tokenizing.Token.YROOT;
-import com.Tokenizing.TokenType;
+import com.tokenizing.Token;
+import static com.tokenizing.Token.LOGBASEY;
+import static com.tokenizing.Token.MODULO;
+import static com.tokenizing.Token.YROOT;
+import com.tokenizing.TokenType;
 import com.calculate.Number;
 
 /**
@@ -15,7 +15,7 @@ public class _Function_ extends Calculate {
 
     Token _function_;
 
-    public _Function_(Token _func, Number v1, Number v2) {
+    public _Function_(Token _func, Calculate v1, Calculate v2) {
         super(v1, TokenType._FUNCTION_, v2);
         this._function_ = _func;
     }
@@ -24,13 +24,13 @@ public class _Function_ extends Calculate {
     public Number doTheMath() {
         try {
             if (_function_ == YROOT) {
-                return Number.parseNumber(Math.pow(value1.doubleValue(), value2.doubleValue()));
+                return Number.parseNumber(Math.pow(value1.doTheMath().doubleValue(), value2.doTheMath().doubleValue()));
             }
             if (_function_ == MODULO) {
-                return Number.parseNumber(value1.doubleValue() % value2.doubleValue());
+                return Number.parseNumber(value1.doTheMath().doubleValue() % value2.doTheMath().doubleValue());
             }
             if (_function_ == LOGBASEY) {
-                return Number.parseNumber(Math.log(value2.doubleValue()) / Math.log(value1.doubleValue()));
+                return Number.parseNumber(Math.log(value2.doTheMath().doubleValue()) / Math.log(value1.doTheMath().doubleValue()));
             } else {
                 throw new AssertionError();
             }

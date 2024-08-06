@@ -1,9 +1,9 @@
 package com.calculate.calculus;
 
 import Convert.Angle;
-import com.Tokenizing.Token;
-import static com.Tokenizing.Token.*;
-import com.Tokenizing.TokenList;
+import com.tokenizing.Token;
+import static com.tokenizing.Token.*;
+import com.tokenizing.TokenList;
 
 /**
  *
@@ -136,7 +136,7 @@ public final class Triaganometry extends Function_ {
             }
 
             t.addToken(MULTIPLY);
-            t.addTokens(new Differentiator(fx).differentiate(2).pranthesise());
+            t.addTokens(new Differentiator(fx).differentiate(1).pranthesise());
         } catch (Exception ex) {
             makeError(ex);
         }

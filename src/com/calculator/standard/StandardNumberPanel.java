@@ -1,14 +1,14 @@
 package com.calculator.standard;
 
-import com.Tokenizing.Token;
-import com.Tokenizing.TokenList;
-import com.Tokenizing.TokenType;
+import com.tokenizing.Token;
+import com.tokenizing.TokenList;
+import com.tokenizing.TokenType;
 import com.calculate.Number;
-import com.calculate.equation.Calculate;
 import com.calculate.equation.ExpressionEvaluator;
 import static com.calculate.equation.ExpressionEvaluator.scanFor;
-import com.calculator.CommonNumberPanel;
+import com.calculator.commonCalculator.ui.CommonNumberPanel;
 import com.formdev.flatlaf.FlatDarculaLaf;
+import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -62,7 +62,6 @@ public abstract class StandardNumberPanel extends CommonNumberPanel {
             switch (last.type) {
                 case OPARATOR:
                 case _FUNCTION_:
-                case SYMBOL:
                     if (equal) {
                         list.addToken(currentNumber);
                     } else {
@@ -105,7 +104,7 @@ public abstract class StandardNumberPanel extends CommonNumberPanel {
     private boolean isTokensEmpty() {
         return tokensWithinSplitters.size() == 0;
     }
-    
+
     @Override
     public void newKey(char key) {
         try {
@@ -115,7 +114,6 @@ public abstract class StandardNumberPanel extends CommonNumberPanel {
             } else {
                 t = Token.getTokenByKey(key);
             }
-            System.out.println(key);
             if (KeyEvent.VK_ENTER == key) {
                 if (getLastShowedToken() == Token.EQUAL) {
                     int i = scanFor(show, TokenType.OPARATOR);
@@ -150,7 +148,21 @@ public abstract class StandardNumberPanel extends CommonNumberPanel {
                 }
                 setNumber(getTypedNumber());
             } else if (t != null) {
-                parseToken(t);
+                if (Token.PLUS_OR_MINUS.equalsTo(t)) {
+                    if (!ZEROTOKEN.equalsTo(tokenDigits.tokenAt(0))) {
+                        if (Token.MINUS.equalsTo(tokenDigits.tokenAt(0))) {
+                            tokenDigits.deleteToken(0);
+                        } else {
+                            tokenDigits.insertToken(Token.MINUS, 0);
+                        }
+                        Number num = getNumber().multiply(Number.parseNumber(-1));
+                        setNumber(num);
+                        currentNumber = new Token(TokenType.NUMBER, num);
+                        parseToken(currentNumber);
+                    }
+                } else {
+                    parseToken(t);
+                }
             }
         } catch (Exception ex) {
             Logger.getLogger(StandardNumberPanel.class.getName()).log(Level.SEVERE, null, ex);
@@ -158,16 +170,15 @@ public abstract class StandardNumberPanel extends CommonNumberPanel {
         setTextSize();
     }
 
-    Calculate c = null;
-
     @Override
     public void parseToken(Token token) throws Exception {
         if (null != token.type) {
+            if (!Token.EQUAL.equalsTo(token) && getLastShowedToken() == Token.EQUAL) {
+                show.clear();
+            }
             switch (token.type) {
                 case DIGIT:
-                    if (getLastShowedToken() == Token.EQUAL) {
-                        show.clear();
-                    }
+
                     if (token.equalsTo(Token.DOT)) {
                         if (tokenDigits.find(token) != -1) {
                             break;
@@ -196,7 +207,7 @@ public abstract class StandardNumberPanel extends CommonNumberPanel {
                     currentNumber = new Token(TokenType.NUMBER, new Number(number, enteringFormat));
                     System.out.println(currentNumber.number.doubleValue());
                     setNumber(currentNumber.number);
-                    parseToken(new Token(TokenType.NUMBER, new Number(number, enteringFormat)));
+                    parseToken(currentNumber);
                     break;
                 case NUMBER:
                     currentNumber = token;
@@ -206,19 +217,18 @@ public abstract class StandardNumberPanel extends CommonNumberPanel {
                     } else {
                         if (getLastTokenType() == TokenType.OPARATOR) {
                             enter.addToken(token);
-                        } else if (getLastTokenType() == TokenType._FUNCTION_) {
                         } else if (getLastTokenType() == TokenType.NUMBER) {
                             enter.deleteToken(enter.size() - 1);
                             tokensWithinSplitters.deleteToken(tokensWithinSplitters.size() - 1);
                             enter.addToken(token);
+                            tokensWithinSplitters.addToken(token);
                         } else if (getLastTokenType() == TokenType.FUNCTION_) {
                             tokensWithinSplitters.clear();
                         }
                     }
                     break;
                 case OPARATOR:
-                    int lastOP = scanFor(show, TokenType.OPARATOR);
-                    if (!isTokensEmpty() && getLastShowedTokenType() == TokenType.OPARATOR) {
+                    if (getLastTokenType() == TokenType.OPARATOR) {
                         show.addTokens(tokensWithinSplitters);
                         Number value = getValue(false);
                         show.clear();
@@ -230,33 +240,27 @@ public abstract class StandardNumberPanel extends CommonNumberPanel {
                         tokenDigits.clear();
                         setEquation(show);
                         setNumber(value);
-                        return;
-                    } else {
-                        if (getLastTokenType() == TokenType.OPARATOR) {
-                            enter.deleteToken(enter.size() - 1);
-                            show.deleteToken(show.size() - 1);
-                            show.addToken(token);
-                            enter.addToken(token);
-                        } else if (getLastTokenType() == TokenType.NUMBER) {
-                            show.addTokens(tokensWithinSplitters);
-                            tokensWithinSplitters = new TokenList();
-                            tokensWithinSplitters.addToken(ZEROTOKEN);
-                            show.addToken(token);
-                            enter.addToken(token);
-                        } else if (getLastTokenType() == TokenType.FUNCTION_) {
-                            deleteLastTokens(show);
-                            show.addTokens(tokensWithinSplitters);
-                            show.addToken(token);
-                            enter.addToken(token);
-                        }
+                    } else if (getLastTokenType() == TokenType.NUMBER) {
+                        show.addTokens(tokensWithinSplitters);
+                        tokensWithinSplitters.clear();
+                        show.addToken(token);
+                        enter.addToken(token);
+                    } else if (getLastTokenType() == TokenType.FUNCTION_) {
+                        deleteLastTokens(show);
+                        show.addTokens(tokensWithinSplitters);
+                        show.addToken(token);
+                        enter.addToken(token);
                     }
-                    tokensWithinSplitters = new TokenList();
-                    tokenDigits.clear();
-                    tokenDigits.addToken(ZEROTOKEN);
+                    tokensWithinSplitters.clear();
+                    setZero(tokenDigits);
                     break;
                 case FUNCTION_:
                     if (isTokensEmpty()) {
                         tokensWithinSplitters.addToken(currentNumber);
+                    }
+                    if (getLastTokenType() == null) {
+                        show.addToken(token);
+                        show.addTokens(tokensWithinSplitters.pranthesise());
                     }
                     if (getLastTokenType() == TokenType.OPARATOR) {
                         show.addToken(token);
@@ -293,8 +297,7 @@ public abstract class StandardNumberPanel extends CommonNumberPanel {
             }
         }
 
-        if (show.size()
-                > 0) {
+        if (show.size() > 0) {
             if (show.tokenAt(show.size() - 1).equalsTo(Token.EQUAL)) {
                 if (token.equalsTo(Token.EQUAL)) {
                     tokenDigits.clear();
@@ -322,8 +325,8 @@ public abstract class StandardNumberPanel extends CommonNumberPanel {
         StandardNumberPanel p = new StandardNumberPanel() {
             @Override
             public void addHistory(TokenList equation, Number answer) {
-                System.out.println("History"+equation.toLocalString());
-                System.out.println("Answer"+equation);
+                System.out.println("History" + equation.toLocalString());
+                System.out.println("Answer" + equation);
             }
         };
         JFrame frame = new JFrame("Common number field");

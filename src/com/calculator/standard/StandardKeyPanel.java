@@ -1,13 +1,17 @@
 package com.calculator.standard;
 
-import com.Tokenizing.Token;
-import static com.Tokenizing.Token.*;
-import com.Tokenizing.TokenList;
-import com.Tokenizing.TokenType;
-import com.calculator.ButtonLayout;
-import com.calculator.CommonKeyPanel;
-import com.calculator.CommonNumberPanel;
-import java.awt.event.KeyEvent;
+import com.tokenizing.Token;
+import static com.tokenizing.Token.*;
+import com.tokenizing.TokenList;
+import com.tokenizing.TokenType;
+import com.calculator.commonCalculator.ui.button.ButtonLayout;
+import com.calculator.commonCalculator.ui.CommonKeyPanel;
+import com.calculator.commonCalculator.ui.CommonNumberPanel;
+import static com.calculator.commonCalculator.ui.button.DefaultButtons.BACK;
+import static com.calculator.commonCalculator.ui.button.DefaultButtons.C;
+import static com.calculator.commonCalculator.ui.button.DefaultButtons.CE;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -15,26 +19,32 @@ import java.awt.event.KeyEvent;
  */
 public class StandardKeyPanel extends javax.swing.JPanel {
 
-    
     CommonKeyPanel keyPanel;
     CommonNumberPanel numberPanel;
-    TokenList buttons=new TokenList(
-            MODULO,new Token(TokenType.SYMBOL,"CE",(char)KeyEvent.VK_DELETE),new Token(TokenType.SYMBOL,"C",(char)KeyEvent.VK_ESCAPE),new Token(TokenType.SYMBOL,"<x]",(char)KeyEvent.VK_BACK_SPACE),
-    new Token(TokenType.FUNCTION_,"1/x",'r'),SQUARED,SQUREROOT,DIVIDE,SEVEN,EIGHT,NINE,MULTIPLY,FOUR,FIVE,SIX,MINUS,ONE,TWO,THREE,PLUS,
-    new Token(TokenType.SYMBOL,"+/-",'`'),ZERO,DOT,EQUAL);
-    String pattern=""
+    TokenList buttons = new TokenList(
+            MODULO, CE, C, BACK,
+            new Token(TokenType.FUNCTION_, "1/x", 'r'), SQUARED, SQUREROOT, DIVIDE, SEVEN, EIGHT, NINE, MULTIPLY, FOUR, FIVE, SIX, MINUS, ONE, TWO, THREE, PLUS,
+            PLUS_OR_MINUS, ZERO, DOT, EQUAL);
+    String pattern = ""
             + "####\n"
             + "####\n"
             + "####\n"
             + "####\n"
             + "####\n"
             + "####\n";
+
     /**
      * Creates new form StandardKeyPanel
      */
-    public StandardKeyPanel() {
+    public StandardKeyPanel(CommonNumberPanel numberPanel) {
+        this.numberPanel = numberPanel;
         initComponents();
-        keyPanel=new CommonKeyPanel(numberPanel, buttons, pattern, ButtonLayout.COLUMN);
+        try {
+            keyPanel = new CommonKeyPanel(numberPanel, buttons, pattern, ButtonLayout.ROW);
+        } catch (Exception ex) {
+            Logger.getLogger(StandardKeyPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        add(keyPanel);
     }
 
     /**
@@ -46,16 +56,10 @@ public class StandardKeyPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setMaximumSize(new java.awt.Dimension(10000, 10000));
+        setMinimumSize(new java.awt.Dimension(300, 300));
+        setPreferredSize(new java.awt.Dimension(300, 300));
+        setLayout(new java.awt.CardLayout(5, 5));
     }// </editor-fold>//GEN-END:initComponents
 
 

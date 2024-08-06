@@ -1,9 +1,9 @@
 package com.calculate.calculus;
 
-import com.Tokenizing.Token;
-import static com.Tokenizing.Token.*;
-import com.Tokenizing.TokenList;
-import com.Tokenizing.TokenType;
+import com.tokenizing.Token;
+import static com.tokenizing.Token.*;
+import com.tokenizing.TokenList;
+import com.tokenizing.TokenType;
 
 /**
  *
@@ -28,14 +28,14 @@ public class _Function_ extends Calculus {
                 t.addToken(OPEN_PRANTHESIS);
                 t.addTokens(gx.reciprocal());
                 t.addToken(MULTIPLY);
-                t.addTokens(new Differentiator(gx).differentiate(2));
+                t.addTokens(new Differentiator(gx).differentiate(1));
                 t.addToken(MULTIPLY);
                 t.addToken(LN);
                 t.addTokens(fx.pranthesise());
                 t.addToken(MINUS);
                 t.addTokens(fx.reciprocal());
                 t.addToken(MULTIPLY);
-                t.addTokens(new Differentiator(fx).differentiate(2));
+                t.addTokens(new Differentiator(fx).differentiate(1));
                 t.addToken(MULTIPLY);
                 t.addToken(LN);
                 t.addTokens(gx.pranthesise());

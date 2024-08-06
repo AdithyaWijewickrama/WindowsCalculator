@@ -1,8 +1,6 @@
 package com.calculate.equation;
 
-import com.Tokenizing.Token;
-import com.Tokenizing.TokenList;
-import com.Tokenizing.TokenType;
+import com.tokenizing.TokenType;
 import com.calculate.Number;
 
 /**
@@ -10,33 +8,33 @@ import com.calculate.Number;
  * @author AW Developer
  */
 public abstract class Calculate {
-    protected Number value1;
-    protected Number value2;
+    protected Calculate value1;
+    protected Calculate value2;
     private TokenType type;
 
-    public Calculate(Number value1, TokenType type, Number value2) {
+    public Calculate(Calculate value1, TokenType type, Calculate value2) {
         this.value1 = value1;
         this.value2 = value2;
         this.type = type;
     }
-    public Calculate(Number value, TokenType type) {
+    public Calculate(Calculate value, TokenType type) {
         this.value1 = value;
         this.type = type;
     }
 
-    public Number getValue1() {
+    public Calculate getValue1() {
         return value1;
     }
 
-    public void setValue1(Number value1) {
+    public void setValue1(Calculate value1) {
         this.value1 = value1;
     }
 
-    public Number getValue2() {
+    public Calculate getValue2() {
         return value2;
     }
 
-    public void setValue2(Number value2){
+    public void setValue2(Calculate value2){
         this.value2 = value2;
     }
 

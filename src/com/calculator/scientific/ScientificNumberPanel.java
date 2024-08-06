@@ -1,14 +1,13 @@
 package com.calculator.scientific;
 
-import com.Tokenizing.Token;
-import com.Tokenizing.TokenList;
-import com.Tokenizing.TokenType;
+import com.tokenizing.Token;
+import com.tokenizing.TokenList;
+import com.tokenizing.TokenType;
 import com.calculate.Number;
 import com.calculate.equation.ExpressionEvaluator;
 import static com.calculate.equation.ExpressionEvaluator.scanFor;
-import com.calculator.CommonNumberPanel;
+import com.calculator.commonCalculator.ui.CommonNumberPanel;
 import com.formdev.flatlaf.FlatDarkLaf;
-import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -244,6 +243,10 @@ public abstract class ScientificNumberPanel extends CommonNumberPanel {
                     if (isTokensEmpty()) {
                         tokensWithisSplitters.addToken(currentNumber);
                     }
+                    if (getLastTokenType() == null) {
+                        show.addToken(token);
+                        show.addTokens(tokensWithisSplitters.pranthesise());
+                    }
                     if (getLastTokenType() == TokenType.OPARATOR) {
                         show.addToken(token);
                         show.addTokens(tokensWithisSplitters.pranthesise());
@@ -271,7 +274,8 @@ public abstract class ScientificNumberPanel extends CommonNumberPanel {
                     if (token == Token.OPEN_PRANTHESIS) {
                         if (getLastShowedTokenType() == TokenType.NUMBER) {
                             show.addToken(Token.MULTIPLY);
-                        } else if (getLastShowedToken() == Token.COMMA) {
+                        } else if (getLastShowedToken() == Token.CLOSE_PRANTHESIS) {
+                            show.addToken(Token.MULTIPLY);
                         } else if (getLastTokenType() == TokenType._FUNCTION_) {
                         }
                         tokensWithisSplitters = new TokenList();
@@ -352,7 +356,6 @@ public abstract class ScientificNumberPanel extends CommonNumberPanel {
             switch (last.type) {
                 case OPARATOR:
                 case _FUNCTION_:
-                case SYMBOL:
                     if (equal) {
                         list.addToken(currentNumber);
                     } else {

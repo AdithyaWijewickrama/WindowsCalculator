@@ -1,24 +1,76 @@
 package com.calculator.standard;
 
-import com.calculator.CommonKeyPanel;
-import com.calculator.CommonMemoryPanel;
-import com.calculator.CommonNumberPanel;
+import com.tokenizing.TokenList;
+import com.calculate.Number;
+import com.calculator.commonCalculator.ui.history.HistoryCell;
+import com.calculator.commonCalculator.ui.history.HistoryPanel;
+import com.calculator.commonCalculator.ui.memory.MemoryBar;
+import com.calculator.commonCalculator.ui.memory.MemoryCell;
+import com.calculator.commonCalculator.ui.memory.MemoryPanel;
+import com.formdev.flatlaf.FlatDarkLaf;
+import java.awt.Color;
+import java.awt.Font;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
  * @author AW Developer
  */
 public class StandardFrame extends javax.swing.JPanel {
-        
-    StandardNumberPanel numberPanel;
-    StandardKeyPanel keyPanel;
+
+    public StandardNumberPanel numberPanel;
+    public StandardKeyPanel keyPanel;
+    public HistoryPanel historyPanel;
+    public MemoryPanel memoryPanel;
+    public MemoryBar memoryBar;
+
     /**
      * Creates new form Standard
      */
     public StandardFrame() {
         initComponents();
-        numberPanel=new StandardNumberPanel();
-        keyPanel=new StandardKeyPanel();
+        numberPanel = new StandardNumberPanel() {
+            @Override
+            public void addHistory(TokenList equation, Number answer) {
+                newHistory(equation, answer);
+            }
+        };
+        keyPanel = new StandardKeyPanel(numberPanel);
+        historyPanel = new HistoryPanel();
+        memoryPanel = new MemoryPanel();
+        memoryBar=new MemoryBar(memoryPanel, numberPanel);
+        jTabbedPane1.add("History",historyPanel);
+        jTabbedPane1.add("Memory",memoryPanel);
+        mainPanel.add(numberPanel);
+        mainPanel.add(memoryBar);
+        mainPanel.add(keyPanel);
+        numberPanel.setAlignmentY(0.f);
+        memoryBar.setAlignmentY(0.f);
+        keyPanel.setAlignmentY(0.f);
+    }
+
+    public void newHistory(TokenList tl, Number nu) {
+        historyPanel.addHistory(new HistoryCell(tl, nu) {
+            @Override
+            public void historyItemClicked(TokenList equation, Number answer) {
+                numberPanel.setEquation(equation);
+                numberPanel.setNumber(answer);
+            }
+        });
+    }
+
+    public void newMemory(Number n) {
+        memoryPanel.newMemory(new MemoryCell(n) {
+            @Override
+            public void memoryItemClicked(Number num) {
+                numberPanel.setNumber(num);
+            }
+        });
     }
 
     /**
@@ -30,10 +82,75 @@ public class StandardFrame extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.PAGE_AXIS));
+        sidePanel = new javax.swing.JPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        mainPanel = new javax.swing.JPanel();
+
+        sidePanel.setMaximumSize(new java.awt.Dimension(300, 2147483647));
+        sidePanel.setMinimumSize(new java.awt.Dimension(230, 600));
+        sidePanel.setPreferredSize(new java.awt.Dimension(230, 600));
+        sidePanel.setLayout(new java.awt.CardLayout());
+        sidePanel.add(jTabbedPane1, "card2");
+
+        setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.X_AXIS));
+
+        mainPanel.setMaximumSize(new java.awt.Dimension(10000, 10000));
+        mainPanel.setMinimumSize(new java.awt.Dimension(300, 400));
+        mainPanel.setPreferredSize(new java.awt.Dimension(300, 400));
+        mainPanel.setLayout(new javax.swing.BoxLayout(mainPanel, javax.swing.BoxLayout.PAGE_AXIS));
+        add(mainPanel);
     }// </editor-fold>//GEN-END:initComponents
 
 
+    public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel(new FlatDarkLaf());
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(StandardFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Color background=new Color(30,30,30);
+        Color background2=new Color(50,50,50);
+        Color foreground=new Color(200,200,200);
+        UIManager.put("Button.background", background2);
+        UIManager.put("Button.foreground", foreground);
+        UIManager.put("TextField.foreground", foreground);
+        UIManager.put("ToggleButton.foreground", foreground);
+        UIManager.put("Button.font", new Font("Dialog",Font.PLAIN,18));
+        UIManager.put("TextField.background", background);
+        UIManager.put("ToggleButton.background", background);
+        UIManager.put("ToggleButton.selectedBackground", new Color(0,8,10));
+        UIManager.put("Panel.background", background);
+        UIManager.put("Frame.background", background);
+        StandardFrame p = new StandardFrame();
+        JFrame frame = new JFrame("Common number field");
+        frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        frame.setBounds(200, 200, 300, 400);
+        frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        frame.getContentPane().setLayout(new javax.swing.BoxLayout(frame.getContentPane(), javax.swing.BoxLayout.PAGE_AXIS));
+        frame.getContentPane().add(p);
+        frame.pack();
+        new Thread(() -> {
+            double d = 0;
+            while (d < 300) {
+                d++;
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(StandardFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            System.exit(0);
+        }).start();
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(() -> {
+            frame.setVisible(true);
+        });
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTabbedPane jTabbedPane1;
+    public javax.swing.JPanel mainPanel;
+    public javax.swing.JPanel sidePanel;
     // End of variables declaration//GEN-END:variables
 }

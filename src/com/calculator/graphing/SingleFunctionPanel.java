@@ -6,20 +6,24 @@
 package com.calculator.graphing;
 
 import com.codes.test;
+import com.formdev.flatlaf.ui.FlatRoundBorder;
 import expression.Function;
 import grapher.BasicFunction;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.RenderingHints;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.List;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import parser.ExpressionParser;
@@ -34,34 +38,35 @@ public class SingleFunctionPanel extends javax.swing.JPanel {
     public Function function;
     public BasicFunction basicFunction;
     public static int totalFunctions = -1;
+    public static ArrayList<SingleFunctionPanel> functions = new ArrayList<>();
     public LineOptions lineOptions;
     private boolean focusGained = false;
     private boolean placeholder = true;
-    private boolean last = true;
-    public static Dictionary<Character, Double> variable=new Hashtable<>();
+    public static Dictionary<Character, Double> variable = new Hashtable<>();
     public final static List<Color> colorFunctions = Arrays.asList(new Color[]{
-        new Color(51, 51, 255),
-        new Color(0, 107, 0),
-        new Color(249, 16, 26),
-        new Color(221, 177, 0),
-        new Color(29, 172, 149),
-        new Color(0, 186, 56),
-        new Color(255, 22, 108),
-        new Color(255, 96, 15),
-        new Color(102, 0, 204),
-        new Color(0, 102, 102),
-        new Color(153, 0, 102),
-        new Color(153, 102, 0),
-        new Color(53, 53, 53),
+        new Color(0, 100, 200),
+        new Color(20, 200, 0),
+        new Color(230, 20, 30),
+        new Color(255, 185, 0),
+        new Color(0, 190, 190),
+        new Color(0, 200, 100),
+        new Color(230, 0, 140),
+        new Color(250, 100, 10),
+        new Color(0, 130, 85),
+        new Color(200, 30, 110),
+        new Color(140, 90, 50),
+        new Color(90, 90, 90),
+        new Color(100, 0, 200),
         new Color(0, 0, 0),});
     public static final String PLACEHOLDER = "Enter an expression";
 
     public SingleFunctionPanel() {
+
         totalFunctions++;
         initComponents();
         setPanelColor(color);
         setEnable();
-        lineOptions = new LineOptions(this, false) {
+        lineOptions = new LineOptions() {
             @Override
             public void setColor(Color c) {
                 setFunctionColor(c);
@@ -73,6 +78,7 @@ public class SingleFunctionPanel extends javax.swing.JPanel {
                 setFunctionStyle(s);
             }
         };
+        functions.add(this);
     }
 
     @SuppressWarnings("unchecked")
@@ -89,10 +95,10 @@ public class SingleFunctionPanel extends javax.swing.JPanel {
                 super.paintComponent(g);
                 if(getText().equals("")&&placeholder){
                     Graphics2D g2=(Graphics2D)g.create();
-                    g2.setFont(new Font("Trebuchet MS",Font.BOLD,12) );
+                    g2.setFont(new Font("Yu Gothic UI",Font.PLAIN,14) );
                     g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                    g2.setColor(getForeground());
-                    g2.drawString(PLACEHOLDER, 0, g2.getFontMetrics().getMaxAscent()+12);
+                    g2.setColor(getDisabledTextColor());
+                    g2.drawString(PLACEHOLDER, 0, 25);
                     g2.dispose();
                 }
             }
@@ -117,10 +123,12 @@ public class SingleFunctionPanel extends javax.swing.JPanel {
         });
         setLayout(new java.awt.CardLayout(2, 2));
 
+        jPanel4.setBorder(new com.formdev.flatlaf.ui.FlatRoundBorder());
         jPanel4.setAlignmentX(0.0F);
         jPanel4.setPreferredSize(new java.awt.Dimension(330, 45));
         jPanel4.setLayout(new javax.swing.BoxLayout(jPanel4, javax.swing.BoxLayout.LINE_AXIS));
 
+        jButton3.setBackground(new java.awt.Color(232, 17, 32));
         jButton3.setFont(new java.awt.Font("Times New Roman", 2, 24)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("f");
@@ -372,10 +380,14 @@ public class SingleFunctionPanel extends javax.swing.JPanel {
     public char getFunctionStyle() {
         return lineOptions.getStyle();
     }
+    
+    public boolean isLast(){
+        return functions.indexOf(this)==functions.size()-1;
+    }
 
     private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
         placeholder = true;
-        if (last) {
+        if (isLast()) {
             jPanel4.setBorder(new LineBorder(color, 1, false));
         } else {
             if (!jTextField1.getText().equals("")) {
@@ -385,6 +397,12 @@ public class SingleFunctionPanel extends javax.swing.JPanel {
             }
         }
         jPanel4.setBorder(new LineBorder(color, 1, false));
+        FlatRoundBorder border = new com.formdev.flatlaf.ui.FlatRoundBorder() {
+            protected int getArc(Component c) {
+                return 20;
+            }
+        };
+        border.paintBorder(this, getGraphics().create(), 0, 0, getWidth(), getHeight());
         focusGained = true;
     }//GEN-LAST:event_jTextField1FocusGained
 
@@ -401,7 +419,7 @@ public class SingleFunctionPanel extends javax.swing.JPanel {
 
     private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
         jTextField1.setText("");
-        totalFunctions--;
+
     }//GEN-LAST:event_clearActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -411,17 +429,21 @@ public class SingleFunctionPanel extends javax.swing.JPanel {
 
     private void optionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionsActionPerformed
         Point location = getLocationOnScreen();
-        lineOptions.setBounds(location.x + 20, location.y + 40, lineOptions.getPreferredSize().width + 40, lineOptions.getPreferredSize().height + 40);
+        if (getWidth() > 330) {
+            lineOptions.setLocation(location.x + getWidth() / 2 - lineOptions.getPreferredSize().width / 2, location.y + 50);
+        } else {
+            lineOptions.setLocation(location.x + getWidth() - lineOptions.getPreferredSize().width, location.y + 50);
+        }
+        lineOptions.setSize(lineOptions.getPreferredSize().width, lineOptions.getPreferredSize().height);
         lineOptions.setVisible(true);
     }//GEN-LAST:event_optionsActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        if (13 < totalFunctions) {
-            last=false;
+        if (13 < functions.size()) {
             return;
         }
-        if (color.equals(new Color(102, 102, 102))) {
-            color = (Color) colorFunctions.get(totalFunctions);
+        if (isLast()) {
+            color = (Color) colorFunctions.get(functions.size()-1);
             setPanelColor(color);
         }
         if (!getText().equals("")) {
@@ -441,9 +463,8 @@ public class SingleFunctionPanel extends javax.swing.JPanel {
                 setFunction(basicFunction);
             }
         }
-        if (last) {
+        if (isLast()) {
             addNewSingleFunctionPanel();
-            last = false;
         }
     }//GEN-LAST:event_jTextField1ActionPerformed
 
@@ -452,7 +473,7 @@ public class SingleFunctionPanel extends javax.swing.JPanel {
 
 
     private void mouseEnter(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mouseEnter
-        if (!last) {
+        if (!isLast()) {
             if (!focusGained) {
                 setEnable(options, delete);
             } else {
@@ -468,7 +489,7 @@ public class SingleFunctionPanel extends javax.swing.JPanel {
     }
 
     private void mouseExit(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mouseExit
-        if (!last) {
+        if (!isLast()) {
             if (!focusGained) {
                 jPanel4.setBorder(null);
                 setEnable();
@@ -479,7 +500,7 @@ public class SingleFunctionPanel extends javax.swing.JPanel {
 
     private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
         jPanel4.setBorder(null);
-        if (!last) {
+        if (!isLast()) {
             placeholder = false;
         }
         setEnable();
@@ -487,12 +508,13 @@ public class SingleFunctionPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField1FocusLost
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
+        removeFunction();
+        functions.remove(this);
     }//GEN-LAST:event_deleteActionPerformed
 
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
         setEnable(clear);
-//        last=getText().isEmpty();
-        if (color.equals(new Color(102, 102, 102))) {
+        if (isLast()) {
             color = (Color) colorFunctions.get(totalFunctions);
             setPanelColor(color);
         }

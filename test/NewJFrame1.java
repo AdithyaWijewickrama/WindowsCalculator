@@ -39,6 +39,11 @@ public class NewJFrame1 extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel12 = new javax.swing.JPanel();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -51,8 +56,22 @@ public class NewJFrame1 extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
+        jMenu1.setText("jMenu1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.CardLayout());
+
+        jMenu2.setText("File");
+
+        jMenu4.setText("jMenu4");
+        jMenu2.add(jMenu4);
+
+        jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Edit");
+        jMenuBar1.add(jMenu3);
+
+        setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -76,6 +95,11 @@ public class NewJFrame1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JMenu jMenu1;
+    public javax.swing.JMenu jMenu2;
+    public javax.swing.JMenu jMenu3;
+    public javax.swing.JMenu jMenu4;
+    public javax.swing.JMenuBar jMenuBar1;
     public javax.swing.JPanel jPanel12;
     // End of variables declaration//GEN-END:variables
 }

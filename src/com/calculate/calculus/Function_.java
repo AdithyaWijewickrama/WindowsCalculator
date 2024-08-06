@@ -1,10 +1,10 @@
 package com.calculate.calculus;
 
 import Convert.Angle;
-import com.Tokenizing.Token;
-import static com.Tokenizing.Token.*;
-import com.Tokenizing.TokenList;
-import com.Tokenizing.TokenType;
+import com.tokenizing.Token;
+import static com.tokenizing.Token.*;
+import com.tokenizing.TokenList;
+import com.tokenizing.TokenType;
 import com.calculate.Number;
 
 /**
@@ -88,7 +88,7 @@ public class Function_ extends Calculus {
                 makeError("Unsuppported token");
             }
             t.addToken(MULTIPLY);
-            t.addTokens(new Differentiator(t).differentiate(2));
+            t.addTokens(new Differentiator(t).differentiate(1));
             return t;
         } catch (Exception ex) {
             makeError(ex);

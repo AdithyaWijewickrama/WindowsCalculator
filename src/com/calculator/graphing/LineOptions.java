@@ -1,18 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package com.calculator.graphing;
 
-import com.main.FrontFrame;
+import com.calculator.commonCalculator.ui.Ui;
+import static com.calculator.graphing.SingleFunctionPanel.colorFunctions;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.WindowFocusListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.border.LineBorder;
 
@@ -23,10 +22,11 @@ import javax.swing.border.LineBorder;
 public class LineOptions extends javax.swing.JDialog {
 
     private Color color;
-    public LineOptions(JComponent parent, boolean modal) {
-        super(new JFrame(), modal);
+    private int i=0;
+    public LineOptions() {
+        super();
         initComponents();
-        setLocationRelativeTo(parent);
+//        setLocationRelativeTo(parent);
         addWindowFocusListener(new WindowFocusListener() {
             @Override
             public void windowGainedFocus(java.awt.event.WindowEvent e) {
@@ -37,20 +37,11 @@ public class LineOptions extends javax.swing.JDialog {
                 dispose();
             }
         });
-        revalidate();
-        repaint();
+
+//        revalidate();
+//        repaint();
     }
-    
-    @Override
-    public void paintComponents(Graphics g){
-        Graphics2D g2=(Graphics2D)g;
-        super.paintComponents(g2);
-        g2.setColor(Color.red);
-        g2.fillRoundRect(0, 0, getPreferredSize().width, getPreferredSize().height, 10, 10);
-        g2.setColor(color);
-        g2.drawRoundRect(0, 0, getPreferredSize().width, getPreferredSize().height, 10, 10);
-    }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,56 +51,224 @@ public class LineOptions extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel5 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jToggleButton4 = new javax.swing.JToggleButton();
-        jToggleButton9 = new javax.swing.JToggleButton();
-        jToggleButton11 = new javax.swing.JToggleButton();
-        jToggleButton3 = new javax.swing.JToggleButton();
-        jToggleButton5 = new javax.swing.JToggleButton();
-        jToggleButton15 = new javax.swing.JToggleButton();
-        jToggleButton12 = new javax.swing.JToggleButton();
-        jToggleButton10 = new javax.swing.JToggleButton();
-        jToggleButton16 = new javax.swing.JToggleButton();
-        jToggleButton8 = new javax.swing.JToggleButton();
-        jToggleButton13 = new javax.swing.JToggleButton();
-        jToggleButton7 = new javax.swing.JToggleButton();
-        jToggleButton14 = new javax.swing.JToggleButton();
+        jToggleButton1 = new JToggleButton(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setColor(SingleFunctionPanel.colorFunctions.get(0));
+                int d=(int)jToggleButton1.getPreferredSize().getWidth();
+                g2.fillRoundRect(0, 0, d, d, d, d);
+                g2.dispose();
+            }
+        }
+        ;
+        jToggleButton3 = new JToggleButton(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setColor(SingleFunctionPanel.colorFunctions.get(1));
+                int d=(int)jToggleButton3.getPreferredSize().getWidth();
+                g2.fillRoundRect(0, 0, d, d, d, d);
+                g2.dispose();
+            }
+        }
+        ;
+        jToggleButton4 = new JToggleButton(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setColor(SingleFunctionPanel.colorFunctions.get(2));
+                int d=(int)jToggleButton4.getPreferredSize().getWidth();
+                g2.fillRoundRect(0, 0, d, d, d, d);
+                g2.dispose();
+            }
+        }
+        ;
+        jToggleButton5 = new JToggleButton(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setColor(SingleFunctionPanel.colorFunctions.get(4));
+                int d=(int)jToggleButton5.getPreferredSize().getWidth();
+                g2.fillRoundRect(0, 0, d, d, d, d);
+                g2.dispose();
+            }
+        }
+        ;
+        jToggleButton8 = new JToggleButton(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setColor(SingleFunctionPanel.colorFunctions.get(5));
+                int d=(int)jToggleButton8.getPreferredSize().getWidth();
+                g2.fillRoundRect(0, 0, d, d, d, d);
+                g2.dispose();
+            }
+        }
+        ;
+        jToggleButton7 = new JToggleButton(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setColor(SingleFunctionPanel.colorFunctions.get(6));
+                int d=(int)jToggleButton7.getPreferredSize().getWidth();
+                g2.fillRoundRect(0, 0, d, d, d, d);
+                g2.dispose();
+            }
+        }
+        ;
+        jToggleButton9 = new JToggleButton(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setColor(SingleFunctionPanel.colorFunctions.get(6));
+                int d=(int)jToggleButton9.getPreferredSize().getWidth();
+                g2.fillRoundRect(0, 0, d, d, d, d);
+                g2.dispose();
+            }
+        }
+        ;
+        jToggleButton11 = new JToggleButton(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setColor(SingleFunctionPanel.colorFunctions.get(7));
+                int d=(int)jToggleButton11.getPreferredSize().getWidth();
+                g2.fillRoundRect(0, 0, d, d, d, d);
+                g2.dispose();
+            }
+        }
+        ;
+        jToggleButton15 = new JToggleButton(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setColor(SingleFunctionPanel.colorFunctions.get(8));
+                int d=(int)jToggleButton15.getPreferredSize().getWidth();
+                g2.fillRoundRect(0, 0, d, d, d, d);
+                g2.dispose();
+            }
+        }
+        ;
+        jToggleButton12 = new JToggleButton(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setColor(SingleFunctionPanel.colorFunctions.get(9));
+                int d=(int)jToggleButton12.getPreferredSize().getWidth();
+                g2.fillRoundRect(0, 0, d, d, d, d);
+                g2.dispose();
+            }
+        }
+        ;
+        jToggleButton10 = new JToggleButton(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setColor(SingleFunctionPanel.colorFunctions.get(10));
+                int d=(int)jToggleButton10.getPreferredSize().getWidth();
+                g2.fillRoundRect(0, 0, d, d, d, d);
+                g2.dispose();
+            }
+        }
+        ;
+        jToggleButton16 = new JToggleButton(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setColor(SingleFunctionPanel.colorFunctions.get(11));
+                int d=(int)jToggleButton16.getPreferredSize().getWidth();
+                g2.fillRoundRect(0, 0, d, d, d, d);
+                g2.dispose();
+            }
+        }
+        ;
+        jToggleButton13 = new JToggleButton(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setColor(SingleFunctionPanel.colorFunctions.get(12));
+                int d=(int)jToggleButton13.getPreferredSize().getWidth();
+                g2.fillRoundRect(0, 0, d, d, d, d);
+                g2.dispose();
+            }
+        }
+        ;
+        jToggleButton14 = new JToggleButton(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setColor(SingleFunctionPanel.colorFunctions.get(14));
+                int d=(int)jToggleButton14.getPreferredSize().getWidth();
+                g2.fillRoundRect(0, 0, d, d, d, d);
+                g2.dispose();
+            }
+        }
+        ;
         jLabel6 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(400, 275));
+        setMinimumSize(new java.awt.Dimension(400, 275));
         setUndecorated(true);
-        getContentPane().setLayout(new java.awt.CardLayout(20, 20));
+        setPreferredSize(new java.awt.Dimension(400, 275));
+        setType(java.awt.Window.Type.POPUP);
+        getContentPane().setLayout(new java.awt.CardLayout());
 
+        jPanel5.setBorder(new com.formdev.flatlaf.ui.FlatRoundBorder());
         jPanel5.setAlignmentX(0.0F);
         jPanel5.setPreferredSize(new java.awt.Dimension(32767, 32767));
-        jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 20, 20));
+        jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 0));
 
-        jPanel2.setMaximumSize(new java.awt.Dimension(300, 200));
-        jPanel2.setMinimumSize(new java.awt.Dimension(300, 200));
-        jPanel2.setPreferredSize(new java.awt.Dimension(300, 200));
-        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.PAGE_AXIS));
+        jPanel2.setMaximumSize(new java.awt.Dimension(390, 200));
+        jPanel2.setMinimumSize(new java.awt.Dimension(390, 200));
+        jPanel2.setOpaque(false);
+        jPanel2.setPreferredSize(new java.awt.Dimension(390, 260));
+        jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 10));
 
-        jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabel4.setText("Line options");
+        jLabel4.setAlignmentY(0.0F);
+        jLabel4.setPreferredSize(new java.awt.Dimension(400, 24));
         jPanel2.add(jLabel4);
 
         jLabel5.setText("Color");
         jPanel2.add(jLabel5);
 
         jPanel1.setAlignmentX(0.0F);
-        jPanel1.setMaximumSize(new java.awt.Dimension(300, 90));
-        jPanel1.setMinimumSize(new java.awt.Dimension(320, 80));
-        jPanel1.setPreferredSize(new java.awt.Dimension(320, 80));
+        jPanel1.setAlignmentY(0.0F);
+        jPanel1.setMaximumSize(new java.awt.Dimension(370, 120));
+        jPanel1.setMinimumSize(new java.awt.Dimension(370, 120));
+        jPanel1.setPreferredSize(new java.awt.Dimension(380, 120));
+        jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 12, 15));
 
-        jToggleButton1.setBackground(new java.awt.Color(51, 51, 255));
+        jToggleButton1.setBackground(colorFunctions.get(i++));
+        buttonGroup1.add(jToggleButton1);
         jToggleButton1.setBorder(null);
-        jToggleButton1.setPreferredSize(new java.awt.Dimension(35, 35));
+        jToggleButton1.setBorderPainted(false);
+        jToggleButton1.setMaximumSize(new java.awt.Dimension(45, 45));
+        jToggleButton1.setMinimumSize(new java.awt.Dimension(40, 40));
+        jToggleButton1.setPreferredSize(new java.awt.Dimension(40, 40));
         jToggleButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 colorButtonMouseEntered(evt);
@@ -125,63 +284,13 @@ public class LineOptions extends javax.swing.JDialog {
         });
         jPanel1.add(jToggleButton1);
 
-        jToggleButton4.setBackground(new java.awt.Color(0, 107, 0));
-        jToggleButton4.setBorder(null);
-        jToggleButton4.setPreferredSize(new java.awt.Dimension(35, 35));
-        jToggleButton4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                colorButtonMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                colorButtonMouseExcited(evt);
-            }
-        });
-        jToggleButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                setColor(evt);
-            }
-        });
-        jPanel1.add(jToggleButton4);
-
-        jToggleButton9.setBackground(new java.awt.Color(249, 16, 26));
-        jToggleButton9.setBorder(null);
-        jToggleButton9.setPreferredSize(new java.awt.Dimension(35, 35));
-        jToggleButton9.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                colorButtonMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                colorButtonMouseExcited(evt);
-            }
-        });
-        jToggleButton9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                setColor(evt);
-            }
-        });
-        jPanel1.add(jToggleButton9);
-
-        jToggleButton11.setBackground(new java.awt.Color(221, 177, 0));
-        jToggleButton11.setBorder(null);
-        jToggleButton11.setPreferredSize(new java.awt.Dimension(35, 35));
-        jToggleButton11.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                colorButtonMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                colorButtonMouseExcited(evt);
-            }
-        });
-        jToggleButton11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                setColor(evt);
-            }
-        });
-        jPanel1.add(jToggleButton11);
-
-        jToggleButton3.setBackground(new java.awt.Color(29, 172, 149));
+        jToggleButton3.setBackground(colorFunctions.get(i++));
+        buttonGroup1.add(jToggleButton3);
         jToggleButton3.setBorder(null);
-        jToggleButton3.setPreferredSize(new java.awt.Dimension(35, 35));
+        jToggleButton3.setBorderPainted(false);
+        jToggleButton3.setMaximumSize(new java.awt.Dimension(45, 45));
+        jToggleButton3.setMinimumSize(new java.awt.Dimension(40, 40));
+        jToggleButton3.setPreferredSize(new java.awt.Dimension(40, 40));
         jToggleButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 colorButtonMouseEntered(evt);
@@ -197,9 +306,35 @@ public class LineOptions extends javax.swing.JDialog {
         });
         jPanel1.add(jToggleButton3);
 
-        jToggleButton5.setBackground(new java.awt.Color(0, 186, 56));
+        jToggleButton4.setBackground(colorFunctions.get(i++));
+        buttonGroup1.add(jToggleButton4);
+        jToggleButton4.setBorder(null);
+        jToggleButton4.setBorderPainted(false);
+        jToggleButton4.setMaximumSize(new java.awt.Dimension(45, 45));
+        jToggleButton4.setMinimumSize(new java.awt.Dimension(40, 40));
+        jToggleButton4.setPreferredSize(new java.awt.Dimension(40, 40));
+        jToggleButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                colorButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                colorButtonMouseExcited(evt);
+            }
+        });
+        jToggleButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setColor(evt);
+            }
+        });
+        jPanel1.add(jToggleButton4);
+
+        jToggleButton5.setBackground(colorFunctions.get(i++));
+        buttonGroup1.add(jToggleButton5);
         jToggleButton5.setBorder(null);
-        jToggleButton5.setPreferredSize(new java.awt.Dimension(35, 35));
+        jToggleButton5.setBorderPainted(false);
+        jToggleButton5.setMaximumSize(new java.awt.Dimension(45, 45));
+        jToggleButton5.setMinimumSize(new java.awt.Dimension(40, 40));
+        jToggleButton5.setPreferredSize(new java.awt.Dimension(40, 40));
         jToggleButton5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 colorButtonMouseEntered(evt);
@@ -215,81 +350,13 @@ public class LineOptions extends javax.swing.JDialog {
         });
         jPanel1.add(jToggleButton5);
 
-        jToggleButton15.setBackground(new java.awt.Color(255, 22, 108));
-        jToggleButton15.setBorder(null);
-        jToggleButton15.setPreferredSize(new java.awt.Dimension(35, 35));
-        jToggleButton15.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                colorButtonMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                colorButtonMouseExcited(evt);
-            }
-        });
-        jToggleButton15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                setColor(evt);
-            }
-        });
-        jPanel1.add(jToggleButton15);
-
-        jToggleButton12.setBackground(new java.awt.Color(255, 96, 15));
-        jToggleButton12.setBorder(null);
-        jToggleButton12.setPreferredSize(new java.awt.Dimension(35, 35));
-        jToggleButton12.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                colorButtonMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                colorButtonMouseExcited(evt);
-            }
-        });
-        jToggleButton12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                setColor(evt);
-            }
-        });
-        jPanel1.add(jToggleButton12);
-
-        jToggleButton10.setBackground(new java.awt.Color(102, 0, 204));
-        jToggleButton10.setBorder(null);
-        jToggleButton10.setPreferredSize(new java.awt.Dimension(35, 35));
-        jToggleButton10.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                colorButtonMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                colorButtonMouseExcited(evt);
-            }
-        });
-        jToggleButton10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                setColor(evt);
-            }
-        });
-        jPanel1.add(jToggleButton10);
-
-        jToggleButton16.setBackground(new java.awt.Color(0, 102, 102));
-        jToggleButton16.setBorder(null);
-        jToggleButton16.setPreferredSize(new java.awt.Dimension(35, 35));
-        jToggleButton16.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                colorButtonMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                colorButtonMouseExcited(evt);
-            }
-        });
-        jToggleButton16.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                setColor(evt);
-            }
-        });
-        jPanel1.add(jToggleButton16);
-
-        jToggleButton8.setBackground(new java.awt.Color(153, 0, 102));
+        jToggleButton8.setBackground(colorFunctions.get(i++));
+        buttonGroup1.add(jToggleButton8);
         jToggleButton8.setBorder(null);
-        jToggleButton8.setPreferredSize(new java.awt.Dimension(35, 35));
+        jToggleButton8.setBorderPainted(false);
+        jToggleButton8.setMaximumSize(new java.awt.Dimension(45, 45));
+        jToggleButton8.setMinimumSize(new java.awt.Dimension(40, 40));
+        jToggleButton8.setPreferredSize(new java.awt.Dimension(40, 40));
         jToggleButton8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 colorButtonMouseEntered(evt);
@@ -305,27 +372,13 @@ public class LineOptions extends javax.swing.JDialog {
         });
         jPanel1.add(jToggleButton8);
 
-        jToggleButton13.setBackground(new java.awt.Color(153, 102, 0));
-        jToggleButton13.setBorder(null);
-        jToggleButton13.setPreferredSize(new java.awt.Dimension(35, 35));
-        jToggleButton13.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                colorButtonMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                colorButtonMouseExcited(evt);
-            }
-        });
-        jToggleButton13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                setColor(evt);
-            }
-        });
-        jPanel1.add(jToggleButton13);
-
-        jToggleButton7.setBackground(new java.awt.Color(53, 53, 53));
+        jToggleButton7.setBackground(colorFunctions.get(i++));
+        buttonGroup1.add(jToggleButton7);
         jToggleButton7.setBorder(null);
-        jToggleButton7.setPreferredSize(new java.awt.Dimension(35, 35));
+        jToggleButton7.setBorderPainted(false);
+        jToggleButton7.setMaximumSize(new java.awt.Dimension(45, 45));
+        jToggleButton7.setMinimumSize(new java.awt.Dimension(40, 40));
+        jToggleButton7.setPreferredSize(new java.awt.Dimension(40, 40));
         jToggleButton7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 colorButtonMouseEntered(evt);
@@ -341,9 +394,168 @@ public class LineOptions extends javax.swing.JDialog {
         });
         jPanel1.add(jToggleButton7);
 
-        jToggleButton14.setBackground(new java.awt.Color(0, 0, 0));
+        jToggleButton9.setBackground(colorFunctions.get(i++));
+        buttonGroup1.add(jToggleButton9);
+        jToggleButton9.setBorder(null);
+        jToggleButton9.setBorderPainted(false);
+        jToggleButton9.setMaximumSize(new java.awt.Dimension(45, 45));
+        jToggleButton9.setMinimumSize(new java.awt.Dimension(40, 40));
+        jToggleButton9.setPreferredSize(new java.awt.Dimension(40, 40));
+        jToggleButton9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                colorButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                colorButtonMouseExcited(evt);
+            }
+        });
+        jToggleButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setColor(evt);
+            }
+        });
+        jPanel1.add(jToggleButton9);
+
+        jToggleButton11.setBackground(colorFunctions.get(i++));
+        buttonGroup1.add(jToggleButton11);
+        jToggleButton11.setBorder(null);
+        jToggleButton11.setBorderPainted(false);
+        jToggleButton11.setMaximumSize(new java.awt.Dimension(45, 45));
+        jToggleButton11.setMinimumSize(new java.awt.Dimension(40, 40));
+        jToggleButton11.setPreferredSize(new java.awt.Dimension(40, 40));
+        jToggleButton11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                colorButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                colorButtonMouseExcited(evt);
+            }
+        });
+        jToggleButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setColor(evt);
+            }
+        });
+        jPanel1.add(jToggleButton11);
+
+        jToggleButton15.setBackground(colorFunctions.get(i++));
+        buttonGroup1.add(jToggleButton15);
+        jToggleButton15.setBorder(null);
+        jToggleButton15.setBorderPainted(false);
+        jToggleButton15.setMaximumSize(new java.awt.Dimension(45, 45));
+        jToggleButton15.setMinimumSize(new java.awt.Dimension(40, 40));
+        jToggleButton15.setPreferredSize(new java.awt.Dimension(40, 40));
+        jToggleButton15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                colorButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                colorButtonMouseExcited(evt);
+            }
+        });
+        jToggleButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setColor(evt);
+            }
+        });
+        jPanel1.add(jToggleButton15);
+
+        jToggleButton12.setBackground(colorFunctions.get(i++));
+        buttonGroup1.add(jToggleButton12);
+        jToggleButton12.setBorder(null);
+        jToggleButton12.setBorderPainted(false);
+        jToggleButton12.setMaximumSize(new java.awt.Dimension(45, 45));
+        jToggleButton12.setMinimumSize(new java.awt.Dimension(40, 40));
+        jToggleButton12.setPreferredSize(new java.awt.Dimension(40, 40));
+        jToggleButton12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                colorButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                colorButtonMouseExcited(evt);
+            }
+        });
+        jToggleButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setColor(evt);
+            }
+        });
+        jPanel1.add(jToggleButton12);
+
+        jToggleButton10.setBackground(colorFunctions.get(i++));
+        buttonGroup1.add(jToggleButton10);
+        jToggleButton10.setBorder(null);
+        jToggleButton10.setBorderPainted(false);
+        jToggleButton10.setMaximumSize(new java.awt.Dimension(45, 45));
+        jToggleButton10.setMinimumSize(new java.awt.Dimension(40, 40));
+        jToggleButton10.setPreferredSize(new java.awt.Dimension(40, 40));
+        jToggleButton10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                colorButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                colorButtonMouseExcited(evt);
+            }
+        });
+        jToggleButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setColor(evt);
+            }
+        });
+        jPanel1.add(jToggleButton10);
+
+        jToggleButton16.setBackground(colorFunctions.get(i++));
+        buttonGroup1.add(jToggleButton16);
+        jToggleButton16.setBorder(null);
+        jToggleButton16.setBorderPainted(false);
+        jToggleButton16.setMaximumSize(new java.awt.Dimension(45, 45));
+        jToggleButton16.setMinimumSize(new java.awt.Dimension(40, 40));
+        jToggleButton16.setPreferredSize(new java.awt.Dimension(40, 40));
+        jToggleButton16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                colorButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                colorButtonMouseExcited(evt);
+            }
+        });
+        jToggleButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setColor(evt);
+            }
+        });
+        jPanel1.add(jToggleButton16);
+
+        jToggleButton13.setBackground(colorFunctions.get(i++));
+        buttonGroup1.add(jToggleButton13);
+        jToggleButton13.setBorder(null);
+        jToggleButton13.setBorderPainted(false);
+        jToggleButton13.setMaximumSize(new java.awt.Dimension(45, 45));
+        jToggleButton13.setMinimumSize(new java.awt.Dimension(40, 40));
+        jToggleButton13.setPreferredSize(new java.awt.Dimension(40, 40));
+        jToggleButton13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                colorButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                colorButtonMouseExcited(evt);
+            }
+        });
+        jToggleButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setColor(evt);
+            }
+        });
+        jPanel1.add(jToggleButton13);
+
+        jToggleButton14.setBackground(colorFunctions.get(i++));
+        buttonGroup1.add(jToggleButton14);
+        jToggleButton14.setSelected(true);
         jToggleButton14.setBorder(null);
-        jToggleButton14.setPreferredSize(new java.awt.Dimension(35, 35));
+        jToggleButton14.setBorderPainted(false);
+        jToggleButton14.setMaximumSize(new java.awt.Dimension(45, 45));
+        jToggleButton14.setMinimumSize(new java.awt.Dimension(40, 40));
+        jToggleButton14.setPreferredSize(new java.awt.Dimension(40, 40));
         jToggleButton14.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 colorButtonMouseEntered(evt);
@@ -362,11 +574,14 @@ public class LineOptions extends javax.swing.JDialog {
         jPanel2.add(jPanel1);
 
         jLabel6.setText("Style");
+        jLabel6.setAlignmentY(0.0F);
+        jLabel6.setPreferredSize(new java.awt.Dimension(400, 16));
         jPanel2.add(jLabel6);
 
         jComboBox1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "______________", "--------------", "........................" }));
         jComboBox1.setAlignmentX(0.0F);
+        jComboBox1.setAlignmentY(0.0F);
         jComboBox1.setMaximumSize(new java.awt.Dimension(200, 34));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -381,7 +596,7 @@ public class LineOptions extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         setStyle(jComboBox1.getSelectedItem().toString().charAt(0));
     }//GEN-LAST:event_jComboBox1ActionPerformed
@@ -389,21 +604,19 @@ public class LineOptions extends javax.swing.JDialog {
     private void setColor(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setColor
         JToggleButton btn = (JToggleButton) evt.getSource();
         color = btn.getBackground();
-        for (Component comp : jPanel1.getComponents()) {
-            JToggleButton btn1 = (JToggleButton) comp;
-            btn1.setSelected(false);
-        }
-        btn.setBorder(new LineBorder(FrontFrame.APP_HOVER,2));
         setColor(color);
     }//GEN-LAST:event_setColor
 
     private void colorButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorButtonMouseEntered
-        ((JComponent) evt.getSource()).setBorder(new LineBorder(FrontFrame.APP_HOVER));
-        ((JComponent) evt.getSource()).setBorder(null);
+        ((JComponent) evt.getSource()).setPreferredSize(new Dimension(45, 45));
+        ((JComponent) evt.getSource()).setMaximumSize(new Dimension(45, 45));
+        ((JComponent) evt.getSource()).setMinimumSize(new Dimension(45, 45));
     }//GEN-LAST:event_colorButtonMouseEntered
 
     private void colorButtonMouseExcited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorButtonMouseExcited
-        // TODO add your handling code here:
+        ((JComponent) evt.getSource()).setPreferredSize(new Dimension(40, 40));
+        ((JComponent) evt.getSource()).setMaximumSize(new Dimension(40, 40));
+        ((JComponent) evt.getSource()).setMinimumSize(new Dimension(40, 40));
     }//GEN-LAST:event_colorButtonMouseExcited
 
     /**
@@ -434,9 +647,9 @@ public class LineOptions extends javax.swing.JDialog {
         //</editor-fold>
 
         /* Create and display the dialog */
+        LineOptions dialog = new LineOptions();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                LineOptions dialog = new LineOptions(new JPanel(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -446,9 +659,18 @@ public class LineOptions extends javax.swing.JDialog {
                 dialog.setVisible(true);
             }
         });
+        new Thread(() -> {
+            dialog.paintComponents(dialog.getGraphics());
+            try {
+                Thread.sleep(300);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(LineOptions.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }).start();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -478,12 +700,11 @@ public class LineOptions extends javax.swing.JDialog {
     public void setStyle(char charAt) {
     }
 
-    
-    public char getStyle(){
-        return ((String)jComboBox1.getSelectedItem()).charAt(0);
+    public char getStyle() {
+        return ((String) jComboBox1.getSelectedItem()).charAt(0);
     }
-    
-    public Color getColor(){
+
+    public Color getColor() {
         return color;
     }
 }

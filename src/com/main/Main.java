@@ -5,7 +5,11 @@ import static com.calculator.graphing.Graphical.getUIColor;
 import com.database.UIMemory.Previous;
 import com.formdev.flatlaf.FlatDarkLaf;
 import static com.calculator.graphing.Graphical.getUIColorType;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
@@ -82,10 +86,11 @@ public class Main extends javax.swing.JFrame {
         jButton26 = new javax.swing.JButton();
         mainPanel = new javax.swing.JPanel();
         topBar = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         CalType = new javax.swing.JLabel();
         histryBtn = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
 
         jDialog1.setUndecorated(true);
         jDialog1.addWindowFocusListener(new java.awt.event.WindowFocusListener() {
@@ -97,7 +102,7 @@ public class Main extends javax.swing.JFrame {
         });
         jDialog1.getContentPane().setLayout(new java.awt.CardLayout());
 
-        Navigation.setBackground(getUIColor());
+        Navigation.setBorder(new com.formdev.flatlaf.ui.FlatRoundBorder());
         Navigation.setAlignmentY(0.0F);
         Navigation.setMaximumSize(new java.awt.Dimension(250, 32816));
         Navigation.setMinimumSize(new java.awt.Dimension(250, 0));
@@ -129,31 +134,31 @@ public class Main extends javax.swing.JFrame {
         Navigation.add(jPanel3);
 
         jScrollPane5.setBackground(getUIColor());
+        jScrollPane5.setBorder(null);
         jScrollPane5.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane5.setMaximumSize(new java.awt.Dimension(270, 32816));
         jScrollPane5.setMinimumSize(new java.awt.Dimension(270, 60));
         jScrollPane5.setPreferredSize(new java.awt.Dimension(270, 220));
 
-        navBtns.setBackground(getUIColor());
-        navBtns.setMaximumSize(new java.awt.Dimension(235, 845));
-        navBtns.setMinimumSize(new java.awt.Dimension(235, 500));
-        navBtns.setPreferredSize(new java.awt.Dimension(235, 775));
-        navBtns.setLayout(new javax.swing.BoxLayout(navBtns, javax.swing.BoxLayout.PAGE_AXIS));
+        navBtns.setMaximumSize(new java.awt.Dimension(270, 845));
+        navBtns.setMinimumSize(new java.awt.Dimension(270, 845));
+        navBtns.setPreferredSize(new java.awt.Dimension(270, 845));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel3.setText("  Calculator");
-        jLabel3.setMaximumSize(new java.awt.Dimension(230, 40));
-        jLabel3.setMinimumSize(new java.awt.Dimension(230, 50));
-        jLabel3.setPreferredSize(new java.awt.Dimension(230, 50));
+        jLabel3.setMaximumSize(new java.awt.Dimension(265, 40));
+        jLabel3.setMinimumSize(new java.awt.Dimension(265, 40));
+        jLabel3.setPreferredSize(new java.awt.Dimension(265, 40));
         navBtns.add(jLabel3);
 
         jToggleButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jToggleButton1.setText("Standard");
+        jToggleButton1.setBorder(new com.formdev.flatlaf.ui.FlatRoundBorder());
         jToggleButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jToggleButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jToggleButton1.setMaximumSize(new java.awt.Dimension(230, 40));
-        jToggleButton1.setMinimumSize(new java.awt.Dimension(230, 40));
-        jToggleButton1.setPreferredSize(new java.awt.Dimension(230, 40));
+        jToggleButton1.setMaximumSize(new java.awt.Dimension(265, 40));
+        jToggleButton1.setMinimumSize(new java.awt.Dimension(265, 40));
+        jToggleButton1.setPreferredSize(new java.awt.Dimension(265, 40));
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton1ActionPerformed(evt);
@@ -163,11 +168,12 @@ public class Main extends javax.swing.JFrame {
 
         jToggleButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jToggleButton2.setText("Scientific");
+        jToggleButton2.setBorder(new com.formdev.flatlaf.ui.FlatRoundBorder());
         jToggleButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jToggleButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jToggleButton2.setMaximumSize(new java.awt.Dimension(230, 40));
-        jToggleButton2.setMinimumSize(new java.awt.Dimension(230, 40));
-        jToggleButton2.setPreferredSize(new java.awt.Dimension(230, 40));
+        jToggleButton2.setMaximumSize(new java.awt.Dimension(265, 40));
+        jToggleButton2.setMinimumSize(new java.awt.Dimension(265, 40));
+        jToggleButton2.setPreferredSize(new java.awt.Dimension(265, 40));
         jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton2ActionPerformed(evt);
@@ -177,36 +183,39 @@ public class Main extends javax.swing.JFrame {
 
         jToggleButton3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jToggleButton3.setText("Graphing");
+        jToggleButton3.setBorder(new com.formdev.flatlaf.ui.FlatRoundBorder());
         jToggleButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jToggleButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jToggleButton3.setMaximumSize(new java.awt.Dimension(230, 40));
-        jToggleButton3.setMinimumSize(new java.awt.Dimension(230, 40));
-        jToggleButton3.setPreferredSize(new java.awt.Dimension(230, 40));
+        jToggleButton3.setMaximumSize(new java.awt.Dimension(265, 40));
+        jToggleButton3.setMinimumSize(new java.awt.Dimension(265, 40));
+        jToggleButton3.setPreferredSize(new java.awt.Dimension(265, 40));
         navBtns.add(jToggleButton3);
 
         jToggleButton4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jToggleButton4.setText("Date Calculation");
+        jToggleButton4.setBorder(new com.formdev.flatlaf.ui.FlatRoundBorder());
         jToggleButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jToggleButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jToggleButton4.setMaximumSize(new java.awt.Dimension(230, 40));
-        jToggleButton4.setMinimumSize(new java.awt.Dimension(230, 40));
-        jToggleButton4.setPreferredSize(new java.awt.Dimension(230, 40));
+        jToggleButton4.setMaximumSize(new java.awt.Dimension(265, 40));
+        jToggleButton4.setMinimumSize(new java.awt.Dimension(265, 40));
+        jToggleButton4.setPreferredSize(new java.awt.Dimension(265, 40));
         navBtns.add(jToggleButton4);
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel4.setText("  Convertor");
-        jLabel4.setMaximumSize(new java.awt.Dimension(230, 40));
-        jLabel4.setMinimumSize(new java.awt.Dimension(230, 40));
-        jLabel4.setPreferredSize(new java.awt.Dimension(230, 40));
+        jLabel4.setMaximumSize(new java.awt.Dimension(265, 40));
+        jLabel4.setMinimumSize(new java.awt.Dimension(265, 40));
+        jLabel4.setPreferredSize(new java.awt.Dimension(265, 40));
         navBtns.add(jLabel4);
 
         jToggleButton5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jToggleButton5.setText("Currency");
+        jToggleButton5.setBorder(new com.formdev.flatlaf.ui.FlatRoundBorder());
         jToggleButton5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jToggleButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jToggleButton5.setMaximumSize(new java.awt.Dimension(230, 40));
-        jToggleButton5.setMinimumSize(new java.awt.Dimension(230, 40));
-        jToggleButton5.setPreferredSize(new java.awt.Dimension(230, 40));
+        jToggleButton5.setMaximumSize(new java.awt.Dimension(265, 40));
+        jToggleButton5.setMinimumSize(new java.awt.Dimension(265, 40));
+        jToggleButton5.setPreferredSize(new java.awt.Dimension(265, 40));
         jToggleButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton5ActionPerformed(evt);
@@ -216,11 +225,12 @@ public class Main extends javax.swing.JFrame {
 
         jToggleButton6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jToggleButton6.setText("Volume");
+        jToggleButton6.setBorder(new com.formdev.flatlaf.ui.FlatRoundBorder());
         jToggleButton6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jToggleButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jToggleButton6.setMaximumSize(new java.awt.Dimension(230, 40));
-        jToggleButton6.setMinimumSize(new java.awt.Dimension(230, 40));
-        jToggleButton6.setPreferredSize(new java.awt.Dimension(230, 40));
+        jToggleButton6.setMaximumSize(new java.awt.Dimension(265, 40));
+        jToggleButton6.setMinimumSize(new java.awt.Dimension(265, 40));
+        jToggleButton6.setPreferredSize(new java.awt.Dimension(265, 40));
         jToggleButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton6ActionPerformed(evt);
@@ -230,20 +240,22 @@ public class Main extends javax.swing.JFrame {
 
         jToggleButton7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jToggleButton7.setText("Length");
+        jToggleButton7.setBorder(new com.formdev.flatlaf.ui.FlatRoundBorder());
         jToggleButton7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jToggleButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jToggleButton7.setMaximumSize(new java.awt.Dimension(230, 40));
-        jToggleButton7.setMinimumSize(new java.awt.Dimension(230, 40));
-        jToggleButton7.setPreferredSize(new java.awt.Dimension(230, 40));
+        jToggleButton7.setMaximumSize(new java.awt.Dimension(265, 40));
+        jToggleButton7.setMinimumSize(new java.awt.Dimension(265, 40));
+        jToggleButton7.setPreferredSize(new java.awt.Dimension(265, 40));
         navBtns.add(jToggleButton7);
 
         jToggleButton8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jToggleButton8.setText("Weight & Mass");
+        jToggleButton8.setBorder(new com.formdev.flatlaf.ui.FlatRoundBorder());
         jToggleButton8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jToggleButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jToggleButton8.setMaximumSize(new java.awt.Dimension(230, 40));
-        jToggleButton8.setMinimumSize(new java.awt.Dimension(230, 40));
-        jToggleButton8.setPreferredSize(new java.awt.Dimension(230, 40));
+        jToggleButton8.setMaximumSize(new java.awt.Dimension(265, 40));
+        jToggleButton8.setMinimumSize(new java.awt.Dimension(265, 40));
+        jToggleButton8.setPreferredSize(new java.awt.Dimension(265, 40));
         jToggleButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton8ActionPerformed(evt);
@@ -253,11 +265,12 @@ public class Main extends javax.swing.JFrame {
 
         jToggleButton9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jToggleButton9.setText("Temperature");
+        jToggleButton9.setBorder(new com.formdev.flatlaf.ui.FlatRoundBorder());
         jToggleButton9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jToggleButton9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jToggleButton9.setMaximumSize(new java.awt.Dimension(230, 40));
-        jToggleButton9.setMinimumSize(new java.awt.Dimension(230, 40));
-        jToggleButton9.setPreferredSize(new java.awt.Dimension(230, 40));
+        jToggleButton9.setMaximumSize(new java.awt.Dimension(265, 40));
+        jToggleButton9.setMinimumSize(new java.awt.Dimension(265, 40));
+        jToggleButton9.setPreferredSize(new java.awt.Dimension(265, 40));
         jToggleButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton9ActionPerformed(evt);
@@ -267,20 +280,22 @@ public class Main extends javax.swing.JFrame {
 
         jToggleButton10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jToggleButton10.setText("Energy");
+        jToggleButton10.setBorder(new com.formdev.flatlaf.ui.FlatRoundBorder());
         jToggleButton10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jToggleButton10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jToggleButton10.setMaximumSize(new java.awt.Dimension(230, 40));
-        jToggleButton10.setMinimumSize(new java.awt.Dimension(230, 40));
-        jToggleButton10.setPreferredSize(new java.awt.Dimension(230, 40));
+        jToggleButton10.setMaximumSize(new java.awt.Dimension(265, 40));
+        jToggleButton10.setMinimumSize(new java.awt.Dimension(265, 40));
+        jToggleButton10.setPreferredSize(new java.awt.Dimension(265, 40));
         navBtns.add(jToggleButton10);
 
         jToggleButton11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jToggleButton11.setText("Area");
+        jToggleButton11.setBorder(new com.formdev.flatlaf.ui.FlatRoundBorder());
         jToggleButton11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jToggleButton11.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jToggleButton11.setMaximumSize(new java.awt.Dimension(230, 40));
-        jToggleButton11.setMinimumSize(new java.awt.Dimension(230, 40));
-        jToggleButton11.setPreferredSize(new java.awt.Dimension(230, 40));
+        jToggleButton11.setMaximumSize(new java.awt.Dimension(265, 40));
+        jToggleButton11.setMinimumSize(new java.awt.Dimension(265, 40));
+        jToggleButton11.setPreferredSize(new java.awt.Dimension(265, 40));
         jToggleButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton11ActionPerformed(evt);
@@ -290,11 +305,12 @@ public class Main extends javax.swing.JFrame {
 
         jToggleButton12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jToggleButton12.setText("Speed");
+        jToggleButton12.setBorder(new com.formdev.flatlaf.ui.FlatRoundBorder());
         jToggleButton12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jToggleButton12.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jToggleButton12.setMaximumSize(new java.awt.Dimension(230, 40));
-        jToggleButton12.setMinimumSize(new java.awt.Dimension(230, 40));
-        jToggleButton12.setPreferredSize(new java.awt.Dimension(230, 40));
+        jToggleButton12.setMaximumSize(new java.awt.Dimension(265, 40));
+        jToggleButton12.setMinimumSize(new java.awt.Dimension(265, 40));
+        jToggleButton12.setPreferredSize(new java.awt.Dimension(265, 40));
         jToggleButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton12ActionPerformed(evt);
@@ -304,20 +320,22 @@ public class Main extends javax.swing.JFrame {
 
         jToggleButton13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jToggleButton13.setText("Time");
+        jToggleButton13.setBorder(new com.formdev.flatlaf.ui.FlatRoundBorder());
         jToggleButton13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jToggleButton13.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jToggleButton13.setMaximumSize(new java.awt.Dimension(230, 40));
-        jToggleButton13.setMinimumSize(new java.awt.Dimension(230, 40));
-        jToggleButton13.setPreferredSize(new java.awt.Dimension(230, 40));
+        jToggleButton13.setMaximumSize(new java.awt.Dimension(265, 40));
+        jToggleButton13.setMinimumSize(new java.awt.Dimension(265, 40));
+        jToggleButton13.setPreferredSize(new java.awt.Dimension(265, 40));
         navBtns.add(jToggleButton13);
 
         jToggleButton14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jToggleButton14.setText("Power");
+        jToggleButton14.setBorder(new com.formdev.flatlaf.ui.FlatRoundBorder());
         jToggleButton14.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jToggleButton14.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jToggleButton14.setMaximumSize(new java.awt.Dimension(230, 40));
-        jToggleButton14.setMinimumSize(new java.awt.Dimension(230, 40));
-        jToggleButton14.setPreferredSize(new java.awt.Dimension(230, 40));
+        jToggleButton14.setMaximumSize(new java.awt.Dimension(265, 40));
+        jToggleButton14.setMinimumSize(new java.awt.Dimension(265, 40));
+        jToggleButton14.setPreferredSize(new java.awt.Dimension(265, 40));
         jToggleButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton14ActionPerformed(evt);
@@ -327,11 +345,12 @@ public class Main extends javax.swing.JFrame {
 
         jToggleButton15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jToggleButton15.setText("Data");
+        jToggleButton15.setBorder(new com.formdev.flatlaf.ui.FlatRoundBorder());
         jToggleButton15.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jToggleButton15.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jToggleButton15.setMaximumSize(new java.awt.Dimension(230, 40));
-        jToggleButton15.setMinimumSize(new java.awt.Dimension(230, 40));
-        jToggleButton15.setPreferredSize(new java.awt.Dimension(230, 40));
+        jToggleButton15.setMaximumSize(new java.awt.Dimension(265, 40));
+        jToggleButton15.setMinimumSize(new java.awt.Dimension(265, 40));
+        jToggleButton15.setPreferredSize(new java.awt.Dimension(265, 40));
         jToggleButton15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton15ActionPerformed(evt);
@@ -341,20 +360,22 @@ public class Main extends javax.swing.JFrame {
 
         jToggleButton16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jToggleButton16.setText("Presure");
+        jToggleButton16.setBorder(new com.formdev.flatlaf.ui.FlatRoundBorder());
         jToggleButton16.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jToggleButton16.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jToggleButton16.setMaximumSize(new java.awt.Dimension(230, 40));
-        jToggleButton16.setMinimumSize(new java.awt.Dimension(230, 40));
-        jToggleButton16.setPreferredSize(new java.awt.Dimension(230, 40));
+        jToggleButton16.setMaximumSize(new java.awt.Dimension(265, 40));
+        jToggleButton16.setMinimumSize(new java.awt.Dimension(265, 40));
+        jToggleButton16.setPreferredSize(new java.awt.Dimension(265, 40));
         navBtns.add(jToggleButton16);
 
         jToggleButton17.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jToggleButton17.setText("Angle");
+        jToggleButton17.setBorder(new com.formdev.flatlaf.ui.FlatRoundBorder());
         jToggleButton17.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jToggleButton17.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jToggleButton17.setMaximumSize(new java.awt.Dimension(230, 40));
-        jToggleButton17.setMinimumSize(new java.awt.Dimension(230, 40));
-        jToggleButton17.setPreferredSize(new java.awt.Dimension(230, 40));
+        jToggleButton17.setMaximumSize(new java.awt.Dimension(265, 40));
+        jToggleButton17.setMinimumSize(new java.awt.Dimension(265, 40));
+        jToggleButton17.setPreferredSize(new java.awt.Dimension(265, 40));
         navBtns.add(jToggleButton17);
 
         jScrollPane5.setViewportView(navBtns);
@@ -368,9 +389,9 @@ public class Main extends javax.swing.JFrame {
         jButton26.setBorder(null);
         jButton26.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton26.setMargin(new java.awt.Insets(0, 5, 0, 5));
-        jButton26.setMaximumSize(new java.awt.Dimension(200, 40));
-        jButton26.setMinimumSize(new java.awt.Dimension(200, 50));
-        jButton26.setPreferredSize(new java.awt.Dimension(250, 40));
+        jButton26.setMaximumSize(new java.awt.Dimension(260, 50));
+        jButton26.setMinimumSize(new java.awt.Dimension(260, 50));
+        jButton26.setPreferredSize(new java.awt.Dimension(270, 40));
         jPanel2.add(jButton26);
 
         Navigation.add(jPanel2);
@@ -378,6 +399,7 @@ public class Main extends javax.swing.JFrame {
         jDialog1.getContentPane().add(Navigation, "card2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Calculator");
         setMaximumSize(maxSize);
         setMinimumSize(minSize);
         setPreferredSize(new Dimension(Previous.WIDTH,Previous.HEIGHT));
@@ -389,16 +411,21 @@ public class Main extends javax.swing.JFrame {
         mainPanel.setLayout(new javax.swing.BoxLayout(mainPanel, javax.swing.BoxLayout.PAGE_AXIS));
 
         topBar.setAlignmentY(0.0F);
-        topBar.setMaximumSize(new Dimension(maxSize.width,TOP_HEIGHT));
+        topBar.setMaximumSize(new java.awt.Dimension(10000, 50));
+        topBar.setMinimumSize(new java.awt.Dimension(310, 50));
         topBar.setPreferredSize(new Dimension(Previous.WIDTH-MARGIN*2,TOP_HEIGHT));
+        topBar.setLayout(new java.awt.CardLayout());
+
+        jPanel4.setLayout(new javax.swing.BoxLayout(jPanel4, javax.swing.BoxLayout.LINE_AXIS));
 
         jButton3.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         jButton3.setIcon(Graphical.getImage("src\\Images\\Navigation-"+getUIColorType()+".png",15,10));
         jButton3.setToolTipText("Open Navigation");
+        jButton3.setAlignmentY(0.0F);
         jButton3.setBorder(null);
         jButton3.setFocusable(false);
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setMaximumSize(new java.awt.Dimension(30, 30));
+        jButton3.setMaximumSize(new java.awt.Dimension(50, 30));
         jButton3.setMinimumSize(new java.awt.Dimension(30, 30));
         jButton3.setPreferredSize(new java.awt.Dimension(35, 35));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -406,14 +433,26 @@ public class Main extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
+        jPanel4.add(jButton3);
+
+        jPanel1.setAlignmentY(0.0F);
+        jPanel1.setMaximumSize(new java.awt.Dimension(10, 30));
+        jPanel1.setMinimumSize(new java.awt.Dimension(10, 30));
+        jPanel1.setPreferredSize(new java.awt.Dimension(10, 30));
+        jPanel4.add(jPanel1);
 
         CalType.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         CalType.setText("Standard");
-        CalType.setMaximumSize(new java.awt.Dimension(250, 30));
+        CalType.setAlignmentY(0.0F);
+        CalType.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        CalType.setMaximumSize(new java.awt.Dimension(10000, 30));
         CalType.setMinimumSize(new java.awt.Dimension(250, 30));
-        CalType.setPreferredSize(new java.awt.Dimension(250, 30));
+        CalType.setPreferredSize(new java.awt.Dimension(150, 30));
+        jPanel4.add(CalType);
 
         histryBtn.setText("H");
+        histryBtn.setAlignmentX(1.0F);
+        histryBtn.setAlignmentY(0.0F);
         histryBtn.setBorder(null);
         histryBtn.setFocusable(false);
         histryBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -426,32 +465,11 @@ public class Main extends javax.swing.JFrame {
                 histryBtnActionPerformed(evt);
             }
         });
+        jPanel4.add(histryBtn);
 
-        javax.swing.GroupLayout topBarLayout = new javax.swing.GroupLayout(topBar);
-        topBar.setLayout(topBarLayout);
-        topBarLayout.setHorizontalGroup(
-            topBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(topBarLayout.createSequentialGroup()
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(CalType, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
-                .addComponent(histryBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        topBarLayout.setVerticalGroup(
-            topBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, topBarLayout.createSequentialGroup()
-                .addGroup(topBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-                    .addComponent(histryBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CalType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(153, Short.MAX_VALUE))
-        );
+        topBar.add(jPanel4, "card2");
 
         mainPanel.add(topBar);
-
-        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
-        mainPanel.add(jPanel1);
 
         getContentPane().add(mainPanel, "card2");
 
@@ -459,12 +477,14 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        jDialog1.setLocation(getLocationOnScreen().x + 5, getLocationOnScreen().y + 30);
-        jDialog1.setSize(230, getHeight() - 50);
+        jDialog1.setLocation(getLocationOnScreen().x + 8, getLocationOnScreen().y + 33);
+        jDialog1.setSize(270, getHeight() - 38);
         jDialog1.setVisible(true);
-        jScrollPane5.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane5.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-        jScrollPane5.getVerticalScrollBar().setUnitIncrement(100);
+        jScrollPane5.getVerticalScrollBar().setUnitIncrement(10);
+        jScrollPane5.getVerticalScrollBar().setBackground(new Color(30,30,30));
+        jScrollPane5.getVerticalScrollBar().revalidate();
+        jScrollPane5.getVerticalScrollBar().repaint();
+        System.out.println(jScrollPane5.getVerticalScrollBar().getBounds());
         jScrollPane5.revalidate();
         jScrollPane5.repaint();
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -519,6 +539,7 @@ public class Main extends javax.swing.JFrame {
 
     private void jToggleButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton15ActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jToggleButton15ActionPerformed
 
     
@@ -581,6 +602,23 @@ public class Main extends javax.swing.JFrame {
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        Color background=new Color(30,30,30);
+        Color background2=new Color(50,50,50);
+        Color foreground=new Color(200,200,200);
+        UIManager.put("Button.background", background2);
+        UIManager.put("Label.background", background2);
+        UIManager.put("ScrollPane.background", background2);
+        UIManager.put("Button.foreground", foreground);
+        UIManager.put("TextField.foreground", foreground);
+        UIManager.put("ToggleButton.foreground", foreground);
+        UIManager.put("Button.font", new Font("Dialog",Font.PLAIN,18));
+        UIManager.put("TextField.background", background);
+        UIManager.put("ToggleButton.background", background);
+        UIManager.put("ToggleButton.selectedBackground", background2);
+        UIManager.put("ToggleButton.selectedBorder", background2);
+        UIManager.put("Panel.background", background);
+        UIManager.put("Frame.background", background);
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -603,6 +641,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton10;

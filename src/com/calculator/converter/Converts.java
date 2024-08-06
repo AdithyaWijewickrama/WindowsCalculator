@@ -1,4 +1,4 @@
-package com.main;
+package com.calculator.converter;
 
 import Convert.Angle;
 import static Convert.Convert.angle;

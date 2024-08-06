@@ -21,7 +21,7 @@ public class Number extends java.lang.Number {
     }
 
     public Number(Double number, NumberFormat format) throws ParseException {
-        this.numberString = number.toString();
+        this.numberString = format.formatNumber(number.toString());
         this.numberFormat = format;
         this.number = number;
     }
@@ -101,6 +101,10 @@ public class Number extends java.lang.Number {
     @Override
     public double doubleValue() {
         return number.doubleValue();
+    }
+    
+    public void setValue(double value){
+        number=value;
     }
 
     public Number add(Number n) {

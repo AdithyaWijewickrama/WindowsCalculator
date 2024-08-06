@@ -1,8 +1,8 @@
 package com.calculate.calculus;
 
-import com.Tokenizing.TokenList;
-import com.Tokenizing.TokenParser;
-import com.Tokenizing.TokenType;
+import com.tokenizing.TokenList;
+import com.tokenizing.TokenParser;
+import com.tokenizing.TokenType;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

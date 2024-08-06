@@ -2,32 +2,32 @@ package com.calculate.equation;
 
 import Convert.Convert;
 import Convert.Angle;
-import com.Tokenizing.Token;
+import com.tokenizing.Token;
 import com.calculate.Number;
-import static com.Tokenizing.Token.ACOS;
-import static com.Tokenizing.Token.ACOSH;
-import static com.Tokenizing.Token.ACOT;
-import static com.Tokenizing.Token.ACOTH;
-import static com.Tokenizing.Token.ACSC;
-import static com.Tokenizing.Token.ACSCH;
-import static com.Tokenizing.Token.ASEC;
-import static com.Tokenizing.Token.ASECH;
-import static com.Tokenizing.Token.ASIN;
-import static com.Tokenizing.Token.ASINH;
-import static com.Tokenizing.Token.ATAN;
-import static com.Tokenizing.Token.ATANH;
-import static com.Tokenizing.Token.COS;
-import static com.Tokenizing.Token.COSH;
-import static com.Tokenizing.Token.COT;
-import static com.Tokenizing.Token.COTH;
-import static com.Tokenizing.Token.CSC;
-import static com.Tokenizing.Token.CSCH;
-import static com.Tokenizing.Token.SEC;
-import static com.Tokenizing.Token.SECH;
-import static com.Tokenizing.Token.SIN;
-import static com.Tokenizing.Token.SINH;
-import static com.Tokenizing.Token.TAN;
-import static com.Tokenizing.Token.TANH;
+import static com.tokenizing.Token.ACOS;
+import static com.tokenizing.Token.ACOSH;
+import static com.tokenizing.Token.ACOT;
+import static com.tokenizing.Token.ACOTH;
+import static com.tokenizing.Token.ACSC;
+import static com.tokenizing.Token.ACSCH;
+import static com.tokenizing.Token.ASEC;
+import static com.tokenizing.Token.ASECH;
+import static com.tokenizing.Token.ASIN;
+import static com.tokenizing.Token.ASINH;
+import static com.tokenizing.Token.ATAN;
+import static com.tokenizing.Token.ATANH;
+import static com.tokenizing.Token.COS;
+import static com.tokenizing.Token.COSH;
+import static com.tokenizing.Token.COT;
+import static com.tokenizing.Token.COTH;
+import static com.tokenizing.Token.CSC;
+import static com.tokenizing.Token.CSCH;
+import static com.tokenizing.Token.SEC;
+import static com.tokenizing.Token.SECH;
+import static com.tokenizing.Token.SIN;
+import static com.tokenizing.Token.SINH;
+import static com.tokenizing.Token.TAN;
+import static com.tokenizing.Token.TANH;
 import static com.calculate.equation.Triaganometry.InverseHyperbolicFunctions.acosh;
 import static com.calculate.equation.Triaganometry.InverseHyperbolicFunctions.asinh;
 import static org.apache.commons.math3.util.FastMath.atanh;
@@ -40,15 +40,15 @@ public final class Triaganometry extends Function_ {
 
     private Angle angleType;
 
-    public Triaganometry(Number value, Token token, Angle angleType) {
+    public Triaganometry(Calculate value, Token token, Angle angleType) {
         super(token, value);
         setAngleType(angleType);
     }
 
     public void setAngleType(Angle angleType) {
         this.angleType = angleType;
-        setValue1(Number.parseNumber(Convert.angle(value1.doubleValue(), angleType, Angle.radians)));
-        System.out.println(value1.doubleValue());
+//        setValue1((Convert.angle(value1.doTheMath().doubleValue(), angleType, Angle.radians)));
+        System.out.println(value1.doTheMath().doubleValue());
     }
 
     public Angle getAngleType() {
@@ -58,53 +58,53 @@ public final class Triaganometry extends Function_ {
     @Override
     public Number doTheMath() {
         if (function_ == COS) {
-            return Number.parseNumber(Math.cos(value1.doubleValue()));
+            return Number.parseNumber(Math.cos(value1.doTheMath().doubleValue()));
         } else if (function_ == SIN) {
-            return Number.parseNumber(Math.sin(value1.doubleValue()));
+            return Number.parseNumber(Math.sin(value1.doTheMath().doubleValue()));
         } else if (function_ == TAN) {
-            return Number.parseNumber(Math.tan(value1.doubleValue()));
+            return Number.parseNumber(Math.tan(value1.doTheMath().doubleValue()));
         }else  if (function_ == COSH) {
-            return Number.parseNumber(Math.cosh(value1.doubleValue()));
+            return Number.parseNumber(Math.cosh(value1.doTheMath().doubleValue()));
         } else if (function_ == SINH) {
-            return Number.parseNumber(Math.sinh(value1.doubleValue()));
+            return Number.parseNumber(Math.sinh(value1.doTheMath().doubleValue()));
         } else if (function_ == TANH) {
-            return Number.parseNumber(Math.tanh(value1.doubleValue()));
+            return Number.parseNumber(Math.tanh(value1.doTheMath().doubleValue()));
         } else if (function_ == ACOS) {
-            return Number.parseNumber(Math.acos(value1.doubleValue()));
+            return Number.parseNumber(Math.acos(value1.doTheMath().doubleValue()));
         } else if (function_ == ASIN) {
-            return Number.parseNumber(Math.asin(value1.doubleValue()));
+            return Number.parseNumber(Math.asin(value1.doTheMath().doubleValue()));
         } else if (function_ == ATAN) {
-            return Number.parseNumber(Math.atan(value1.doubleValue()));
+            return Number.parseNumber(Math.atan(value1.doTheMath().doubleValue()));
         } else if (function_ == SEC) {
-            return Number.parseNumber(1 / Math.cos(value1.doubleValue()));
+            return Number.parseNumber(1 / Math.cos(value1.doTheMath().doubleValue()));
         } else if (function_ == CSC) {
-            return Number.parseNumber(1 / Math.sin(value1.doubleValue()));
+            return Number.parseNumber(1 / Math.sin(value1.doTheMath().doubleValue()));
         } else if (function_ == COT) {
-            return Number.parseNumber(1 / Math.tan(value1.doubleValue()));
+            return Number.parseNumber(1 / Math.tan(value1.doTheMath().doubleValue()));
         } else if (function_ == ASEC) {
-            return Number.parseNumber(Math.acos(1 / value1.doubleValue()));
+            return Number.parseNumber(Math.acos(1 / value1.doTheMath().doubleValue()));
         } else if (function_ == ACSC) {
-            return Number.parseNumber(Math.asin(1 / value1.doubleValue()));
+            return Number.parseNumber(Math.asin(1 / value1.doTheMath().doubleValue()));
         } else if (function_ == ACOT) {
-            return Number.parseNumber(Math.atan(1 / value1.doubleValue()));
+            return Number.parseNumber(Math.atan(1 / value1.doTheMath().doubleValue()));
         } else if (function_ == SECH) {
-            return Number.parseNumber(Math.cosh(1 / value1.doubleValue()));
+            return Number.parseNumber(Math.cosh(1 / value1.doTheMath().doubleValue()));
         } else if (function_ == CSCH) {
-            return Number.parseNumber(Math.sinh(1 / value1.doubleValue()));
+            return Number.parseNumber(Math.sinh(1 / value1.doTheMath().doubleValue()));
         } else if (function_ == COTH) {
-            return Number.parseNumber(Math.tanh(1 / value1.doubleValue()));
+            return Number.parseNumber(Math.tanh(1 / value1.doTheMath().doubleValue()));
         } else if (function_ == ACOSH) {
-            return Number.parseNumber(acosh(value1.doubleValue()));
+            return Number.parseNumber(acosh(value1.doTheMath().doubleValue()));
         } else if (function_ == ASINH) {
-            return Number.parseNumber(asinh(value1.doubleValue()));
+            return Number.parseNumber(asinh(value1.doTheMath().doubleValue()));
         } else if (function_ == ATANH) {
-            return Number.parseNumber(atanh(value1.doubleValue()));
+            return Number.parseNumber(atanh(value1.doTheMath().doubleValue()));
         } else if (function_ == ASECH) {
-            return Number.parseNumber(acosh(1 / value1.doubleValue()));
+            return Number.parseNumber(acosh(1 / value1.doTheMath().doubleValue()));
         } else if (function_ == ACSCH) {
-            return Number.parseNumber(asinh(1 / value1.doubleValue()));
+            return Number.parseNumber(asinh(1 / value1.doTheMath().doubleValue()));
         } else if (function_ == ACOTH) {
-            return Number.parseNumber(atanh(1 / value1.doubleValue()));
+            return Number.parseNumber(atanh(1 / value1.doTheMath().doubleValue()));
         }else{
             System.out.println("sasad");
             System.out.println("fsdfsdf");

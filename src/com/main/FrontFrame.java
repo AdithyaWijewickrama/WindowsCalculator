@@ -1,7 +1,8 @@
 package com.main;
 
-import com.calculator.HistoryPanel;
-import com.calculator.MemoryPanel;
+import com.calculator.converter.Converts;
+import com.calculator.commonCalculator.ui.history.HistoryPanel;
+import com.calculator.commonCalculator.ui.memory.MemoryPanel;
 import com.calculator.graphing.FunctionPanel;
 import com.calculator.graphing.Graphical;
 import Programmer.Base;
@@ -10,7 +11,7 @@ import Programmer.Decimal;
 import com.calculator.dateCalculation.DateCalculation;
 import com.codes.Scifi;
 import com.codes.Trigonometry;
-import com.codes.Ui;
+import com.calculator.commonCalculator.ui.Ui;
 import com.database.DbConnect;
 import static com.database.Sql.Execute;
 import static com.database.Sql.ExecuteSQL;
@@ -23,9 +24,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import static com.main.Converts.forgetFocus;
-import static com.main.Converts.getComboModel;
-import static com.main.Converts.getFocus;
+import static com.calculator.converter.Converts.forgetFocus;
+import static com.calculator.converter.Converts.getComboModel;
+import static com.calculator.converter.Converts.getFocus;
 import static com.calculator.graphing.Graphical.getUIColor;
 import static com.calculator.graphing.Graphical.getUIColorType;
 import grapher.GraphPanel;
@@ -63,7 +64,6 @@ import org.apache.commons.math3.special.Gamma;
 public final class FrontFrame extends javax.swing.JFrame {
 
     public static Color APP_THEME = new Color(0, 102, 51);
-    public static Color APP_HOVER = Color.gray;
     static final double DEFONTSIZE = 24;
     static final FlatLaf LIGHT = new FlatLightLaf();
     static final FlatLaf DARK = new FlatDarkLaf();
@@ -108,8 +108,6 @@ public final class FrontFrame extends javax.swing.JFrame {
         jScrollPane3.getHorizontalScrollBar().setUnitIncrement(100);
         jScrollPane4.getHorizontalScrollBar().setUnitIncrement(100);
         this.calTxt = numberText;
-        MemoryPanel.calTxt = calTxt;
-        MemoryPanel.eqtTxt = equationTxt;
         calTxt.requestFocus();
         calTxt.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -5093,7 +5091,7 @@ public final class FrontFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_dotActionPerformed
 
     private void formKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyTyped
-        calKeyTyped(evt);
+//        calKeyTyped(evt);
     }//GEN-LAST:event_formKeyTyped
 
     private void equalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_equalActionPerformed
@@ -5101,7 +5099,7 @@ public final class FrontFrame extends javax.swing.JFrame {
         if (firstNum != null && arithExp != null && secondNum != null) {
             val = calculate();
             setFirstNum(firstNum, secondNum, arithExp);
-            histryPanel.newCell(getFirstNum(firstNum, secondNum, arithExp), Exact(val));
+            histryPanel.addHistory(getFirstNum(firstNum, secondNum, arithExp), Exact(val));
         } else if (firstNum != null && arithExp != null) {
             secondNum = 0.;
             val = calculate();
@@ -5285,12 +5283,12 @@ public final class FrontFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_convertsText1MouseClicked
 
     private void convertsText2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_convertsText2KeyTyped
-        calKeyTyped(evt);
+//        calKeyTyped(evt);
         setConvertedValue(Double.valueOf(calTxt.getText()), getCalType().idx - 5, convertsText1);
     }//GEN-LAST:event_convertsText2KeyTyped
 
     private void convertsText1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_convertsText1KeyTyped
-        calKeyTyped(evt);
+//        calKeyTyped(evt);
         setConvertedValue(Double.valueOf(calTxt.getText()), getCalType().idx - 5, convertsText2);
     }//GEN-LAST:event_convertsText1KeyTyped
 
@@ -5471,12 +5469,12 @@ public final class FrontFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        setValue(MemoryPanel.memStore);
+//        setValue(MemoryPanel.memStore);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        MemoryPanel.memStore = value;
-        memoryPanel.newCell(value);
+//        MemoryPanel.memStore = value;
+//        memoryPanel.newCell(value);
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void piActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_piActionPerformed

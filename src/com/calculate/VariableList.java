@@ -1,6 +1,6 @@
 package com.calculate;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
@@ -8,14 +8,14 @@ import java.util.Iterator;
  * @author AW Developer
  */
 public class VariableList {
-    HashSet<Variable> variableList;
+    ArrayList<Variable> variableList;
 
-    public VariableList(HashSet<Variable> variableList) {
+    public VariableList(ArrayList<Variable> variableList) {
         this.variableList = variableList;
     }
 
     public VariableList() {
-        variableList=new HashSet<>();
+        variableList=new ArrayList<>();
     }
     
     public boolean isEmpty(){
@@ -29,7 +29,6 @@ public class VariableList {
             }
         }
         return variableList.add(v);
-        
     }
     public Variable get(String name){
         for (Variable v : variableList) {
@@ -38,5 +37,8 @@ public class VariableList {
             }
         }
         return null;
+    }
+    public void setValue(String name,Number value){
+        get(name).setNumber(value);
     }
 }

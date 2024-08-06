@@ -28,5 +28,4 @@ public class Variable extends Number{
         super(number);
         this.name=name;
     }
-    
 }

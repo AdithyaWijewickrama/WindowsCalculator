@@ -1,10 +1,11 @@
 package com.calculate.equation;
 
-import com.Tokenizing.Token;
-import com.Tokenizing.TokenList;
-import com.Tokenizing.TokenParser;
-import com.Tokenizing.TokenType;
+import com.tokenizing.Token;
+import com.tokenizing.TokenList;
+import com.tokenizing.TokenParser;
+import com.tokenizing.TokenType;
 import com.calculate.Number;
+import com.calculate.Root;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -18,24 +19,26 @@ public class ExpressionEvaluator extends  TokenParser{
 
 //    private TokenList tokens;
     
-    private Number x;
-
+    public Number x=new Number(0.);
+    private Calculate parsedTokens;
+    
+    
     public ExpressionEvaluator(String exp) throws Exception {
         super(exp);
+        parsedTokens = doOparations(this);
     }
     public ExpressionEvaluator(TokenList exp) throws Exception {
         super(exp);
+        parsedTokens = doOparations(this);
     }
 
     public Number evaluate() {
         try {
             if (!hasIndependent()) {
-                return parseTokens(this);
+                return parsedTokens.doTheMath();
             } else {
                 throw new NoSuchFieldException("No value for " + Token.x.name + " given");
             }
-        } catch (ParseException ex) {
-            Logger.getLogger(ExpressionEvaluator.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NoSuchFieldException ex) {
             Logger.getLogger(ExpressionEvaluator.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -45,22 +48,24 @@ public class ExpressionEvaluator extends  TokenParser{
     public Number evaluateAt(Number independant) {
         try {
             if (hasIndependent()) {
-                x = independant;
-                return parseTokens(this);
+                x.setNumber(independant);
+                return parsedTokens.doTheMath();
             } else {
                 throw new NoSuchFieldException("No independant variable " + Token.x.name + " given");
             }
-        } catch (ParseException ex) {
-            Logger.getLogger(ExpressionEvaluator.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NoSuchFieldException ex) {
             Logger.getLogger(ExpressionEvaluator.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
 
-    private Number parseTokens(TokenList tokens) throws ParseException {
-        System.out.println("Token parsing started....");
-        System.out.println("\t"+tokens.toLocalString().replaceAll("\n", "\n\t"));
+    public void parseTokens() throws ParseException{
+        parsedTokens=doOparations(this);
+    }
+    
+    private Calculate doOparations(TokenList tokens) throws ParseException {
+        print("Token parsing started....");
+        print("\t"+tokens.toLocalString().replaceAll("\n", "\n\t"));
 
         int index;
         Token token;
@@ -68,61 +73,64 @@ public class ExpressionEvaluator extends  TokenParser{
         index = scanFor(tokens, Token.PLUS);
         if (index != -1) {
             token = tokens.tokenAt(index);
-            c = new Oparator(parseTokens(tokens.split(0, index)), token, parseTokens(tokens.split(index + 1, tokens.size())));
+            c = new Oparator(doOparations(tokens.split(0, index)), token, doOparations(tokens.split(index + 1, tokens.size())));
         } else {
             index = scanFor(tokens, Token.MINUS);
             if (index != -1) {
                 token = tokens.tokenAt(index);
-                c = new Oparator(parseTokens(tokens.split(0, index)), token, parseTokens(tokens.split(index + 1, tokens.size())));
+                c = new Oparator(doOparations(tokens.split(0, index)), token, doOparations(tokens.split(index + 1, tokens.size())));
             } else {
                 index = scanFor(tokens, TokenType.OPARATOR);
                 if (index != -1) {
                     token = tokens.tokenAt(index);
-                    c = new Oparator(parseTokens(tokens.split(0, index)), token, parseTokens(tokens.split(index + 1, tokens.size())));
+                    c = new Oparator(doOparations(tokens.split(0, index)), token, doOparations(tokens.split(index + 1, tokens.size())));
                 } else {
                     index = scanFor(tokens, TokenType.FUNCTION_);
                     if (index != -1) {
                         token = tokens.tokenAt(index);
-                        c = new Function_(token, parseTokens(getParameter(tokens, index + 1)));
+                        c = new Function_(token, doOparations(getParameter(tokens, index + 1)));
                     } else {
                         index = scanFor(tokens, TokenType._FUNCTION_);
                         if (index != -1) {
                             token = tokens.tokenAt(index);
                             ArrayList<TokenList> params = getParameters(tokens, index + 1);
-                            c = new _Function_(token, parseTokens(params.get(0)), parseTokens(params.get(1)));
+                            c = new _Function_(token, doOparations(params.get(0)), doOparations(params.get(1)));
                         }
                     }
                 }
             }
         }
         if (c != null) {
-            return c.doTheMath();
+            return c;
         } else {
-            Number num = null;
-            System.out.println(tokens);
+            final Number num;
+            print(tokens);
             if (tokens.tokenAt(0) == Token.OPEN_PRANTHESIS && tokens.tokenAt(tokens.size() - 1) == Token.CLOSE_PRANTHESIS) {
                 tokens.deleteToken(0);
                 tokens.deleteToken(tokens.size() - 1);
-                num = parseTokens(tokens);
+                return doOparations(tokens);
             } else {
                 token = tokens.tokenAt(0);
                 switch (token.type) {
                     case NUMBER:
                         num = token.number;
                         break;
+                    case DIGIT:
+                        num = token.number;
+                        break;
                     case VARIABLE:
                         num = token.number;
                         break;
                     case INDEPENDENT:
-                        num = x;
-                        break;
+                        return new Root(x);
                     case DEPENDENT:
+                        num=null;
                         break;
                     default:
                         throw new Error("Unparsable token for " + tokens);
                 }
             }
-            return num;
+            return new Root(num);
         }
     }
 
@@ -176,8 +184,8 @@ public class ExpressionEvaluator extends  TokenParser{
             }
             if (pranthasis == 0) {
                 params.add(new TokenList(tokenSet));
-                System.out.println("Parameters------------------");
-                System.out.println("\t"+params);
+                print("Parameters------------------");
+                print("\t"+params);
                 return params;
             }
             if (!(token == Token.COMMA || token == Token.OPEN_PRANTHESIS || token == Token.CLOSE_PRANTHESIS)) {
@@ -200,21 +208,25 @@ public class ExpressionEvaluator extends  TokenParser{
             }
             tokens.addToken(token);
             if (pranthasis == 0) {
-                System.out.println("Parameter------------");
-                System.out.println("\t"+tokens);
+                print("Parameter------------");
+                print("\t"+tokens);
                 return tokens;
             }
         }
         return null;
 
     }
+    
 
     public static void main(String[] args) {
         try {
-            //        System.out.println(new ExpressionEvaluator("log(x^2,8)").evaluateAt(Number.parseNumber(2.)).doubleValue());
-            ExpressionEvaluator e = new ExpressionEvaluator("5-5-5+(5+6)+5-sin(sin(sin(sin(sin(sin(sin(sin(11))))))))");
-            e.parse();
-            System.out.println(e.evaluate().doubleValue());
+            //        print(new ExpressionEvaluator("log(x^2,8)").evaluateAt(Number.parseNumber(2.)).doubleValue());
+            ExpressionEvaluator e = new ExpressionEvaluator("x^3-1");
+            e.parseTokens();
+            System.out.println(e.parsedTokens);
+            for (int i = 0; i < 10; i++) {
+                print(e.evaluateAt(Number.parseNumber(i)).doubleValue());
+            }
         } catch (Exception ex) {
             Logger.getLogger(ExpressionEvaluator.class.getName()).log(Level.SEVERE, null, ex);
         }
