@@ -5,6 +5,7 @@ import static com.calculator.graphing.Graphical.getUIColor;
 import com.database.UIMemory.Previous;
 import com.formdev.flatlaf.FlatDarkLaf;
 import static com.calculator.graphing.Graphical.getUIColorType;
+import com.calculator.standard.StandardFrame;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -33,7 +34,7 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
-        ButtonGroup group=new ButtonGroup();
+        ButtonGroup group = new ButtonGroup();
         group.add(jToggleButton1);
         group.add(jToggleButton2);
         group.add(jToggleButton3);
@@ -91,6 +92,7 @@ public class Main extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         CalType = new javax.swing.JLabel();
         histryBtn = new javax.swing.JButton();
+        calculatorPanel = new javax.swing.JPanel();
 
         jDialog1.setUndecorated(true);
         jDialog1.addWindowFocusListener(new java.awt.event.WindowFocusListener() {
@@ -189,6 +191,11 @@ public class Main extends javax.swing.JFrame {
         jToggleButton3.setMaximumSize(new java.awt.Dimension(265, 40));
         jToggleButton3.setMinimumSize(new java.awt.Dimension(265, 40));
         jToggleButton3.setPreferredSize(new java.awt.Dimension(265, 40));
+        jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton3ActionPerformed(evt);
+            }
+        });
         navBtns.add(jToggleButton3);
 
         jToggleButton4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -199,6 +206,11 @@ public class Main extends javax.swing.JFrame {
         jToggleButton4.setMaximumSize(new java.awt.Dimension(265, 40));
         jToggleButton4.setMinimumSize(new java.awt.Dimension(265, 40));
         jToggleButton4.setPreferredSize(new java.awt.Dimension(265, 40));
+        jToggleButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton4ActionPerformed(evt);
+            }
+        });
         navBtns.add(jToggleButton4);
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -246,6 +258,11 @@ public class Main extends javax.swing.JFrame {
         jToggleButton7.setMaximumSize(new java.awt.Dimension(265, 40));
         jToggleButton7.setMinimumSize(new java.awt.Dimension(265, 40));
         jToggleButton7.setPreferredSize(new java.awt.Dimension(265, 40));
+        jToggleButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton7ActionPerformed(evt);
+            }
+        });
         navBtns.add(jToggleButton7);
 
         jToggleButton8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -286,6 +303,11 @@ public class Main extends javax.swing.JFrame {
         jToggleButton10.setMaximumSize(new java.awt.Dimension(265, 40));
         jToggleButton10.setMinimumSize(new java.awt.Dimension(265, 40));
         jToggleButton10.setPreferredSize(new java.awt.Dimension(265, 40));
+        jToggleButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton10ActionPerformed(evt);
+            }
+        });
         navBtns.add(jToggleButton10);
 
         jToggleButton11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -326,6 +348,11 @@ public class Main extends javax.swing.JFrame {
         jToggleButton13.setMaximumSize(new java.awt.Dimension(265, 40));
         jToggleButton13.setMinimumSize(new java.awt.Dimension(265, 40));
         jToggleButton13.setPreferredSize(new java.awt.Dimension(265, 40));
+        jToggleButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton13ActionPerformed(evt);
+            }
+        });
         navBtns.add(jToggleButton13);
 
         jToggleButton14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -366,6 +393,11 @@ public class Main extends javax.swing.JFrame {
         jToggleButton16.setMaximumSize(new java.awt.Dimension(265, 40));
         jToggleButton16.setMinimumSize(new java.awt.Dimension(265, 40));
         jToggleButton16.setPreferredSize(new java.awt.Dimension(265, 40));
+        jToggleButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton16ActionPerformed(evt);
+            }
+        });
         navBtns.add(jToggleButton16);
 
         jToggleButton17.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -376,6 +408,11 @@ public class Main extends javax.swing.JFrame {
         jToggleButton17.setMaximumSize(new java.awt.Dimension(265, 40));
         jToggleButton17.setMinimumSize(new java.awt.Dimension(265, 40));
         jToggleButton17.setPreferredSize(new java.awt.Dimension(265, 40));
+        jToggleButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton17ActionPerformed(evt);
+            }
+        });
         navBtns.add(jToggleButton17);
 
         jScrollPane5.setViewportView(navBtns);
@@ -411,8 +448,8 @@ public class Main extends javax.swing.JFrame {
         mainPanel.setLayout(new javax.swing.BoxLayout(mainPanel, javax.swing.BoxLayout.PAGE_AXIS));
 
         topBar.setAlignmentY(0.0F);
-        topBar.setMaximumSize(new java.awt.Dimension(10000, 50));
-        topBar.setMinimumSize(new java.awt.Dimension(310, 50));
+        topBar.setMaximumSize(new java.awt.Dimension(10000, 60));
+        topBar.setMinimumSize(new java.awt.Dimension(310, 60));
         topBar.setPreferredSize(new Dimension(Previous.WIDTH-MARGIN*2,TOP_HEIGHT));
         topBar.setLayout(new java.awt.CardLayout());
 
@@ -471,6 +508,9 @@ public class Main extends javax.swing.JFrame {
 
         mainPanel.add(topBar);
 
+        calculatorPanel.setLayout(new java.awt.CardLayout());
+        mainPanel.add(calculatorPanel);
+
         getContentPane().add(mainPanel, "card2");
 
         pack();
@@ -481,7 +521,7 @@ public class Main extends javax.swing.JFrame {
         jDialog1.setSize(270, getHeight() - 38);
         jDialog1.setVisible(true);
         jScrollPane5.getVerticalScrollBar().setUnitIncrement(10);
-        jScrollPane5.getVerticalScrollBar().setBackground(new Color(30,30,30));
+        jScrollPane5.getVerticalScrollBar().setBackground(new Color(30, 30, 30));
         jScrollPane5.getVerticalScrollBar().revalidate();
         jScrollPane5.getVerticalScrollBar().repaint();
         System.out.println(jScrollPane5.getVerticalScrollBar().getBounds());
@@ -502,7 +542,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jDialog1WindowLostFocus
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
-        // TODO add your handling code here:
+        setFrame(SCIENTIFIC);
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
@@ -510,42 +550,69 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jToggleButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton5ActionPerformed
-        // TODO add your handling code here:
+        setFrame(CURRENCY);
     }//GEN-LAST:event_jToggleButton5ActionPerformed
 
     private void jToggleButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton6ActionPerformed
-        // TODO add your handling code here:
+        setFrame(VOLUME);
     }//GEN-LAST:event_jToggleButton6ActionPerformed
 
     private void jToggleButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton8ActionPerformed
-        // TODO add your handling code here:
+        setFrame(WEIGHT_AND_MASS);
     }//GEN-LAST:event_jToggleButton8ActionPerformed
 
     private void jToggleButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton9ActionPerformed
-        // TODO add your handling code here:
+        setFrame(TEMPERATURE);
     }//GEN-LAST:event_jToggleButton9ActionPerformed
 
     private void jToggleButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton11ActionPerformed
-        // TODO add your handling code here:
+        setFrame(AREA);
     }//GEN-LAST:event_jToggleButton11ActionPerformed
 
     private void jToggleButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton12ActionPerformed
-        // TODO add your handling code here:
+        setFrame(SPEED);
     }//GEN-LAST:event_jToggleButton12ActionPerformed
 
     private void jToggleButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton14ActionPerformed
-        // TODO add your handling code here:
+        setFrame(POWER);
     }//GEN-LAST:event_jToggleButton14ActionPerformed
 
     private void jToggleButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton15ActionPerformed
-        // TODO add your handling code here:
-        
+        setFrame(DATA);
     }//GEN-LAST:event_jToggleButton15ActionPerformed
 
-    
-    public void setFrame(int type){
+    private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
+        setFrame(GRAPHING);
+    }//GEN-LAST:event_jToggleButton3ActionPerformed
+
+    private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
+        setFrame(DATE_CALCULATION);
+    }//GEN-LAST:event_jToggleButton4ActionPerformed
+
+    private void jToggleButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton7ActionPerformed
+        setFrame(VOLUME);
+    }//GEN-LAST:event_jToggleButton7ActionPerformed
+
+    private void jToggleButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton10ActionPerformed
+        setFrame(ENERGY);
+    }//GEN-LAST:event_jToggleButton10ActionPerformed
+
+    private void jToggleButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton13ActionPerformed
+        setFrame(TIME);
+    }//GEN-LAST:event_jToggleButton13ActionPerformed
+
+    private void jToggleButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton16ActionPerformed
+        setFrame(PRESURE);
+    }//GEN-LAST:event_jToggleButton16ActionPerformed
+
+    private void jToggleButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton17ActionPerformed
+        setFrame(ANGLE);
+    }//GEN-LAST:event_jToggleButton17ActionPerformed
+
+    public void setFrame(int type) {
         switch (type) {
             case STANDARD:
+                calculatorPanel.add(new StandardFrame());
                 break;
             case SCIENTIFIC:
                 break;
@@ -573,25 +640,26 @@ public class Main extends javax.swing.JFrame {
                 throw new AssertionError();
         }
     }
-    
-    public static final int STANDARD=0;
-    public static final int SCIENTIFIC=1;
-    public static final int GRAPHING=2;
-    public static final int PROGRAMMER=3;
-    public static final int DATE_CALCULATION=4;
-    public static final int CURRENCY=5;
-    public static final int VOLUME=6;
-    public static final int LENGTH=7;
-    public static final int WEIGHT_AND_MASS=8;
-    public static final int TEMPERATURE=9;
-    public static final int ENERGY=10;
-    public static final int AREA=11;
-    public static final int SPEED=12;
-    public static final int TIME=13;
-    public static final int POWER=14;
-    public static final int DATA=15;
-    public static final int PRESURE=16;
-    public static final int ANGLE=17;
+
+    public static final int STANDARD = 0;
+    public static final int SCIENTIFIC = 1;
+    public static final int GRAPHING = 2;
+    public static final int PROGRAMMER = 3;
+    public static final int DATE_CALCULATION = 4;
+    public static final int CURRENCY = 5;
+    public static final int VOLUME = 6;
+    public static final int LENGTH = 7;
+    public static final int WEIGHT_AND_MASS = 8;
+    public static final int TEMPERATURE = 9;
+    public static final int ENERGY = 10;
+    public static final int AREA = 11;
+    public static final int SPEED = 12;
+    public static final int TIME = 13;
+    public static final int POWER = 14;
+    public static final int DATA = 15;
+    public static final int PRESURE = 16;
+    public static final int ANGLE = 17;
+
     /**
      * @param args the command line arguments
      */
@@ -602,17 +670,17 @@ public class Main extends javax.swing.JFrame {
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        Color background=new Color(30,30,30);
-        Color background2=new Color(50,50,50);
-        Color foreground=new Color(200,200,200);
+
+        Color background = new Color(30, 30, 30);
+        Color background2 = new Color(50, 50, 50);
+        Color foreground = new Color(200, 200, 200);
         UIManager.put("Button.background", background2);
         UIManager.put("Label.background", background2);
         UIManager.put("ScrollPane.background", background2);
         UIManager.put("Button.foreground", foreground);
         UIManager.put("TextField.foreground", foreground);
         UIManager.put("ToggleButton.foreground", foreground);
-        UIManager.put("Button.font", new Font("Dialog",Font.PLAIN,18));
+        UIManager.put("Button.font", new Font("Dialog", Font.PLAIN, 18));
         UIManager.put("TextField.background", background);
         UIManager.put("ToggleButton.background", background);
         UIManager.put("ToggleButton.selectedBackground", background2);
@@ -631,6 +699,7 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CalType;
     private javax.swing.JPanel Navigation;
+    private javax.swing.JPanel calculatorPanel;
     private javax.swing.JButton histryBtn;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton26;

@@ -5,10 +5,9 @@
  */
 package com.calculator.graphing;
 
+import com.calculate.equation.ExpressionEvaluator;
 import com.codes.test;
 import com.formdev.flatlaf.ui.FlatRoundBorder;
-import expression.Function;
-import grapher.BasicFunction;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -22,11 +21,12 @@ import java.util.Arrays;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
-import parser.ExpressionParser;
 
 /**
  *
@@ -35,7 +35,6 @@ import parser.ExpressionParser;
 public class SingleFunctionPanel extends javax.swing.JPanel {
 
     public Color color = new Color(102, 102, 102);
-    public Function function;
     public BasicFunction basicFunction;
     public static int totalFunctions = -1;
     public static ArrayList<SingleFunctionPanel> functions = new ArrayList<>();
@@ -380,9 +379,9 @@ public class SingleFunctionPanel extends javax.swing.JPanel {
     public char getFunctionStyle() {
         return lineOptions.getStyle();
     }
-    
-    public boolean isLast(){
-        return functions.indexOf(this)==functions.size()-1;
+
+    public boolean isLast() {
+        return functions.indexOf(this) == functions.size() - 1;
     }
 
     private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
@@ -443,24 +442,19 @@ public class SingleFunctionPanel extends javax.swing.JPanel {
             return;
         }
         if (isLast()) {
-            color = (Color) colorFunctions.get(functions.size()-1);
+            color = (Color) colorFunctions.get(functions.size() - 1);
             setPanelColor(color);
         }
         if (!getText().equals("")) {
-            ExpressionParser parser = new ExpressionParser();
-            function = parser.parse(getText());
+            try {
+                ExpressionEvaluator parser = new ExpressionEvaluator(getText());
 
-            if (function != null) {
                 basicFunction = new BasicFunction(getText(), "x");
                 basicFunction.setColor(color);
                 basicFunction.setStroke(lineOptions.getStyle());
-                if (parser.hasVariables()) {
-                    Dictionary<Character, Double> variables = parser.getVariables();
-                    variables.keys().asIterator().forEachRemaining(v -> {
-                        addVariable(v, variables.get(v));
-                    });
-                }
                 setFunction(basicFunction);
+            } catch (Exception ex) {
+                Logger.getLogger(SingleFunctionPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         if (isLast()) {

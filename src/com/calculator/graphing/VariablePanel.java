@@ -1,6 +1,6 @@
 package com.calculator.graphing;
 
-import static com.calculator.commonCalculator.ui.Ui.setNumberTexting;
+import static com.calculator.commonCalculator.Ui.setNumberTexting;
 import java.text.DecimalFormat;
 
 public class VariablePanel extends javax.swing.JPanel {

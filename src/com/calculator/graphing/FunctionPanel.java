@@ -1,10 +1,7 @@
 package com.calculator.graphing;
 
 import com.codes.test;
-import grapher.BasicFunction;
-import grapher.GraphPanel;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 

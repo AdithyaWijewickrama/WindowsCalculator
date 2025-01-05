@@ -4,12 +4,12 @@ import com.tokenizing.Token;
 import static com.tokenizing.Token.*;
 import com.tokenizing.TokenList;
 import com.tokenizing.TokenType;
-import com.calculator.commonCalculator.ui.button.ButtonLayout;
-import com.calculator.commonCalculator.ui.CommonKeyPanel;
-import com.calculator.commonCalculator.ui.CommonNumberPanel;
-import static com.calculator.commonCalculator.ui.button.DefaultButtons.BACK;
-import static com.calculator.commonCalculator.ui.button.DefaultButtons.C;
-import static com.calculator.commonCalculator.ui.button.DefaultButtons.CE;
+import com.calculator.commonCalculator.button.ButtonLayout;
+import com.calculator.commonCalculator.CommonKeyPanel;
+import com.calculator.commonCalculator.CommonNumberPanel;
+import static com.calculator.commonCalculator.button.DefaultButtons.BACK;
+import static com.calculator.commonCalculator.button.DefaultButtons.C;
+import static com.calculator.commonCalculator.button.DefaultButtons.CE;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

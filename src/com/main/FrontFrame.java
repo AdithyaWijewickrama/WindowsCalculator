@@ -1,8 +1,8 @@
 package com.main;
 
 import com.calculator.converter.Converts;
-import com.calculator.commonCalculator.ui.history.HistoryPanel;
-import com.calculator.commonCalculator.ui.memory.MemoryPanel;
+import com.calculator.commonCalculator.history.HistoryPanel;
+import com.calculator.commonCalculator.memory.MemoryPanel;
 import com.calculator.graphing.FunctionPanel;
 import com.calculator.graphing.Graphical;
 import Programmer.Base;
@@ -11,7 +11,7 @@ import Programmer.Decimal;
 import com.calculator.dateCalculation.DateCalculation;
 import com.codes.Scifi;
 import com.codes.Trigonometry;
-import com.calculator.commonCalculator.ui.Ui;
+import com.calculator.commonCalculator.Ui;
 import com.database.DbConnect;
 import static com.database.Sql.Execute;
 import static com.database.Sql.ExecuteSQL;

@@ -4,7 +4,7 @@ import com.tokenizing.Token;
 import com.tokenizing.TokenList;
 import com.tokenizing.TokenParser;
 import com.tokenizing.TokenType;
-import com.calculate.Number;
+import com.calculate.CNumber;
 import com.calculate.Root;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -15,24 +15,23 @@ import java.util.logging.Logger;
  *
  * @author AW Developer
  */
-public class ExpressionEvaluator extends  TokenParser{
+public class ExpressionEvaluator extends TokenParser {
 
 //    private TokenList tokens;
-    
-    public Number x=new Number(0.);
+    public CNumber x = new CNumber(0.);
     private Calculate parsedTokens;
-    
-    
+
     public ExpressionEvaluator(String exp) throws Exception {
         super(exp);
         parsedTokens = doOparations(this);
     }
+
     public ExpressionEvaluator(TokenList exp) throws Exception {
         super(exp);
         parsedTokens = doOparations(this);
     }
 
-    public Number evaluate() {
+    public CNumber evaluate() {
         try {
             if (!hasIndependent()) {
                 return parsedTokens.doTheMath();
@@ -45,7 +44,7 @@ public class ExpressionEvaluator extends  TokenParser{
         return null;
     }
 
-    public Number evaluateAt(Number independant) {
+    public CNumber evaluateAt(CNumber independant) {
         try {
             if (hasIndependent()) {
                 x.setNumber(independant);
@@ -59,13 +58,13 @@ public class ExpressionEvaluator extends  TokenParser{
         return null;
     }
 
-    public void parseTokens() throws ParseException{
-        parsedTokens=doOparations(this);
+    public void parseTokens() throws ParseException {
+        parsedTokens = doOparations(this);
     }
-    
+
     private Calculate doOparations(TokenList tokens) throws ParseException {
         print("Token parsing started....");
-        print("\t"+tokens.toLocalString().replaceAll("\n", "\n\t"));
+        print("\t" + tokens.toLocalString().replaceAll("\n", "\n\t"));
 
         int index;
         Token token;
@@ -103,7 +102,7 @@ public class ExpressionEvaluator extends  TokenParser{
         if (c != null) {
             return c;
         } else {
-            final Number num;
+            final CNumber num;
             print(tokens);
             if (tokens.tokenAt(0) == Token.OPEN_PRANTHESIS && tokens.tokenAt(tokens.size() - 1) == Token.CLOSE_PRANTHESIS) {
                 tokens.deleteToken(0);
@@ -124,7 +123,7 @@ public class ExpressionEvaluator extends  TokenParser{
                     case INDEPENDENT:
                         return new Root(x);
                     case DEPENDENT:
-                        num=null;
+                        num = null;
                         break;
                     default:
                         throw new Error("Unparsable token for " + tokens);
@@ -185,7 +184,7 @@ public class ExpressionEvaluator extends  TokenParser{
             if (pranthasis == 0) {
                 params.add(new TokenList(tokenSet));
                 print("Parameters------------------");
-                print("\t"+params);
+                print("\t" + params);
                 return params;
             }
             if (!(token == Token.COMMA || token == Token.OPEN_PRANTHESIS || token == Token.CLOSE_PRANTHESIS)) {
@@ -209,23 +208,22 @@ public class ExpressionEvaluator extends  TokenParser{
             tokens.addToken(token);
             if (pranthasis == 0) {
                 print("Parameter------------");
-                print("\t"+tokens);
+                print("\t" + tokens);
                 return tokens;
             }
         }
         return null;
 
     }
-    
 
     public static void main(String[] args) {
         try {
-            //        print(new ExpressionEvaluator("log(x^2,8)").evaluateAt(Number.parseNumber(2.)).doubleValue());
+            //        print(new ExpressionEvaluator("log(x^2,8)").evaluateAt(CNumber.parseNumber(2.)).doubleValue());
             ExpressionEvaluator e = new ExpressionEvaluator("x^3-1");
             e.parseTokens();
             System.out.println(e.parsedTokens);
             for (int i = 0; i < 10; i++) {
-                print(e.evaluateAt(Number.parseNumber(i)).doubleValue());
+                print(e.evaluateAt(CNumber.parseNumber(i)).doubleValue());
             }
         } catch (Exception ex) {
             Logger.getLogger(ExpressionEvaluator.class.getName()).log(Level.SEVERE, null, ex);

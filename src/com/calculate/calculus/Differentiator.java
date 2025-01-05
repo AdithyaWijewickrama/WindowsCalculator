@@ -6,7 +6,7 @@ import com.tokenizing.Token;
 import com.tokenizing.TokenList;
 import com.tokenizing.TokenParser;
 import com.tokenizing.TokenType;
-import com.calculate.Number;
+import com.calculate.CNumber;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -38,13 +38,13 @@ public final class Differentiator extends TokenParser {
             return differentiate(coefficient - 1);
         } else {
             TokenList t = new TokenList();
-            t.addToken(new Token(TokenType.NUMBER, Number.parseNumber(0.)));
+            t.addToken(new Token(TokenType.NUMBER, CNumber.parseNumber(0.)));
             setTokenList(t);
             return t;
         }
     }
 
-    public Number evaluateAt(Number x) throws Exception {
+    public CNumber evaluateAt(CNumber x) throws Exception {
         if (expEv == null) {
             expEv = new ExpressionEvaluator(this);
         }
@@ -101,17 +101,17 @@ public final class Differentiator extends TokenParser {
                     case NUMBER:
                     case DIGIT:
                     case VARIABLE:
-                        list.addToken(new Token(TokenType.NUMBER, Number.parseNumber(0.)));
+                        list.addToken(new Token(TokenType.NUMBER, CNumber.parseNumber(0.)));
                         break;
                     case INDEPENDENT:
-                        list.addToken(new Token(TokenType.NUMBER, Number.parseNumber(1.)));
+                        list.addToken(new Token(TokenType.NUMBER, CNumber.parseNumber(1.)));
                         break;
                     case DY_BY_DX:
-                        token.number=token.number.add(Number.parseNumber(1));
+                        token.number=token.number.add(CNumber.parseNumber(1));
                         list.addToken(token);
                         break;
                     case DEPENDENT:
-                        list.addToken(new Token(TokenType.DY_BY_DX,"dx/dy", Number.parseNumber(1.)));
+                        list.addToken(new Token(TokenType.DY_BY_DX,"dx/dy", CNumber.parseNumber(1.)));
                         break;
                     default:
                         throw new Error("Unparsable token for " + tokens);
@@ -228,8 +228,8 @@ public final class Differentiator extends TokenParser {
 //                    case " ":
 //                        break;
 //                }
-//                Number n = new Number(cmd, com.calculate.NumberFormat.NORMAL_DECIMAL);
-//                Number n1 = t.evaluateAt(n);
+//                CNumber n = new CNumber(cmd, com.calculate.NumberFormat.NORMAL_DECIMAL);
+//                CNumber n1 = t.evaluateAt(n);
 //                System.out.print("\nValue at x=" + n.getNumberString() + ":\n\t");
 
 //                System.out.print(n1.doubleValue());

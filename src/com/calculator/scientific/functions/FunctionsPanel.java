@@ -1,13 +1,13 @@
 package com.calculator.scientific.functions;
 
-import com.calculator.commonCalculator.ui.button.ButtonLayout;
-import com.calculator.commonCalculator.ui.CommonKeyPanel;
-import com.calculator.commonCalculator.ui.CommonNumberPanel;
-import com.calculator.commonCalculator.ui.Ui;
-import static com.calculator.commonCalculator.ui.button.DefaultButtons.DMS;
-import static com.calculator.commonCalculator.ui.button.DefaultButtons.RAND;
-import com.calculator.commonCalculator.ui.popupPanel.PopupButton;
-import com.calculator.commonCalculator.ui.popupPanel.PopupPanel;
+import com.calculator.commonCalculator.button.ButtonLayout;
+import com.calculator.commonCalculator.CommonKeyPanel;
+import com.calculator.commonCalculator.CommonNumberPanel;
+import com.calculator.commonCalculator.Ui;
+import static com.calculator.commonCalculator.button.DefaultButtons.DMS;
+import static com.calculator.commonCalculator.button.DefaultButtons.RAND;
+import com.calculator.commonCalculator.popupPanel.PopupButton;
+import com.calculator.commonCalculator.popupPanel.PopupPanel;
 import static com.tokenizing.Token.*;
 import com.tokenizing.TokenList;
 import java.util.logging.Level;

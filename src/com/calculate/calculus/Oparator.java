@@ -5,7 +5,7 @@ import static com.tokenizing.Token.*;
 import com.tokenizing.TokenList;
 import com.tokenizing.TokenType;
 import com.calculate.equation.ExpressionEvaluator;
-import com.calculate.Number;
+import com.calculate.CNumber;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -36,11 +36,11 @@ public class Oparator extends Calculus {
         try {
             if (oparator == RAISED) {
                 if (!gx.hasIndependent() && !gx.hasDependent() && (fx.hasIndependent() || fx.hasDependent())) {
-                    Number n = new ExpressionEvaluator(gx).evaluate();
+                    CNumber n = new ExpressionEvaluator(gx).evaluate();
                     tk.addToken(new Token(n));
                     tk.addToken(MULTIPLY);
                     tk.addTokens(fx.pranthesise());
-                    n = n.substract(Number.parseNumber(1));
+                    n = n.substract(CNumber.parseNumber(1));
                     if (n.doubleValue() != 1) {
                         tk.addToken(RAISED);
                         tk.addToken(new Token(n));
@@ -48,7 +48,7 @@ public class Oparator extends Calculus {
                     tk.addToken(MULTIPLY);
                     tk.addTokens(new Differentiator(fx).differentiate(1));
                 } else if (!fx.hasIndependent() && !fx.hasDependent() && (gx.hasIndependent() || gx.hasDependent())) {
-                    Number n = new ExpressionEvaluator(fx).evaluate();
+                    CNumber n = new ExpressionEvaluator(fx).evaluate();
                     tk.addToken(LN);
                     tk.addToken(OPEN_PRANTHESIS);
                     tk.addToken(new Token(n));
@@ -86,7 +86,7 @@ public class Oparator extends Calculus {
                     tk.addTokens(fx);
                 } else {
                     if (!(fx.hasIndependent() || fx.hasDependent())) {
-                        Number evaluate = new ExpressionEvaluator(fx).evaluate();
+                        CNumber evaluate = new ExpressionEvaluator(fx).evaluate();
                         Token etoken = new Token(TokenType.NUMBER, evaluate);
                         if (evaluate.doubleValue() == 0) {
                             tk.addToken(etoken);
@@ -96,7 +96,7 @@ public class Oparator extends Calculus {
                             tk.addTokens(new Differentiator(gx).differentiate(1));
                         }
                     } else if (!(gx.hasIndependent() || gx.hasDependent())) {
-                        Number evaluate = new ExpressionEvaluator(gx).evaluate();
+                        CNumber evaluate = new ExpressionEvaluator(gx).evaluate();
                         Token etoken = new Token(TokenType.NUMBER, evaluate);
                         if (evaluate.doubleValue() == 0) {
                             tk.addToken(etoken);

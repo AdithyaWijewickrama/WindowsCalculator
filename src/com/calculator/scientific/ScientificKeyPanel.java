@@ -4,20 +4,20 @@ import com.tokenizing.Token;
 import static com.tokenizing.Token.*;
 import com.tokenizing.TokenList;
 import com.tokenizing.TokenType;
-import com.calculator.commonCalculator.ui.button.ButtonLayout;
-import com.calculator.commonCalculator.ui.CommonKeyPanel;
-import com.calculator.commonCalculator.ui.CommonNumberPanel;
-import static com.calculator.commonCalculator.ui.button.DefaultButtons.BACK;
-import static com.calculator.commonCalculator.ui.button.DefaultButtons.C;
-import java.awt.event.KeyEvent;
+import com.calculator.commonCalculator.button.ButtonLayout;
+import com.calculator.commonCalculator.CommonKeyPanel;
+import com.calculator.commonCalculator.CommonNumberPanel;
+import static com.calculator.commonCalculator.button.DefaultButtons.BACK;
+import static com.calculator.commonCalculator.button.DefaultButtons.C;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JPanel;
 
 /**
  *
  * @author AW Developer
  */
-public class ScientificKeyPanel extends javax.swing.JPanel {
+public final class ScientificKeyPanel extends javax.swing.JPanel {
 
     CommonKeyPanel keyPanel;
     CommonKeyPanel keyPanel_;
@@ -91,13 +91,23 @@ public class ScientificKeyPanel extends javax.swing.JPanel {
         try {
             keyPanel = new CommonKeyPanel(numberPanel, buttons, pattern, ButtonLayout.COLUMN);
             keyPanel_ = new CommonKeyPanel(numberPanel, buttons_, pattern_, ButtonLayout.COLUMN);
-            keyPanel_2 = new CommonKeyPanel(numberPanel, buttons_2, pattern_, ButtonLayout.ROW);
+            keyPanel_2 = new CommonKeyPanel(numberPanel, buttons_2, pattern_, ButtonLayout.COLUMN);
         } catch (Exception ex) {
             Logger.getLogger(ScientificKeyPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
-//        keyPanel.addBlock(keyPanel_, 0);
-//        keyPanel.addBlocks();
+        keyPanel_.addBlocks();
+        keyPanel_2.addBlocks();
+        keyPanel.addBlock(new JPanel(), 0);//only for initialize, replace when secondaryButtons method called
+        secondaryButtons(false);
         add(keyPanel);
+    }
+
+    public void secondaryButtons(boolean selected) {
+        if(jToggleButton1.getParent()!=null)jToggleButton1.getParent().remove(jToggleButton1);
+        CommonKeyPanel p = selected ? keyPanel_2 : keyPanel_;
+        p.getBlocks().get(0).add(jToggleButton1, 0);
+        keyPanel.getBlocks().set(0,p.getBlocks().get(0));
+        keyPanel.addBlocks();
     }
 
     /**
@@ -109,10 +119,7 @@ public class ScientificKeyPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         jToggleButton1 = new javax.swing.JToggleButton();
-
-        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.PAGE_AXIS));
 
         jToggleButton1.setText("2nd");
         jToggleButton1.setMaximumSize(new java.awt.Dimension(1000, 1000));
@@ -123,7 +130,6 @@ public class ScientificKeyPanel extends javax.swing.JPanel {
                 jToggleButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jToggleButton1);
 
         setMaximumSize(new java.awt.Dimension(10000, 10000));
         setMinimumSize(new java.awt.Dimension(300, 300));
@@ -133,20 +139,12 @@ public class ScientificKeyPanel extends javax.swing.JPanel {
 
     private boolean key2ndEnabled = false;
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        if (key2ndEnabled) {
-            jPanel1.remove(keyPanel_2);
-            jPanel1.add(keyPanel_);
-            key2ndEnabled = false;
-        } else {
-            jPanel1.remove(keyPanel_);
-            jPanel1.add(keyPanel_2);
-            key2ndEnabled = true;
-        }
+        secondaryButtons(key2ndEnabled);
+        key2ndEnabled=!key2ndEnabled;
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }

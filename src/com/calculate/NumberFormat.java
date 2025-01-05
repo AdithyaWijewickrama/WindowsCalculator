@@ -1,5 +1,6 @@
 package com.calculate;
 
+import Programmer.Base;
 import static com.calculate.FormatType.*;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -99,5 +100,33 @@ public enum NumberFormat {
             val=val/radix-((val%radix)/radix);
         }
         return new StringBuffer(n).reverse().toString();
+    }
+    public static NumberFormat getGroupingNumberFormat(Base b){
+        switch (b) {
+            case BIN:
+                return GROUPING_BINARY;
+            case DEC:
+                return GROUPING_DECIMAL;
+            case HEX:
+                return GROUPING_HEXA;
+            case OCT:
+                return GROUPING_OCTAL;
+            default:
+                throw new AssertionError();
+        }
+    }
+    public static NumberFormat getNormalNumberFormat(Base b){
+        switch (b) {
+            case BIN:
+                return NORMAL_BINARY;
+            case DEC:
+                return NORMAL_DECIMAL;
+            case HEX:
+                return NORMAL_HEXA;
+            case OCT:
+                return NORMAL_OCTAL;
+            default:
+                throw new AssertionError();
+        }
     }
 }

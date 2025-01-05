@@ -38,7 +38,7 @@ public class VariableList {
         }
         return null;
     }
-    public void setValue(String name,Number value){
+    public void setValue(String name,CNumber value){
         get(name).setNumber(value);
     }
 }

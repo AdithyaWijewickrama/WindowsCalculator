@@ -5,7 +5,7 @@ import static com.tokenizing.Token.LOGBASEY;
 import static com.tokenizing.Token.MODULO;
 import static com.tokenizing.Token.YROOT;
 import com.tokenizing.TokenType;
-import com.calculate.Number;
+import com.calculate.CNumber;
 
 /**
  *
@@ -21,16 +21,16 @@ public class _Function_ extends Calculate {
     }
 
     @Override
-    public Number doTheMath() {
+    public CNumber doTheMath() {
         try {
             if (_function_ == YROOT) {
-                return Number.parseNumber(Math.pow(value1.doTheMath().doubleValue(), value2.doTheMath().doubleValue()));
+                return CNumber.parseNumber(Math.pow(value1.doTheMath().doubleValue(), value2.doTheMath().doubleValue()));
             }
             if (_function_ == MODULO) {
-                return Number.parseNumber(value1.doTheMath().doubleValue() % value2.doTheMath().doubleValue());
+                return CNumber.parseNumber(value1.doTheMath().doubleValue() % value2.doTheMath().doubleValue());
             }
             if (_function_ == LOGBASEY) {
-                return Number.parseNumber(Math.log(value2.doTheMath().doubleValue()) / Math.log(value1.doTheMath().doubleValue()));
+                return CNumber.parseNumber(Math.log(value2.doTheMath().doubleValue()) / Math.log(value1.doTheMath().doubleValue()));
             } else {
                 throw new AssertionError();
             }

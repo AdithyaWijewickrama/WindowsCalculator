@@ -8,15 +8,15 @@ import com.calculate.equation.Calculate;
  */
 public class Root extends Calculate{
 
-    Number value;
+    CNumber value;
     
-    public Root(Number value) {
+    public Root(CNumber value) {
         super(null, null);
         this.value=value;
     }
 
     @Override
-    public Number doTheMath() {
+    public CNumber doTheMath() {
         return value;
     }
     

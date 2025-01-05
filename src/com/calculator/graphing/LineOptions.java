@@ -1,6 +1,6 @@
 package com.calculator.graphing;
 
-import com.calculator.commonCalculator.ui.Ui;
+import com.calculator.commonCalculator.Ui;
 import static com.calculator.graphing.SingleFunctionPanel.colorFunctions;
 import java.awt.Color;
 import java.awt.Component;

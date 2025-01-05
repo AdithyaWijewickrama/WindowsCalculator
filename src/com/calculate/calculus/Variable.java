@@ -5,13 +5,13 @@
 package com.calculate.calculus;
 
 import com.calculate.*;
-import com.calculate.Number;
+import com.calculate.CNumber;
 
 /**
  *
  * @author AW Developer
  */
-public class Variable extends Number{
+public class Variable extends CNumber{
     private String name;
 
     public Variable(String name) {

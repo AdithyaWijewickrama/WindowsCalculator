@@ -1,9 +1,8 @@
 package com.calculate.equation;
 
-import Convert.Convert;
 import Convert.Angle;
 import com.tokenizing.Token;
-import com.calculate.Number;
+import com.calculate.CNumber;
 import static com.tokenizing.Token.ACOS;
 import static com.tokenizing.Token.ACOSH;
 import static com.tokenizing.Token.ACOT;
@@ -56,55 +55,55 @@ public final class Triaganometry extends Function_ {
     }
 
     @Override
-    public Number doTheMath() {
+    public CNumber doTheMath() {
         if (function_ == COS) {
-            return Number.parseNumber(Math.cos(value1.doTheMath().doubleValue()));
+            return CNumber.parseNumber(Math.cos(value1.doTheMath().doubleValue()));
         } else if (function_ == SIN) {
-            return Number.parseNumber(Math.sin(value1.doTheMath().doubleValue()));
+            return CNumber.parseNumber(Math.sin(value1.doTheMath().doubleValue()));
         } else if (function_ == TAN) {
-            return Number.parseNumber(Math.tan(value1.doTheMath().doubleValue()));
+            return CNumber.parseNumber(Math.tan(value1.doTheMath().doubleValue()));
         }else  if (function_ == COSH) {
-            return Number.parseNumber(Math.cosh(value1.doTheMath().doubleValue()));
+            return CNumber.parseNumber(Math.cosh(value1.doTheMath().doubleValue()));
         } else if (function_ == SINH) {
-            return Number.parseNumber(Math.sinh(value1.doTheMath().doubleValue()));
+            return CNumber.parseNumber(Math.sinh(value1.doTheMath().doubleValue()));
         } else if (function_ == TANH) {
-            return Number.parseNumber(Math.tanh(value1.doTheMath().doubleValue()));
+            return CNumber.parseNumber(Math.tanh(value1.doTheMath().doubleValue()));
         } else if (function_ == ACOS) {
-            return Number.parseNumber(Math.acos(value1.doTheMath().doubleValue()));
+            return CNumber.parseNumber(Math.acos(value1.doTheMath().doubleValue()));
         } else if (function_ == ASIN) {
-            return Number.parseNumber(Math.asin(value1.doTheMath().doubleValue()));
+            return CNumber.parseNumber(Math.asin(value1.doTheMath().doubleValue()));
         } else if (function_ == ATAN) {
-            return Number.parseNumber(Math.atan(value1.doTheMath().doubleValue()));
+            return CNumber.parseNumber(Math.atan(value1.doTheMath().doubleValue()));
         } else if (function_ == SEC) {
-            return Number.parseNumber(1 / Math.cos(value1.doTheMath().doubleValue()));
+            return CNumber.parseNumber(1 / Math.cos(value1.doTheMath().doubleValue()));
         } else if (function_ == CSC) {
-            return Number.parseNumber(1 / Math.sin(value1.doTheMath().doubleValue()));
+            return CNumber.parseNumber(1 / Math.sin(value1.doTheMath().doubleValue()));
         } else if (function_ == COT) {
-            return Number.parseNumber(1 / Math.tan(value1.doTheMath().doubleValue()));
+            return CNumber.parseNumber(1 / Math.tan(value1.doTheMath().doubleValue()));
         } else if (function_ == ASEC) {
-            return Number.parseNumber(Math.acos(1 / value1.doTheMath().doubleValue()));
+            return CNumber.parseNumber(Math.acos(1 / value1.doTheMath().doubleValue()));
         } else if (function_ == ACSC) {
-            return Number.parseNumber(Math.asin(1 / value1.doTheMath().doubleValue()));
+            return CNumber.parseNumber(Math.asin(1 / value1.doTheMath().doubleValue()));
         } else if (function_ == ACOT) {
-            return Number.parseNumber(Math.atan(1 / value1.doTheMath().doubleValue()));
+            return CNumber.parseNumber(Math.atan(1 / value1.doTheMath().doubleValue()));
         } else if (function_ == SECH) {
-            return Number.parseNumber(Math.cosh(1 / value1.doTheMath().doubleValue()));
+            return CNumber.parseNumber(Math.cosh(1 / value1.doTheMath().doubleValue()));
         } else if (function_ == CSCH) {
-            return Number.parseNumber(Math.sinh(1 / value1.doTheMath().doubleValue()));
+            return CNumber.parseNumber(Math.sinh(1 / value1.doTheMath().doubleValue()));
         } else if (function_ == COTH) {
-            return Number.parseNumber(Math.tanh(1 / value1.doTheMath().doubleValue()));
+            return CNumber.parseNumber(Math.tanh(1 / value1.doTheMath().doubleValue()));
         } else if (function_ == ACOSH) {
-            return Number.parseNumber(acosh(value1.doTheMath().doubleValue()));
+            return CNumber.parseNumber(acosh(value1.doTheMath().doubleValue()));
         } else if (function_ == ASINH) {
-            return Number.parseNumber(asinh(value1.doTheMath().doubleValue()));
+            return CNumber.parseNumber(asinh(value1.doTheMath().doubleValue()));
         } else if (function_ == ATANH) {
-            return Number.parseNumber(atanh(value1.doTheMath().doubleValue()));
+            return CNumber.parseNumber(atanh(value1.doTheMath().doubleValue()));
         } else if (function_ == ASECH) {
-            return Number.parseNumber(acosh(1 / value1.doTheMath().doubleValue()));
+            return CNumber.parseNumber(acosh(1 / value1.doTheMath().doubleValue()));
         } else if (function_ == ACSCH) {
-            return Number.parseNumber(asinh(1 / value1.doTheMath().doubleValue()));
+            return CNumber.parseNumber(asinh(1 / value1.doTheMath().doubleValue()));
         } else if (function_ == ACOTH) {
-            return Number.parseNumber(atanh(1 / value1.doTheMath().doubleValue()));
+            return CNumber.parseNumber(atanh(1 / value1.doTheMath().doubleValue()));
         }else{
             System.out.println("sasad");
             System.out.println("fsdfsdf");

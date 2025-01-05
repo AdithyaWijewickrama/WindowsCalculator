@@ -1,7 +1,7 @@
 package com.calculate.equation;
 
 import com.tokenizing.TokenType;
-import com.calculate.Number;
+import com.calculate.CNumber;
 
 /**
  *
@@ -46,7 +46,7 @@ public abstract class Calculate {
         this.type = type;
     }
     
-    public abstract Number doTheMath();
+    public abstract CNumber doTheMath();
     
     public void makeError(String msg){
         

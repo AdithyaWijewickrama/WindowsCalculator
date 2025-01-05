@@ -22,7 +22,7 @@ public class NewtonRamphsonMethod {
     }
 
     public Number findRoot(double init) throws Exception {
-        return init - (_fx.evaluateAt(com.calculate.Number.parseNumber(init)).doubleValue() / ddx_fx.evaluateAt(com.calculate.Number.parseNumber(init)).doubleValue());
+        return init - (_fx.evaluateAt(com.calculate.CNumber.parseNumber(init)).doubleValue() / ddx_fx.evaluateAt(com.calculate.CNumber.parseNumber(init)).doubleValue());
     }
 
     public static void main(String[] args) {

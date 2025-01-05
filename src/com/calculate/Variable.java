@@ -8,7 +8,7 @@ package com.calculate;
  *
  * @author AW Developer
  */
-public class Variable extends Number{
+public class Variable extends CNumber{
     private String name;
 
     public Variable(String name) {

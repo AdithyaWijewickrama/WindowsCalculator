@@ -3,10 +3,10 @@ package com.calculator.scientific;
 import com.tokenizing.Token;
 import com.tokenizing.TokenList;
 import com.tokenizing.TokenType;
-import com.calculate.Number;
+import com.calculate.CNumber;
 import com.calculate.equation.ExpressionEvaluator;
 import static com.calculate.equation.ExpressionEvaluator.scanFor;
-import com.calculator.commonCalculator.ui.CommonNumberPanel;
+import com.calculator.commonCalculator.CommonNumberPanel;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.event.KeyEvent;
 import java.util.logging.Level;
@@ -28,6 +28,7 @@ public abstract class ScientificNumberPanel extends CommonNumberPanel {
 
     public ScientificNumberPanel(boolean showEquation) {
         super(showEquation);
+        setSizeSector(6);
     }
 
     public TokenType getLastTokenType() {
@@ -65,8 +66,8 @@ public abstract class ScientificNumberPanel extends CommonNumberPanel {
                     int i = scanFor(show, TokenType.OPARATOR);
                     if (i != -1) {
                         Token o = show.tokenAt(i);
-                        Number fx = new ExpressionEvaluator(show.split(0, show.size() - 1)).evaluate();
-                        Number gx = new ExpressionEvaluator(show.split(i + 1, show.size() - 1)).evaluate();
+                        CNumber fx = new ExpressionEvaluator(show.split(0, show.size() - 1)).evaluate();
+                        CNumber gx = new ExpressionEvaluator(show.split(i + 1, show.size() - 1)).evaluate();
                         show.clear();
                         show.addToken(new Token(TokenType.NUMBER, fx));
                         show.addToken(o);
@@ -146,10 +147,10 @@ public abstract class ScientificNumberPanel extends CommonNumberPanel {
                     for (Token t : tokenDigits.getTokenList()) {
                         number += t.name;
                     }
-                    currentNumber = new Token(TokenType.NUMBER, new Number(number, enteringFormat));
+                    currentNumber = new Token(TokenType.NUMBER, new CNumber(number, enteringFormat));
                     System.out.println(currentNumber.number.doubleValue());
                     setNumber(currentNumber.number);
-                    parseToken(new Token(TokenType.NUMBER, new Number(number, enteringFormat)));
+                    parseToken(new Token(TokenType.NUMBER, new CNumber(number, enteringFormat)));
                     break;
                 case NUMBER:
                     currentNumber = token;
@@ -314,7 +315,7 @@ public abstract class ScientificNumberPanel extends CommonNumberPanel {
             }
         }
         if (!(token.type == TokenType.NUMBER || token.type == TokenType.DIGIT || token == Token.OPEN_PRANTHESIS || pranthesis != 0)) {
-            Number t = getValue(token.equalsTo(Token.EQUAL));
+            CNumber t = getValue(token.equalsTo(Token.EQUAL));
             if (t != null) {
                 currentNumber = new Token(TokenType.NUMBER, t);
                 System.out.println("ANSWER\t" + t.getNumberString());
@@ -345,13 +346,13 @@ public abstract class ScientificNumberPanel extends CommonNumberPanel {
     }
 
     @Override
-    public Number getValue(boolean equal) {
+    public CNumber getValue(boolean equal) {
         TokenList list = show.getTokenListCopy();
         if (list.size() <= 0) {
             return null;
         }
         Token last = list.tokenAt(list.size() - 1);
-        Number num = null;
+        CNumber num = null;
         if (last != null) {
             switch (last.type) {
                 case OPARATOR:
@@ -421,7 +422,7 @@ public abstract class ScientificNumberPanel extends CommonNumberPanel {
         }
         ScientificNumberPanel p = new ScientificNumberPanel(true) {
             @Override
-            public void addHistory(TokenList equation, Number answer) {
+            public void addHistory(TokenList equation, CNumber answer) {
             }
         };
         JFrame frame = new JFrame("Common number field");

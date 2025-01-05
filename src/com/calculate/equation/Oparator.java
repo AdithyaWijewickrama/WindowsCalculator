@@ -6,7 +6,7 @@ import static com.tokenizing.Token.MINUS;
 import static com.tokenizing.Token.RAISED;
 import static com.tokenizing.Token.PLUS;
 import com.tokenizing.TokenType;
-import com.calculate.Number;
+import com.calculate.CNumber;
 import static com.tokenizing.Token.MULTIPLY;
 
 /**
@@ -23,22 +23,22 @@ public class Oparator extends Calculate {
     }
 
     @Override
-    public Number doTheMath() {
+    public CNumber doTheMath() {
         try {
             if (oparator == PLUS) {
-                return Number.parseNumber(Double.sum(value1.doTheMath().doubleValue(), value2.doTheMath().doubleValue()));
+                return CNumber.parseNumber(Double.sum(value1.doTheMath().doubleValue(), value2.doTheMath().doubleValue()));
             }
             if (oparator == MINUS) {
-                return Number.parseNumber(Double.sum(value1.doTheMath().doubleValue(), -value2.doTheMath().doubleValue()));
+                return CNumber.parseNumber(Double.sum(value1.doTheMath().doubleValue(), -value2.doTheMath().doubleValue()));
             }
             if (oparator == RAISED) {
-                return Number.parseNumber(Math.pow(value1.doTheMath().doubleValue(), value2.doTheMath().doubleValue()));
+                return CNumber.parseNumber(Math.pow(value1.doTheMath().doubleValue(), value2.doTheMath().doubleValue()));
             }
             if (oparator == MULTIPLY) {
-                return Number.parseNumber(value1.doTheMath().doubleValue() * value2.doTheMath().doubleValue());
+                return CNumber.parseNumber(value1.doTheMath().doubleValue() * value2.doTheMath().doubleValue());
             }
             if (oparator == DIVIDE) {
-                return Number.parseNumber(value1.doTheMath().doubleValue() / value2.doTheMath().doubleValue());
+                return CNumber.parseNumber(value1.doTheMath().doubleValue() / value2.doTheMath().doubleValue());
             } else {
                 throw new AssertionError();
             }

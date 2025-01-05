@@ -6,7 +6,7 @@ import com.calculate.equation.ExpressionEvaluator;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Stroke;
-import com.calculate.Number;
+import com.calculate.CNumber;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -110,7 +110,7 @@ public class BasicFunction {
         return variables;
     }
 
-    public void setVariableValue(String chr, Number value) {
+    public void setVariableValue(String chr, CNumber value) {
         if (variables.get(chr)!= null) {
             variables.setValue(chr, value);
             assignVariableValues();
@@ -123,7 +123,7 @@ public class BasicFunction {
         }
     }
 
-    public Number evaluateAt(Number x) {
+    public CNumber evaluateAt(CNumber x) {
         return functionExpresion.evaluateAt(x);
     }
 

@@ -1,13 +1,13 @@
 package com.calculator.scientific;
 
 import com.tokenizing.TokenList;
-import com.calculate.Number;
-import com.calculator.commonCalculator.ui.Ui;
-import com.calculator.commonCalculator.ui.history.HistoryCell;
-import com.calculator.commonCalculator.ui.history.HistoryPanel;
-import com.calculator.commonCalculator.ui.memory.MemoryBar;
-import com.calculator.commonCalculator.ui.memory.MemoryCell;
-import com.calculator.commonCalculator.ui.memory.MemoryPanel;
+import com.calculate.CNumber;
+import com.calculator.commonCalculator.Ui;
+import com.calculator.commonCalculator.history.HistoryCell;
+import com.calculator.commonCalculator.history.HistoryPanel;
+import com.calculator.commonCalculator.memory.MemoryBar;
+import com.calculator.commonCalculator.memory.MemoryCell;
+import com.calculator.commonCalculator.memory.MemoryPanel;
 import com.calculator.scientific.functions.FunctionsPanel;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Color;
@@ -39,7 +39,7 @@ public class ScientificFrame extends javax.swing.JPanel {
         initComponents();
         numberPanel = new ScientificNumberPanel(Boolean.TRUE) {
             @Override
-            public void addHistory(TokenList equation, Number answer) {
+            public void addHistory(TokenList equation, CNumber answer) {
                 newHistory(equation, answer);
             }
         };
@@ -62,20 +62,20 @@ public class ScientificFrame extends javax.swing.JPanel {
         keyPanel.setAlignmentY(0.f);
     }
 
-    public void newHistory(TokenList tl, Number nu) {
+    public void newHistory(TokenList tl, CNumber nu) {
         historyPanel.addHistory(new HistoryCell(tl, nu) {
             @Override
-            public void historyItemClicked(TokenList equation, Number answer) {
+            public void historyItemClicked(TokenList equation, CNumber answer) {
                 numberPanel.setEquation(equation);
                 numberPanel.setNumber(answer);
             }
         });
     }
 
-    public void newMemory(Number n) {
+    public void newMemory(CNumber n) {
         memoryPanel.newMemory(new MemoryCell(n) {
             @Override
-            public void memoryItemClicked(Number num) {
+            public void memoryItemClicked(CNumber num) {
                 numberPanel.setNumber(num);
             }
         });
