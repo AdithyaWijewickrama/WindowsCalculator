@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Enum.java to edit this template
  */
-package com.Tokenizing;
+package com.tokenizing;
 
-import com.calculate.Number;
+import com.calculate.CNumber;
 
 /**
  *
@@ -15,11 +15,11 @@ public class Token {
     /**
      * CONSTANT
      */
-    public static Token PI = new Token(TokenType.NUMBER, "π", Number.parseNumber(Math.PI));
+    public static Token PI = new Token(TokenType.NUMBER, "π",'π', CNumber.parseNumber(Math.PI));
     /**
      * CONSTANT--eēėê℮
      */
-    public static Token e = new Token(TokenType.NUMBER, "℮", Number.parseNumber(Math.E));
+    public static Token e = new Token(TokenType.NUMBER, "℮",'℮', CNumber.parseNumber(Math.E));
     /**
      * VARIABLE
      */
@@ -33,47 +33,71 @@ public class Token {
     /**
      * DIGIT
      */
-    public static Token ZERO = new Token(TokenType.DIGIT, "0", Number.parseNumber(0));
+    public static Token ZERO = new Token(TokenType.DIGIT, "0", '0', CNumber.parseNumber(0));
     /**
      * DIGIT
      */
-    public static Token ONE = new Token(TokenType.DIGIT, "1", Number.parseNumber(1));
+    public static Token ONE = new Token(TokenType.DIGIT, "1", '1', CNumber.parseNumber(1));
     /**
      * DIGIT
      */
-    public static Token TWO = new Token(TokenType.DIGIT, "2", Number.parseNumber(2));
+    public static Token TWO = new Token(TokenType.DIGIT, "2", '2', CNumber.parseNumber(2));
     /**
      * DIGIT
      */
-    public static Token THREE = new Token(TokenType.DIGIT, "3", Number.parseNumber(3));
+    public static Token THREE = new Token(TokenType.DIGIT, "3", '3', CNumber.parseNumber(3));
     /**
      * DIGIT
      */
-    public static Token FOUR = new Token(TokenType.DIGIT, "4", Number.parseNumber(4));
+    public static Token FOUR = new Token(TokenType.DIGIT, "4", '4', CNumber.parseNumber(4));
     /**
      * DIGIT
      */
-    public static Token FIVE = new Token(TokenType.DIGIT, "5", Number.parseNumber(5));
+    public static Token FIVE = new Token(TokenType.DIGIT, "5", '5', CNumber.parseNumber(5));
     /**
      * DIGIT
      */
-    public static Token SIX = new Token(TokenType.DIGIT, "6", Number.parseNumber(6));
+    public static Token SIX = new Token(TokenType.DIGIT, "6", '6', CNumber.parseNumber(6));
     /**
      * DIGIT
      */
-    public static Token SEVEN = new Token(TokenType.DIGIT, "7", Number.parseNumber(7));
+    public static Token SEVEN = new Token(TokenType.DIGIT, "7", '7', CNumber.parseNumber(7));
     /**
      * DIGIT
      */
-    public static Token EIGHT = new Token(TokenType.DIGIT, "8", Number.parseNumber(8));
+    public static Token EIGHT = new Token(TokenType.DIGIT, "8", '8', CNumber.parseNumber(8));
     /**
      * DIGIT
      */
-    public static Token NINE = new Token(TokenType.DIGIT, "9", Number.parseNumber(9));
+    public static Token NINE = new Token(TokenType.DIGIT, "9", '9', CNumber.parseNumber(9));
     /**
      * DIGIT
      */
     public static Token DOT = new Token(TokenType.DIGIT, ".", '.');
+    /**
+     * DIGIT
+     */
+    public static Token A = new Token(TokenType.DIGIT, "A", 'A');
+    /**
+     * DIGIT
+     */
+    public static Token B = new Token(TokenType.DIGIT, "B", 'B');
+    /**
+     * DIGIT
+     */
+    public static Token C = new Token(TokenType.DIGIT, "C", 'C');
+    /**
+     * DIGIT
+     */
+    public static Token D = new Token(TokenType.DIGIT, "D", 'D');
+    /**
+     * DIGIT
+     */
+    public static Token E = new Token(TokenType.DIGIT, "E", 'E');
+    /**
+     * DIGIT
+     */
+    public static Token F = new Token(TokenType.DIGIT, "F", 'F');
     //OPARATORS
     /**
      * OPARATOR
@@ -110,6 +134,10 @@ public class Token {
     /**
      * SYMBOL
      */
+    public static Token PLUS_OR_MINUS = new Token(TokenType.SYMBOL, "±", '{');
+    /**
+     * SYMBOL
+     */
     public static Token EQUAL = new Token(TokenType.SYMBOL, "=", '=');
     //FUNCTIONS
     //need one value to do the math
@@ -136,7 +164,7 @@ public class Token {
     /**
      * FUNCTION_
      */
-    public static Token CEILING = new Token(TokenType.FUNCTION_, "ceil");
+    public static Token CEILING = new Token(TokenType.FUNCTION_, "ceil",'\'');
     /**
      * FUNCTION_
      */
@@ -168,7 +196,11 @@ public class Token {
     /**
      * FUNCTION_
      */
-    public static Token eRAISED = new Token(TokenType.FUNCTION_, "e^", 'E');
+    public static Token DEGREES = new Token(TokenType.FUNCTION_, "degrees", 'O');
+    /**
+     * FUNCTION_
+     */
+    public static Token eRAISED = new Token(TokenType.FUNCTION_, "e^", 'e');
     /**
      * FUNCTION_
      */
@@ -200,7 +232,7 @@ public class Token {
     /**
      * FUNCTION_
      */
-    public static Token ACOS = new Token(TokenType.FUNCTION_, "acos", 'C');
+    public static Token ACOS = new Token(TokenType.FUNCTION_, "acos", 'V');
     /**
      * FUNCTION_
      */
@@ -220,51 +252,52 @@ public class Token {
     /**
      * FUNCTION_
      */
-    public static Token SINH = new Token(TokenType.FUNCTION_, "sinh");
+    static int i=0;
+    public static Token SINH = new Token(TokenType.FUNCTION_, "sinh",(char)i++);
     /**
      * FUNCTION_
      */
-    public static Token COSH = new Token(TokenType.FUNCTION_, "cosh");
+    public static Token COSH = new Token(TokenType.FUNCTION_, "cosh",(char)i++);
     /**
      * FUNCTION_
      */
-    public static Token TANH = new Token(TokenType.FUNCTION_, "tanh");
+    public static Token TANH = new Token(TokenType.FUNCTION_, "tanh",(char)i++);
     /**
      * FUNCTION_
      */
-    public static Token SECH = new Token(TokenType.FUNCTION_, "sech");
+    public static Token SECH = new Token(TokenType.FUNCTION_, "sech",(char)i++);
     /**
      * FUNCTION_
      */
-    public static Token CSCH = new Token(TokenType.FUNCTION_, "csch");
+    public static Token CSCH = new Token(TokenType.FUNCTION_, "csch",(char)i++);
     /**
      * FUNCTION_
      */
-    public static Token COTH = new Token(TokenType.FUNCTION_, "coth");
+    public static Token COTH = new Token(TokenType.FUNCTION_, "coth",(char)i++);
     /**
      * FUNCTION_
      */
-    public static Token ASINH = new Token(TokenType.FUNCTION_, "asinh");
+    public static Token ASINH = new Token(TokenType.FUNCTION_, "asinh",(char)i++);
     /**
      * FUNCTION_
      */
-    public static Token ACOSH = new Token(TokenType.FUNCTION_, "acosh");
+    public static Token ACOSH = new Token(TokenType.FUNCTION_, "acosh",(char)i++);
     /**
      * FUNCTION_
      */
-    public static Token ATANH = new Token(TokenType.FUNCTION_, "atanh");
+    public static Token ATANH = new Token(TokenType.FUNCTION_, "atanh",(char)i++);
     /**
      * FUNCTION_
      */
-    public static Token ASECH = new Token(TokenType.FUNCTION_, "asech");
+    public static Token ASECH = new Token(TokenType.FUNCTION_, "asech",(char)i++);
     /**
      * FUNCTION_
      */
-    public static Token ACSCH = new Token(TokenType.FUNCTION_, "acsch");
+    public static Token ACSCH = new Token(TokenType.FUNCTION_, "acsch",(char)i++);
     /**
      * FUNCTION_
      */
-    public static Token ACOTH = new Token(TokenType.FUNCTION_, "acoth");
+    public static Token ACOTH = new Token(TokenType.FUNCTION_, "acoth",(char)i++);
     //need two values to do the math
     /**
      * _FUNCTION_
@@ -278,11 +311,43 @@ public class Token {
      * _FUNCTION_
      */
     public static Token LOGBASEY = new Token(TokenType._FUNCTION_, "log", 'L');
+    /**
+     * _FUNCTION_
+     */
+    public static Token AND = new Token(TokenType._FUNCTION_, "AND", '&');
+    /**
+     * _FUNCTION_
+     */
+    public static Token OR = new Token(TokenType._FUNCTION_, "OR", '|');
+    /**
+     * _FUNCTION_
+     */
+    public static Token NOT = new Token(TokenType._FUNCTION_, "NOT", '!');
+    /**
+     * _FUNCTION_
+     */
+    public static Token NAND = new Token(TokenType._FUNCTION_, "AND", '&');
+    /**
+     * _FUNCTION_
+     */
+    public static Token XOR = new Token(TokenType._FUNCTION_, "XOR", ']');
+    /**
+     * _FUNCTION_
+     */
+    public static Token NOR = new Token(TokenType._FUNCTION_, "NOR", '[');
+    /**
+     * _FUNCTION_
+     */
+    public static Token LSH = new Token(TokenType._FUNCTION_, "Lsh", '?');
+    /**
+     * _FUNCTION_
+     */
+    public static Token RSH = new Token(TokenType._FUNCTION_, "Rsh", ':');
 
     public TokenType type;
     public String name;
     public char key;
-    public Number number;
+    public CNumber number;
 
     /**
      * For constants
@@ -291,7 +356,7 @@ public class Token {
      * @param name
      * @param n
      */
-    public Token(TokenType type, String name, Number n) {
+    public Token(TokenType type, String name, CNumber n) {
         this.type = type;
         this.name = name;
         number = n;
@@ -314,7 +379,7 @@ public class Token {
      * @param type
      * @param n
      */
-    public Token(TokenType type, Number n) {
+    public Token(TokenType type, CNumber n) {
         this.type = type;
         number = n;
     }
@@ -326,7 +391,18 @@ public class Token {
         key = t.key;
     }
 
-    public void updateToken(TokenType type, String name, char key, Number number) {
+    public Token(TokenType type, String name, char key, CNumber number) {
+        this.name = name;
+        this.type = type;
+        this.key = key;
+        this.number = number;
+    }
+    
+    public Token(CNumber n){
+        this(TokenType.NUMBER, n);
+    }
+
+    public void updateToken(TokenType type, String name, char key, CNumber number) {
         this.name = name;
         this.type = type;
         this.key = key;
@@ -336,8 +412,8 @@ public class Token {
     public static Token[] values() {
         return new Token[]{
             PI, e, x, y,
-            ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE,DOT,
-            PLUS, MINUS, DIVIDE, MULTIPLY, RAISED, OPEN_PRANTHESIS, CLOSE_PRANTHESIS, COMMA,EQUAL,
+            ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, DOT,
+            PLUS, MINUS, DIVIDE, MULTIPLY, RAISED, OPEN_PRANTHESIS, CLOSE_PRANTHESIS, COMMA, EQUAL, PLUS_OR_MINUS,
             RECIPROCAL, SQUARED, SQUREROOT, ABS, FLOOR, CEILING, FACTORIAL, TENRAISED, TWORAISED, CUBE, CUBEROOT, LOG10, LN, eRAISED,
             SIN, COS, TAN, SEC, CSC, COT, ASIN, ACOS, ATAN, ASEC, ACSC, ACOT, SINH, COSH, TANH, SECH, CSCH, COTH, ASINH, ACOSH, ATANH, ASECH, ACSCH, ACOTH,
             MODULO, YROOT, LOGBASEY};
@@ -358,7 +434,7 @@ public class Token {
 
     public static Token getTokenByKey(char key) {
         for (Token t : values()) {
-            if (t.key==key) {
+            if (t.key == key) {
                 return t;
             }
         }
@@ -387,22 +463,26 @@ public class Token {
     }
 
     public boolean equalsTo(Token t) {
-        if(t==null)return false;
+        if (t == null) {
+            return false;
+        }
         if (t.type == TokenType.NUMBER || t.type == TokenType.DIGIT) {
-            if(".".equals(name)){
-                if(".".equals(t.name)){
+            if (".".equals(name)) {
+                if (".".equals(t.name)) {
                     return true;
                 }
             }
-            if(t.type!=type){
+            if (t.type != type) {
                 return false;
             }
-            if(t.number==null){
-                if(number!=null)return false;
+            if (t.number == null) {
+                if (number != null) {
+                    return false;
+                }
             }
             return t.type == type && t.number.equalsTo(number);
         }
-        return t.name.equals(name) &&t.type == type;
+        return t.name.equals(name) && t.type == type;
     }
 
     public String toLocalString() {

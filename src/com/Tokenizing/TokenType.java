@@ -1,4 +1,4 @@
-package com.Tokenizing;
+package com.tokenizing;
 
 /**
  *
@@ -14,5 +14,5 @@ public enum TokenType {
     OPARATOR,
     FUNCTION_,
     _FUNCTION_,
-
+    DY_BY_DX
 }

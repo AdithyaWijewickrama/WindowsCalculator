@@ -1,6 +1,7 @@
-package com.Tokenizing;
+package com.tokenizing;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 
 /**
@@ -65,9 +66,7 @@ public class TokenList {
     
     public TokenList(Token ...t){
         this();
-        for (Token token : t) {
-            tokenList.add(token);
-        }
+        tokenList.addAll(Arrays.asList(t));
     }
 
     public ArrayList<Token> getTokenList() {

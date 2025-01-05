@@ -1,7 +1,7 @@
-package com.Tokenizing;
+package com.tokenizing;
 
 import com.calculate.equation.ExpressionEvaluator;
-import com.calculate.Number;
+import com.calculate.CNumber;
 import com.calculate.Variable;
 import com.calculate.VariableList;
 import java.util.logging.Level;
@@ -13,7 +13,7 @@ import java.util.logging.Logger;
  */
 public class TokenParser extends TokenList {
 
-    private String exp;
+    private final String exp;
     private VariableList variableList;
 
     public TokenParser(String exp) throws Exception {
@@ -25,6 +25,7 @@ public class TokenParser extends TokenList {
 
     public TokenParser(TokenList tokenList) throws Exception {
         super(tokenList.tokenList);
+        this.exp=tokenList.toLocalString();
         variableList = new VariableList();
         updateTokens(tokenList);
     }
@@ -37,10 +38,6 @@ public class TokenParser extends TokenList {
 
     public String getExp() {
         return exp;
-    }
-
-    public void setExp(String exp) {
-        this.exp = exp;
     }
 
     public void setTokenList(TokenList tokenList) {
@@ -65,7 +62,7 @@ public class TokenParser extends TokenList {
                     number += t.name.charAt(0);
                 } else {
                     if (!number.equals("")) {
-                        tokenParser.addToken(new Token(TokenType.NUMBER, Number.parseNumber(Double.parseDouble(number))));
+                        tokenParser.addToken(new Token(TokenType.NUMBER,CNumber.parseNumber(Double.parseDouble(number))));
                         number = "";
                     }
                     tokenParser.addToken(t);
@@ -75,8 +72,9 @@ public class TokenParser extends TokenList {
     }
 
     public TokenList tokenize() {
-        System.out.println("Tokenizing started************************************");
-        System.out.println("\t" + toLocalString().replaceAll("\n", "\n\t"));
+        clear();
+        print("Tokenizing started************************************");
+        print("\t" + toLocalString().replaceAll("\n", "\n\t"));
         String number = "";
         String name = "";
         Token t;
@@ -88,7 +86,7 @@ public class TokenParser extends TokenList {
                     number += c;
                 } else {
                     if (!number.equals("")) {
-                        addToken(new Token(TokenType.NUMBER, Number.parseNumber(Double.parseDouble(number))));
+                        addToken(new Token(CNumber.parseNumber(Double.parseDouble(number))));
                         number = "";
                     } else if (!name.equals("")) {
                         Token t1 = Token.getTokenByName(name);
@@ -117,7 +115,7 @@ public class TokenParser extends TokenList {
             }
         }
         if (!number.equals("")) {
-            addToken(new Token(TokenType.NUMBER, Number.parseNumber(Double.valueOf(number))));
+            addToken(new Token(CNumber.parseNumber(Double.parseDouble(number))));
         } else if (!name.equals("")) {
             Token t1 = Token.getTokenByName(name);
             if (t1 != null) {
@@ -132,31 +130,31 @@ public class TokenParser extends TokenList {
                 }
             }
         }
-        System.out.println("Done..\n\t" + toLocalString().replaceAll("\n", "\n\t"));
+        print("Done..\n\t" + toLocalString().replaceAll("\n", "\n\t"));
 
         return this;
     }
 
-    public final void substituteVars() {
-        System.out.println("Variable substituting...");
-        System.out.println("\t" + toString().replaceAll("\n", "\n\t"));
+    public void substituteVars() {
+        print("Variable substituting...");
+        print("\t" + toString().replaceAll("\n", "\n\t"));
         int i = 0;
         do {
             Token t = new Token(tokenAt(i));
-//                if (tokenAt(i) == Token.MINUS) {
-//                    if (next(t, i)) {
-//                        if (t.type != TokenType.NUMBER && t.type != TokenType.OPARATOR && t.type != TokenType.SYMBOL) {
-//                            deleteToken(i);
-//                            insertToken(Token.MULTIPLY, i);
-//                            insertToken(Token.CLOSE_PRANTHESIS, i);
-//                            insertToken(new Token(TokenType.NUMBER, Number.parseNumber(-1.)), i);
-//                            insertToken(Token.OPEN_PRANTHESIS, i);
-//                            i += 4;
-//                        }
-//                    }
-//                } else {
-//                    i++;
-//                }
+            if (tokenAt(i) == Token.MINUS) {
+                if (previous(t, i)) {
+                    if (isExpSplitterInRevers(t)) {
+                        deleteToken(i);
+                        insertToken(Token.MULTIPLY, i);
+                        insertToken(Token.CLOSE_PRANTHESIS, i);
+                        insertToken(new Token(CNumber.parseNumber(-1.)), i);
+                        insertToken(Token.OPEN_PRANTHESIS, i);
+                        i += 4;
+                    }
+                }
+                i++;
+                continue;
+            }
             if (t.type == TokenType.VARIABLE || t.type == TokenType.INDEPENDENT || t.type == TokenType.DEPENDENT || t.type == TokenType.NUMBER) {
                 if (next(t, i)) {
                     if (!isExpSplitter(t) && t.type != TokenType.OPARATOR) {
@@ -171,16 +169,16 @@ public class TokenParser extends TokenList {
                 }
             }
             i++;
-        } while (i < size());
-        System.out.println("Done..\n\t" + toLocalString().replaceAll("\n", "\n\t"));
+        } while (i < size() - 1);
+        print("Done..\n\t" + toLocalString().replaceAll("\n", "\n\t"));
 
     }
 
     public void checkPranthesis(TokenList list) throws Exception {
         int p = 0;
         int i = 0;
-        System.out.println("Pranthesis check-------");
-        System.out.println("\t" + toLocalString().replaceAll("\n", "\n\t"));
+        print("Pranthesis check-------");
+        print("\t" + toLocalString().replaceAll("\n", "\n\t"));
 
         do {
             Token t = new Token(list.tokenAt(i));
@@ -201,16 +199,16 @@ public class TokenParser extends TokenList {
         } else if (p < 0) {
             throw new Error("You closed too may pranthesis");
         }
-        System.out.println("Done..\n\t" + toLocalString().replaceAll("\n", "\n\t"));
+        print("Done..\n\t" + toLocalString().replaceAll("\n", "\n\t"));
     }
 
     public void ignoreZero() {
-        System.out.println("Ignoring zero values");
-        System.out.println("\t" + toLocalString().replaceAll("\n", "\n\t"));
+        print("Ignoring zero values");
+        print("\t" + toLocalString().replaceAll("\n", "\n\t"));
 
         int i = 0;
         while (size() - 1 > i) {
-            Token t = tokenAt(i);
+            Token t = new Token(tokenAt(i));
             if (t.type == TokenType.NUMBER) {
                 OUTER:
                 if (t.number.doubleValue() == 0.) {
@@ -220,7 +218,7 @@ public class TokenParser extends TokenList {
                             for (int j = 0; j < size + 2; j++) {
                                 deleteToken(i);
                             }
-                            insertTokens(new TokenList(Token.OPEN_PRANTHESIS, new Token(TokenType.NUMBER, Number.parseNumber(1.)), Token.CLOSE_PRANTHESIS), i);
+                            insertTokens(new TokenList(Token.OPEN_PRANTHESIS, new Token(CNumber.parseNumber(1.)), Token.CLOSE_PRANTHESIS), i);
                             break OUTER;
                         }
                     }
@@ -230,13 +228,13 @@ public class TokenParser extends TokenList {
                     if (i > 0) {
                         i = multiplyBy0ExpressionInReverseAt(this, i - 1);
                     }
-                    System.out.println("\tIndex: " + i);
+                    print("\tIndex: " + i);
                 }
             }
             i++;
         }
-//        Token zero=new Token(TokenType.NUMBER, Number.parseNumber(0.));
-//        Token one=new Token(TokenType.NUMBER, Number.parseNumber(1.));
+//        Token zero=new Token(TokenType.NUCNumberNumber.parseNumber(0.));
+//        Token one=new Token(TokenType.NCNumber Number.parseNumber(1.));
 //        deleteAll(Token.MINUS,zero);
 //        deleteAll(Token.PLUS,zero);
 //        deleteAll(zero,Token.MINUS);
@@ -245,12 +243,14 @@ public class TokenParser extends TokenList {
 //        deleteAll(Token.MULTIPLY,one);
 //        deleteAll(Token.MULTIPLY,Token.OPEN_PRANTHESIS,one,Token.CLOSE_PRANTHESIS);
 //        deleteAll(Token.OPEN_PRANTHESIS,one,Token.CLOSE_PRANTHESIS,Token.MULTIPLY);
-        System.out.println("Done..\n\t" + toLocalString().replaceAll("\n", "\n\t"));
+        print("Done..\n\t" + toLocalString().replaceAll("\n", "\n\t"));
     }
 
     public static int multiplyBy0ExpressionInReverseAt(TokenList tl, int end) {
         int i = end / 1;
         Token t;
+        print("slkajkas");
+        print(tl);
         int p = 0;
         while (-1 <= i) {
             t = tl.tokenAt(i);
@@ -265,11 +265,11 @@ public class TokenParser extends TokenList {
                 } else {
                     i++;
                 }
-                System.out.println("\tBreaking " + t);
+                print("\tBreaking " + t);
                 break;
             } else if (Math.abs(p) == 1 && t.equalsTo(Token.OPEN_PRANTHESIS)) {
                 i++;
-                System.out.println("\tBreaking " + t);
+                print("\tBreaking d" + t);
                 break;
             }
             tl.deleteToken(i);
@@ -293,10 +293,10 @@ public class TokenParser extends TokenList {
                 if (t.equalsTo(Token.CLOSE_PRANTHESIS)) {
                     tl.deleteToken(i);
                 }
-                System.out.println("\tBreaking " + t);
+                print("\tBreaking " + t);
                 break;
             } else if (Math.abs(p) == 1 && t.equalsTo(Token.CLOSE_PRANTHESIS)) {
-                System.out.println("\tBreaking " + t);
+                print("\tBreaking " + t);
                 break;
             }
             tl.deleteToken(i);
@@ -305,11 +305,11 @@ public class TokenParser extends TokenList {
     }
 
     public static boolean isExpSplitter(Token t) {
-        return t.equalsTo(Token.MINUS) || t.equalsTo(Token.PLUS) || t.equalsTo(Token.CLOSE_PRANTHESIS) || t.equalsTo(Token.COMMA);
+        return Token.MINUS.equalsTo(t) || Token.PLUS.equalsTo(t) || Token.CLOSE_PRANTHESIS.equalsTo(t) || Token.COMMA.equalsTo(t);
     }
 
     public static boolean isExpSplitterInRevers(Token t) {
-        return t.equalsTo(Token.RAISED) || t.equalsTo(Token.DIVIDE) || t.equalsTo(Token.MINUS) || t.equalsTo(Token.PLUS) || t.equalsTo(Token.OPEN_PRANTHESIS) || t.equalsTo(Token.COMMA);
+        return Token.RAISED.equalsTo(t) || Token.DIVIDE.equalsTo(t) || Token.MINUS.equalsTo(t) || Token.PLUS.equalsTo(t) || Token.OPEN_PRANTHESIS.equalsTo(t) || Token.COMMA.equalsTo(t);
     }
 
     public boolean hasVariables() {
@@ -368,16 +368,20 @@ public class TokenParser extends TokenList {
 
     public static void main(String[] args) {
         try {
-            TokenParser tp = new TokenParser("sin(x)0^(212)+(cosh(x))");
+            TokenParser tp = new TokenParser("sin(-1)");
             try {
                 tp.parse();
             } catch (Exception ex) {
                 Logger.getLogger(TokenParser.class.getName()).log(Level.SEVERE, null, ex);
             }
-            System.out.println(tp);
+            print(tp);
         } catch (Exception ex) {
             Logger.getLogger(TokenParser.class.getName()).log(Level.SEVERE, null, ex);
         }
+        print(Token.OPEN_PRANTHESIS.equalsTo(Token.RAISED));
     }
-
+    
+    public static void print(Object s){
+        System.out.println(s);
+    }
 }
