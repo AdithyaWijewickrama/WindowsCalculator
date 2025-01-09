@@ -1,6 +1,5 @@
 package com.calculator.commonCalculator;
 
-import Programmer.Base;
 import com.tokenizing.Token;
 import com.tokenizing.TokenList;
 import com.tokenizing.TokenType;
@@ -13,7 +12,6 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.HierarchyEvent;
 import java.awt.event.HierarchyListener;
-import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -34,7 +32,7 @@ public abstract class CommonNumberPanel extends javax.swing.JPanel {
         currentNumber = ZEROTOKEN;
         this.showEquation.setVisible(showEquation);
     }
-    
+
     public void setSizeSector(int scaleFactor) {
         addHierarchyListener(new HierarchyListener() {
             @Override
@@ -43,8 +41,8 @@ public abstract class CommonNumberPanel extends javax.swing.JPanel {
                     getParent().addComponentListener(new ComponentAdapter() {
                         @Override
                         public void componentResized(ComponentEvent e) {
-                            setPreferredSize(new Dimension(getSize().width, getParent().getHeight() / scaleFactor+30));
-                            setMinimumSize(new Dimension(getSize().width, getParent().getHeight() / scaleFactor+30));
+                            setPreferredSize(new Dimension(getSize().width, getParent().getHeight() / scaleFactor + 30));
+                            setMinimumSize(new Dimension(getSize().width, getParent().getHeight() / scaleFactor + 30));
                             setTextSize();
                         }
                     });
@@ -71,7 +69,7 @@ public abstract class CommonNumberPanel extends javax.swing.JPanel {
         }
         try {
             return new CNumber(number, enteringFormat);
-        } catch (ParseException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(CommonNumberPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
@@ -121,7 +119,7 @@ public abstract class CommonNumberPanel extends javax.swing.JPanel {
 
     public void setTextSize() {
         int w = numberText.getWidth();
-        int h = numberText.getHeight()-numberText.getHeight()/3;
+        int h = numberText.getHeight() - numberText.getHeight() / 3;
         int textWidth;
         int textHeight;
         Font f = numberText.getFont();
@@ -153,7 +151,7 @@ public abstract class CommonNumberPanel extends javax.swing.JPanel {
     public CNumber getNumber() {
         try {
             return new CNumber(numberText.getText(), showingFormat);
-        } catch (ParseException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(CommonNumberPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
@@ -168,7 +166,7 @@ public abstract class CommonNumberPanel extends javax.swing.JPanel {
     }
 
     public abstract void addHistory(TokenList equation, CNumber answer);
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -230,6 +228,5 @@ public abstract class CommonNumberPanel extends javax.swing.JPanel {
     public javax.swing.JTextField numberText;
     public javax.swing.JTextField showEquation;
     // End of variables declaration//GEN-END:variables
-
 
 }

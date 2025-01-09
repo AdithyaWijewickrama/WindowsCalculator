@@ -1,8 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.calculate;
+
+import java.math.BigDecimal;
 
 /**
  *
@@ -12,7 +10,7 @@ public class Variable extends CNumber{
     private String name;
 
     public Variable(String name) {
-        super(1.);
+        super(BigDecimal.ONE);
         this.name=name;
     }
 
@@ -24,7 +22,7 @@ public class Variable extends CNumber{
         this.name = name;
     }
     
-    public Variable(String name,Double number) {
+    public Variable(String name,double number) {
         super(number);
         this.name=name;
     }

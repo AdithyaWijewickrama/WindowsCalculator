@@ -2,106 +2,128 @@ package com.calculate;
 
 import Programmer.Base;
 import static com.calculate.FormatType.*;
+import java.math.BigDecimal;
+import java.math.MathContext;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
  *
  * @author AW Developer
  */
-enum FormatType{
+enum FormatType {
     GROUPING,
     NORMAL;
 }
 
 public enum NumberFormat {
-    GROUPING_DECIMAL(GROUPING,10, "###,###,###,###,###,###,###,###,###,###,###.##########################", ','),
-    GROUPING_BINARY(GROUPING,2, "####,####,####,####,####,####,####,####,####,####,####,####,####,####,####", ' '),
-    GROUPING_HEXA(GROUPING,16, "####,####,####,####", ' '),
-    GROUPING_OCTAL(GROUPING,8, "###,###,###,###,###,###,###", ' '),
-    NORMAL_BINARY(NORMAL,2, "#"),
-    NORMAL_HEXA(NORMAL,16, "#"),
-    NORMAL_OCTAL(NORMAL,8, "#"),
-    NORMAL_DECIMAL(NORMAL,10, "#############.#########");
+    GROUPING_DECIMAL(GROUPING, 10, "###,###,###,###,###,###,###,###,###,###,###.##########################", ','),
+    GROUPING_BINARY(GROUPING, 2, "####,####,####,####,####,####,####,####,####,####,####,####,####,####,####", ' '),
+    GROUPING_HEXA(GROUPING, 16, "####,####,####,####", ' '),
+    GROUPING_OCTAL(GROUPING, 8, "###,###,###,###,###,###,###", ' '),
+    NORMAL_BINARY(NORMAL, 2, "#"),
+    NORMAL_HEXA(NORMAL, 16, "#"),
+    NORMAL_OCTAL(NORMAL, 8, "#"),
+    NORMAL_DECIMAL(NORMAL, 10, "#############.#########");
     public final DecimalFormat format;
     public final FormatType formatType;
     public final int radix;
+    public static final ArrayList<String> DIGITS = new ArrayList(Arrays.asList("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"));
 
-    private NumberFormat(FormatType formatType,int radix, String format) {
+    private NumberFormat(FormatType formatType, int radix, String format) {
         this.format = new DecimalFormat(format);
         this.radix = radix;
         this.formatType = formatType;
     }
 
-    private NumberFormat(FormatType formatType,int radix, String format, char groupingSep) {
+    private NumberFormat(FormatType formatType, int radix, String format, char groupingSep) {
         DecimalFormatSymbols symbols = new DecimalFormatSymbols();
         symbols.setGroupingSeparator(groupingSep);
         this.radix = radix;
-        this.format = new DecimalFormat(format,symbols);
-        this.formatType = null;
+        this.format = new DecimalFormat(format, symbols);
+        this.formatType = formatType;
     }
 
     /**
-     * Format number to given number format
-     *
-     * @param number
-     * @return
+     * Group number to given number format
+     * 
+     * @param unformatedNumber
+     * @return Grouped number or return given string if format type is grouping
      */
-    public String formatNumber(String number) {
+    public String groupNumber(String unformatedNumber) {
         if (radix < 10) {
-            return format.format(Long.parseLong(number));
+            return format.format(new BigDecimal(unformatedNumber));
         } else if (radix == 10) {
-            return format.format(Double.parseDouble(number));
+            return format.format(new BigDecimal(unformatedNumber));
         } else {
-            number = number.replaceAll(Character.toString(format.getDecimalFormatSymbols().getGroupingSeparator()), "");
-            String[] n = (formatType==NORMAL?NORMAL_BINARY:GROUPING_BINARY).format.format(Double.parseDouble("1".repeat(number.length()))).split("");
-            System.out.println(Arrays.toString(n));
+            String[] n = GROUPING_BINARY.format.format(Double.parseDouble("1".repeat(unformatedNumber.length()))).split("");
             int j = 0;
             for (int i = 0; i < n.length; i++) {
                 if (n[i].equals("1")) {
-                    n[i] = Character.toString(number.charAt(j++));
+                    n[i] = Character.toString(unformatedNumber.charAt(j++));
                 }
             }
-            number="";
+            unformatedNumber = "";
             for (String chr : n) {
-                number+=chr;
+                unformatedNumber += chr;
             }
-            return number;
+            return unformatedNumber;
         }
     }
 
     /**
-     *  Decimal value of given number
+     * Ungroup number to normal format
+     * 
+     * @param formatedNumber
+     * @return Ungroup number or return given string if format type is normal
+     */
+    public String ungroupNumber(String formatedNumber){
+        return formatedNumber.replaceAll(Character.toString(format.getDecimalFormatSymbols().getGroupingSeparator()), "");
+    }
+    
+    /**
+     * Decimal value of given number
+     *
      * @param formatedNumber
      * @return
      * @throws ParseException
      */
-    public java.lang.Number getDecimalValue(String formatedNumber) throws ParseException {
-        if (radix < 10) {
-            return Long.valueOf(format.parse(formatedNumber).toString(), radix);
-        } else if (radix == 10) {
-            return format.parse(formatedNumber);
-        } else {
-            return Long.valueOf(formatedNumber.replaceAll(Character.toString(format.getDecimalFormatSymbols().getGroupingSeparator()), ""), radix);
+    public BigDecimal convRadixToDecimal(String formatedNumber) throws Exception {
+        String parseNumber = ungroupNumber(formatedNumber);
+        System.out.println("Parsed Number:"+parseNumber);
+        if (radix == 10) {
+            return new BigDecimal(parseNumber);
         }
+        BigDecimal radixBig = BigDecimal.valueOf(radix);
+        BigDecimal number = new BigDecimal(0);
+        int pow = 0;
+        for (int i = parseNumber.length() - 1; i >= 0; i--) {
+            String dgt=Character.toString(parseNumber.charAt(i));
+            if(DIGITS.indexOf(dgt)>=radix){
+                throw new NumberFormatException("For input digit \""+dgt+"\" under radix "+radix);
+            }
+            number=number.add(radixBig.pow(pow++).multiply(new BigDecimal(DIGITS.indexOf(dgt))));
+        }
+        return number;
     }
-    
-    public String getConverted(java.lang.Number number){
-        char[] digits={'0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'};
-        String n="";
-        double val=number.doubleValue();
-        if(val==0||val<0||Math.abs(val%1)>0){
-            return Double.toString(val);
+
+    public static String convDecimalToRadix(BigDecimal number, int radix) {
+        BigDecimal radixBig = BigDecimal.valueOf(radix);
+        String n = "";
+        if (number.equals(0) || number.compareTo(BigDecimal.ZERO) == -1 || number.remainder(BigDecimal.ONE).compareTo(BigDecimal.ZERO) != 0) {
+            return number.toString();
         }
-        while(val>0){
-            n+=Character.toString(digits[(int)(val%radix)]);
-            val=val/radix-((val%radix)/radix);
+        while (number.compareTo(BigDecimal.ZERO) == 1) {
+            n += DIGITS.get(number.remainder(radixBig).intValue());
+            number = number.divide(radixBig, MathContext.DECIMAL64).subtract(number.remainder(radixBig).divide(radixBig, MathContext.DECIMAL64));
         }
         return new StringBuffer(n).reverse().toString();
     }
-    public static NumberFormat getGroupingNumberFormat(Base b){
+
+    public static NumberFormat getGroupingNumberFormat(Base b) {
         switch (b) {
             case BIN:
                 return GROUPING_BINARY;
@@ -115,7 +137,8 @@ public enum NumberFormat {
                 throw new AssertionError();
         }
     }
-    public static NumberFormat getNormalNumberFormat(Base b){
+
+    public static NumberFormat getNormalNumberFormat(Base b) {
         switch (b) {
             case BIN:
                 return NORMAL_BINARY;

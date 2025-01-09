@@ -6,6 +6,7 @@ package com.calculate.calculus;
 
 import com.calculate.*;
 import com.calculate.CNumber;
+import java.math.BigDecimal;
 
 /**
  *
@@ -15,7 +16,7 @@ public class Variable extends CNumber{
     private String name;
 
     public Variable(String name) {
-        super(1.);
+        super(BigDecimal.ONE);
         this.name=name;
     }
 
@@ -27,8 +28,8 @@ public class Variable extends CNumber{
         this.name = name;
     }
     
-    public Variable(String name,Double number) {
-        super(number);
+    public Variable(String name,double number) {
+        super(new BigDecimal(number));
         this.name=name;
     }
     

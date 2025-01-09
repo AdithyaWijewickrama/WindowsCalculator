@@ -24,7 +24,7 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public abstract class ProgrammerNumberPanel extends CommonNumberPanel {
 
-    private TokenList tokensWithisSplitters = new TokenList();
+    private TokenList tokensWithinSplitters = new TokenList();
     private TokenList enter = new TokenList();
     private TokenList show = new TokenList();
     private int pranthesis = 0;
@@ -51,7 +51,7 @@ public abstract class ProgrammerNumberPanel extends CommonNumberPanel {
     }
 
     public void addToken(Token token) {
-        tokensWithisSplitters.addToken(token);
+        tokensWithinSplitters.addToken(token);
     }
 
     @Override
@@ -78,6 +78,7 @@ public abstract class ProgrammerNumberPanel extends CommonNumberPanel {
                         show.addToken(Token.EQUAL);
                         setEquation(show);
                         setNumber(fx);
+                        setNumberToRadixPanel(currentNumber.number);
                         currentNumber = new Token(TokenType.NUMBER, fx);
                         addHistory(show, fx);
                     }
@@ -89,6 +90,7 @@ public abstract class ProgrammerNumberPanel extends CommonNumberPanel {
                 tokenDigits.clear();
                 tokenDigits.addToken(ZEROTOKEN);
                 setNumber(ZEROTOKEN.number);
+                setNumberToRadixPanel(currentNumber.number);
             } else if (KeyEvent.VK_BACK_SPACE == key) {
                 if (tokenDigits.size() >= 2) {
                     tokenDigits.deleteToken(tokenDigits.size() - 1);
@@ -97,6 +99,7 @@ public abstract class ProgrammerNumberPanel extends CommonNumberPanel {
                     tokenDigits.addToken(ZEROTOKEN);
                 }
                 setNumber(getTypedNumber());
+                setNumberToRadixPanel(currentNumber.number);
             } else if (t != null) {
                 parseToken(t);
             }
@@ -110,7 +113,7 @@ public abstract class ProgrammerNumberPanel extends CommonNumberPanel {
     public void reset() {
         currentNumber = ZEROTOKEN;
         show.clear();
-        tokensWithisSplitters.clear();
+        tokensWithinSplitters.clear();
         enter.clear();
         tokenDigits.clear();
         tokenDigits.addToken(ZEROTOKEN);
@@ -151,14 +154,14 @@ public abstract class ProgrammerNumberPanel extends CommonNumberPanel {
                         number += t.name;
                     }
                     currentNumber = new Token(TokenType.NUMBER, new CNumber(number, enteringFormat));
-                    System.out.println(currentNumber.number.doubleValue());
                     setNumber(currentNumber.number);
+                    setNumberToRadixPanel(currentNumber.number);
                     parseToken(new Token(TokenType.NUMBER, new CNumber(number, enteringFormat)));
                     break;
                 case NUMBER:
                     currentNumber = token;
                     if (isTokensEmpty()) {
-                        tokensWithisSplitters.addToken(token);
+                        tokensWithinSplitters.addToken(token);
                         enter.addToken(token);
                     } else {
                         if (getLastTokenType() == TokenType.OPARATOR) {
@@ -166,17 +169,17 @@ public abstract class ProgrammerNumberPanel extends CommonNumberPanel {
                         } else if (getLastTokenType() == TokenType._FUNCTION_) {
                         } else if (getLastTokenType() == TokenType.NUMBER) {
                             enter.deleteToken(enter.size() - 1);
-                            tokensWithisSplitters.deleteToken(tokensWithisSplitters.size() - 1);
+                            tokensWithinSplitters.deleteToken(tokensWithinSplitters.size() - 1);
                             enter.addToken(token);
                         } else if (getLastTokenType() == TokenType.FUNCTION_) {
-                            tokensWithisSplitters.clear();
+                            tokensWithinSplitters.clear();
                         } else if (getLastToken() == Token.OPEN_PRANTHESIS) {
-                            tokensWithisSplitters.deleteToken(tokensWithisSplitters.size() - 1);
+                            tokensWithinSplitters.deleteToken(tokensWithinSplitters.size() - 1);
                         } else if (getLastToken() == Token.COMMA) {
-                            tokensWithisSplitters.deleteToken(tokensWithisSplitters.size() - 1);
+                            tokensWithinSplitters.deleteToken(tokensWithinSplitters.size() - 1);
                         }
                         if (getLastTokenType() != TokenType._FUNCTION_) {
-                            tokensWithisSplitters.addToken(token);
+                            tokensWithinSplitters.addToken(token);
                         }
                     }
                     break;
@@ -186,21 +189,21 @@ public abstract class ProgrammerNumberPanel extends CommonNumberPanel {
                         deleteLastTokens(enter);
                     }
                     if (isTokensEmpty()) {
-                        tokensWithisSplitters.addToken(token);
-                        tokensWithisSplitters.addToken(Token.OPEN_PRANTHESIS);
-                        tokensWithisSplitters.addToken(currentNumber);
-                        tokensWithisSplitters.addToken(Token.COMMA);
-                        show.addTokens(tokensWithisSplitters);
+                        tokensWithinSplitters.addToken(token);
+                        tokensWithinSplitters.addToken(Token.OPEN_PRANTHESIS);
+                        tokensWithinSplitters.addToken(currentNumber);
+                        tokensWithinSplitters.addToken(Token.COMMA);
+                        show.addTokens(tokensWithinSplitters);
                         enter.addToken(token);
                     } else {
-                        tokensWithisSplitters.insertToken(Token.OPEN_PRANTHESIS, 0);
-                        tokensWithisSplitters.insertToken(token, 0);
-                        tokensWithisSplitters.addToken(Token.COMMA);
-                        show.addTokens(tokensWithisSplitters);
+                        tokensWithinSplitters.insertToken(Token.OPEN_PRANTHESIS, 0);
+                        tokensWithinSplitters.insertToken(token, 0);
+                        tokensWithinSplitters.addToken(Token.COMMA);
+                        show.addTokens(tokensWithinSplitters);
                         enter.addToken(token);
                     }
                     pranthesis++;
-                    tokensWithisSplitters = new TokenList();
+                    tokensWithinSplitters = new TokenList();
                     break;
                 case OPARATOR:
                     if (getLastTokenType() == TokenType.OPARATOR) {
@@ -209,22 +212,22 @@ public abstract class ProgrammerNumberPanel extends CommonNumberPanel {
                         show.addToken(token);
                         enter.addToken(token);
                     } else if (getLastTokenType() == TokenType.NUMBER) {
-                        show.addTokens(tokensWithisSplitters);
-                        tokensWithisSplitters = new TokenList();
-                        tokensWithisSplitters.addToken(ZEROTOKEN);
+                        show.addTokens(tokensWithinSplitters);
+                        tokensWithinSplitters = new TokenList();
+                        tokensWithinSplitters.addToken(ZEROTOKEN);
                         show.addToken(token);
                         enter.addToken(token);
                     } else if (getLastTokenType() == TokenType.FUNCTION_) {
                         deleteLastTokens(show);
-                        show.addTokens(tokensWithisSplitters);
+                        show.addTokens(tokensWithinSplitters);
                         show.addToken(token);
                         enter.addToken(token);
                     } else if (getLastTokenType() == TokenType._FUNCTION_) {
                         if (isTokensEmpty()) {
-                            tokensWithisSplitters.addToken(currentNumber);
+                            tokensWithinSplitters.addToken(currentNumber);
                         }
-                        enter.addTokens(tokensWithisSplitters);
-                        show.addTokens(tokensWithisSplitters);
+                        enter.addTokens(tokensWithinSplitters);
+                        show.addTokens(tokensWithinSplitters);
                         show.addToken(Token.CLOSE_PRANTHESIS);
                         enter.addToken(Token.CLOSE_PRANTHESIS);
                         show.addToken(token);
@@ -234,42 +237,42 @@ public abstract class ProgrammerNumberPanel extends CommonNumberPanel {
                         show.addToken(token);
                         enter.addToken(token);
                     } else if (getLastToken() == Token.OPEN_PRANTHESIS) {
-                        show.addTokens(tokensWithisSplitters);
-                        enter.addTokens(tokensWithisSplitters);
+                        show.addTokens(tokensWithinSplitters);
+                        enter.addTokens(tokensWithinSplitters);
                         show.addToken(token);
                         enter.addToken(token);
                     }
-                    tokensWithisSplitters = new TokenList();
+                    tokensWithinSplitters = new TokenList();
                     tokenDigits.clear();
                     tokenDigits.addToken(ZEROTOKEN);
                     break;
                 case FUNCTION_:
                     if (isTokensEmpty()) {
-                        tokensWithisSplitters.addToken(currentNumber);
+                        tokensWithinSplitters.addToken(currentNumber);
                     }
                     if (getLastTokenType() == null) {
                         show.addToken(token);
-                        show.addTokens(tokensWithisSplitters.pranthesise());
+                        show.addTokens(tokensWithinSplitters.pranthesise());
                     }
                     if (getLastTokenType() == TokenType.OPARATOR) {
                         show.addToken(token);
-                        show.addTokens(tokensWithisSplitters.pranthesise());
+                        show.addTokens(tokensWithinSplitters.pranthesise());
                     } else if (getLastTokenType() == TokenType.NUMBER) {
                         show.addToken(token);
-                        show.addTokens(tokensWithisSplitters.pranthesise());
+                        show.addTokens(tokensWithinSplitters.pranthesise());
                     } else if (getLastTokenType() == TokenType.FUNCTION_) {
                         deleteLastTokens(show);
                         deleteLastTokens(enter);
                         show.addToken(token);
-                        show.addTokens(tokensWithisSplitters.pranthesise());
+                        show.addTokens(tokensWithinSplitters.pranthesise());
                     } else if (getLastTokenType() == TokenType._FUNCTION_) {
                         int scan = ExpressionEvaluator.scanFor(show, getLastToken());
                         show.addToken(token);
-                        show.addTokens(tokensWithisSplitters.pranthesise());
-                        tokensWithisSplitters = new TokenList();
+                        show.addTokens(tokensWithinSplitters.pranthesise());
+                        tokensWithinSplitters = new TokenList();
                     }
-                    tokensWithisSplitters = tokensWithisSplitters.pranthesise();
-                    tokensWithisSplitters.insertToken(token, 0);
+                    tokensWithinSplitters = tokensWithinSplitters.pranthesise();
+                    tokensWithinSplitters.insertToken(token, 0);
                     enter.addToken(token);
                     tokenDigits.clear();
                     tokenDigits.addToken(ZEROTOKEN);
@@ -282,7 +285,7 @@ public abstract class ProgrammerNumberPanel extends CommonNumberPanel {
                             show.addToken(Token.MULTIPLY);
                         } else if (getLastTokenType() == TokenType._FUNCTION_) {
                         }
-                        tokensWithisSplitters = new TokenList();
+                        tokensWithinSplitters = new TokenList();
                         tokenDigits = new TokenList();
                         show.addToken(Token.OPEN_PRANTHESIS);
                         enter.addToken(Token.OPEN_PRANTHESIS);
@@ -295,11 +298,11 @@ public abstract class ProgrammerNumberPanel extends CommonNumberPanel {
                                     case OPARATOR:
                                     case _FUNCTION_:
                                         if (isTokensEmpty()) {
-                                            tokensWithisSplitters.addToken(currentNumber);
+                                            tokensWithinSplitters.addToken(currentNumber);
                                         }
                                     case NUMBER:
                                     case FUNCTION_:
-                                        show.addTokens(tokensWithisSplitters);
+                                        show.addTokens(tokensWithinSplitters);
                                         show.addToken(token);
                                         enter.addToken(token);
                                         break;
@@ -323,6 +326,7 @@ public abstract class ProgrammerNumberPanel extends CommonNumberPanel {
                 currentNumber = new Token(TokenType.NUMBER, t);
                 System.out.println("ANSWER\t" + t.getNumberString());
                 setNumber(t);
+                setNumberToRadixPanel(currentNumber.number);
             }
             setEquation(show);
             if (Token.EQUAL.equalsTo(token)) {
@@ -331,6 +335,7 @@ public abstract class ProgrammerNumberPanel extends CommonNumberPanel {
         } else if (token == Token.OPEN_PRANTHESIS) {
             currentNumber = ZEROTOKEN;
             setNumber(currentNumber.number);
+            setNumberToRadixPanel(currentNumber.number);
             setEquation(show);
         } else if (pranthesis != 0) {
             setEquation(show);
@@ -344,7 +349,7 @@ public abstract class ProgrammerNumberPanel extends CommonNumberPanel {
             }
         }
         System.out.println("[ENTER]" + enter.toLocalString());
-        System.out.println("[TOKENS]" + tokensWithisSplitters.toString());
+        System.out.println("[TOKENS]" + tokensWithinSplitters.toString());
         System.out.println("[SHOW]" + show.toLocalString());
     }
 
@@ -413,17 +418,26 @@ public abstract class ProgrammerNumberPanel extends CommonNumberPanel {
 
     }
 
-    private boolean isTokensEmpty() {
-        return tokensWithisSplitters.size() == 0;
+    @Override
+    public void setNumber(CNumber number) {
+        numberText.setText(number.setNumberFormat(showingFormat).getNumberString());
+        setNumberToRadixPanel(number);
     }
     
-    public void setRadix(Base radix){
-        enteringFormat=NumberFormat.getNormalNumberFormat(radix);
-        showingFormat=NumberFormat.getGroupingNumberFormat(radix);
+    private boolean isTokensEmpty() {
+        return tokensWithinSplitters.size() == 0;
+    }
+
+    public void setRadix(Base radix) {
+        enteringFormat = NumberFormat.getNormalNumberFormat(radix);
+        showingFormat = NumberFormat.getGroupingNumberFormat(radix);
         setEquation(show);
         setNumber(currentNumber.number);
+        setNumberToRadixPanel(currentNumber.number);
         reset();
     }
+
+    public abstract void setNumberToRadixPanel(CNumber number);
 
     public static void main(String[] args) {
         try {
@@ -434,6 +448,11 @@ public abstract class ProgrammerNumberPanel extends CommonNumberPanel {
         ProgrammerNumberPanel p = new ProgrammerNumberPanel(true) {
             @Override
             public void addHistory(TokenList equation, CNumber answer) {
+            }
+
+            @Override
+            public void setNumberToRadixPanel(CNumber number) {
+                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
             }
         };
         JFrame frame = new JFrame("Common number field");

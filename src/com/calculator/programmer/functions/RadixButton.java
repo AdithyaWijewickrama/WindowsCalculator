@@ -38,7 +38,6 @@ public abstract class RadixButton extends javax.swing.JPanel {
         jTextArea1.addMouseListener(listner);
         addMouseListener(listner);
         jSeparator1.addMouseListener(listner);
-
     }
 
     public abstract void choosed(Base radix);
@@ -52,8 +51,10 @@ public abstract class RadixButton extends javax.swing.JPanel {
     }
 
     public void setNumber(CNumber n) {
-        jTextArea1.setText(n.setNumberFormat(NumberFormat.getGroupingNumberFormat(radix)).getNumberString());
-        setBoundsRelativeToText();
+        String s=n.setNumberFormat(NumberFormat.getGroupingNumberFormat(radix)).getNumberString();
+        jTextArea1.setText(s);
+        System.out.println(s);
+//        setBoundsRelativeToText();
     }
 
     /**

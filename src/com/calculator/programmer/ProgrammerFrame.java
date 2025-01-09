@@ -1,5 +1,6 @@
 package com.calculator.programmer;
 
+import Programmer.Base;
 import com.tokenizing.TokenList;
 import com.calculate.CNumber;
 import com.calculator.commonCalculator.Ui;
@@ -42,11 +43,21 @@ public class ProgrammerFrame extends javax.swing.JPanel {
             @Override
             public void addHistory(TokenList equation, CNumber answer) {
             }
+
+            @Override
+            public void setNumberToRadixPanel(CNumber number) {
+                radixSelector.setNumber(number);
+            }
         };
         functionsPanel=new FunctionsPanel(numberPanel);
         keyPanel = new ProgrammerKeyPanel(numberPanel);
         memoryPanel = new MemoryPanel();
-        radixSelector=new RadixSelector();
+        radixSelector=new RadixSelector() {
+            @Override
+            public void radixChoosed(Base radix) {
+                
+            }
+        };
         memoryBar=new MemoryBar(memoryPanel, numberPanel);
         jTabbedPane1.add("Memory",memoryPanel);
         mainPanel.add(numberPanel);

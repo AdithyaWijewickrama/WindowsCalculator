@@ -1,4 +1,3 @@
-
 package com.calculator.graphing;
 
 import com.formdev.flatlaf.FlatDarkLaf;

@@ -6,6 +6,7 @@ import com.tokenizing.TokenParser;
 import com.tokenizing.TokenType;
 import com.calculate.CNumber;
 import com.calculate.Root;
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -18,7 +19,7 @@ import java.util.logging.Logger;
 public class ExpressionEvaluator extends TokenParser {
 
 //    private TokenList tokens;
-    public CNumber x = new CNumber(0.);
+    public CNumber x = new CNumber(BigDecimal.ONE);
     private Calculate parsedTokens;
 
     public ExpressionEvaluator(String exp) throws Exception {

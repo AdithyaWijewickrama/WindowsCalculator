@@ -35,6 +35,7 @@ public final class ProgrammerKeyPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form StandardKeyPanel
+     * @param numberPanel
      */
     public ProgrammerKeyPanel(CommonNumberPanel numberPanel) {
         this.numberPanel = numberPanel;

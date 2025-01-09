@@ -7,7 +7,7 @@ import java.util.List;
 
 public class FunctionPanel extends javax.swing.JPanel {
 
-    public List<BasicFunction> functions = new ArrayList();
+    public List<BasicFunction> basicFunctions = new ArrayList();
 
     public FunctionPanel() {
         initComponents();
@@ -24,7 +24,7 @@ public class FunctionPanel extends javax.swing.JPanel {
 
             public void removeFunction() {
                 if (basicFunction != null) {
-                    functions.remove(basicFunction);
+                    basicFunctions.remove(basicFunction);
                 }
             }
         };

@@ -8,7 +8,7 @@ import java.util.ArrayList;
  *
  * @author AW Developer
  */
-public final class RadixSelector extends javax.swing.JPanel {
+public abstract class RadixSelector extends javax.swing.JPanel {
 
     RadixButton hexButton;
     RadixButton decButton;
@@ -52,11 +52,11 @@ public final class RadixSelector extends javax.swing.JPanel {
     }
 
     public void setNumber(CNumber num){
+        System.out.println("=================================================================\n\n--"+num.getNumber());
         hexButton.setNumber(num);
         decButton.setNumber(num);
         octButton.setNumber(num);
         binButton.setNumber(num);
-        
     }
     
     public void setRadix(Base radix) {
@@ -72,8 +72,11 @@ public final class RadixSelector extends javax.swing.JPanel {
                 b.deselected();
             }
         }
+        radixChoosed(radix);
     }
 
+    public abstract void radixChoosed(Base radix);
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

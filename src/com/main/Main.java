@@ -1,15 +1,20 @@
 package com.main;
 
+import com.calculator.dateCalculation.DateCalculation;
 import com.calculator.graphing.Graphical;
 import static com.calculator.graphing.Graphical.getUIColor;
 import com.database.UIMemory.Previous;
 import com.formdev.flatlaf.FlatDarkLaf;
 import static com.calculator.graphing.Graphical.getUIColorType;
+import com.calculator.graphing.GraphingFrame;
+import com.calculator.programmer.ProgrammerFrame;
+import com.calculator.scientific.ScientificFrame;
 import com.calculator.standard.StandardFrame;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.PopupMenu;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,6 +33,11 @@ public class Main extends javax.swing.JFrame {
     public static final int TOP_HEIGHT = 40;
     public static Dimension maxSize = new Dimension(6000, 6000);
     public static Dimension minSize = new Dimension(400, 600);
+    private StandardFrame standardFrame=new StandardFrame();
+    private ScientificFrame scientificFrame=new ScientificFrame();
+    private ProgrammerFrame programmerFrame=new ProgrammerFrame();
+    private GraphingFrame graphingFrame=new GraphingFrame();
+    private DateCalculation dateCalculation=new DateCalculation();
 
     /**
      * Creates new form Main
@@ -612,7 +622,7 @@ public class Main extends javax.swing.JFrame {
     public void setFrame(int type) {
         switch (type) {
             case STANDARD:
-                calculatorPanel.add(new StandardFrame());
+                calculatorPanel.add(standardFrame);
                 break;
             case SCIENTIFIC:
                 break;
