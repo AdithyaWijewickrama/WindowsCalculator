@@ -19,8 +19,8 @@ public class ButtonList extends ButtonLayout {
         parse();
         this.buttonTokens = buttonTokens;
         createButtons();
-        System.out.println(buttonTokens);
-        System.out.println(buttons);
+//        System.out.println(buttonTokens);
+//        System.out.println(buttons);
     }
 
     public CommonButton getNextKey() {
@@ -68,11 +68,13 @@ public class ButtonList extends ButtonLayout {
         OUTER:
         do {
             char next = getNext();
+            System.out.println(next);
             switch (next) {
                 case BUTTON:
                     buttons.get(i++).setEnabled(true);
                     break;
                 case DISABLED:
+                    System.out.println("11111111111111111111111111111111111111111111111111111111111111111111111111");
                     buttons.get(i++).setEnabled(false);
                     break;
                 case ERROR:

@@ -52,7 +52,7 @@ public abstract class RadixSelector extends javax.swing.JPanel {
     }
 
     public void setNumber(CNumber num){
-        System.out.println("=================================================================\n\n--"+num.getNumber());
+//        System.out.println("=================================================================\n\n--"+num.getNumber());
         hexButton.setNumber(num);
         decButton.setNumber(num);
         octButton.setNumber(num);

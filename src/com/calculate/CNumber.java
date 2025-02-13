@@ -1,6 +1,7 @@
 package com.calculate;
 
-import static Programmer.Base.BIN;
+import static com.calculate.NumberFormat.NORMAL_BINARY;
+import com.calculator.programmer.wordSize.WordSize;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.text.ParseException;
@@ -12,10 +13,11 @@ import java.util.logging.Logger;
  * @author AW Developer
  */
 public class CNumber {
-
+//max 2^33219
     private String numberString;
     private NumberFormat numberFormat;
     private BigDecimal number;
+    private WordSize wordSize = null;
 
     /**
      * <p>
@@ -43,14 +45,22 @@ public class CNumber {
     public CNumber(String numberInFormat, NumberFormat format) throws Exception {
         this.numberString = numberInFormat;
         this.numberFormat = format;
-        this.number = format.convRadixToDecimal(numberInFormat);
-        System.out.println("Decimal:" + number);
+        this.number = format.convRadixToDecimal(numberInFormat,null);
+//        System.out.println("Decimal:" + number);
     }
 
-    public CNumber(double number){
+    public CNumber(String numberInFormat, NumberFormat format, WordSize wordSize) throws Exception {
+        this.numberString = numberInFormat;
+        this.wordSize = wordSize;
+        this.numberFormat = format;
+        this.number = format.convRadixToDecimal(numberInFormat,wordSize);
+//        System.out.println("Decimal:" + number);
+    }
+
+    public CNumber(double number) {
         this(new BigDecimal(number));
     }
-    
+
     public CNumber(BigDecimal number) {
         this.numberString = number.toString();
         this.numberFormat = NumberFormat.NORMAL_DECIMAL;
@@ -73,11 +83,11 @@ public class CNumber {
         return numberFormat;
     }
 
-    public CNumber setNumberFormat(NumberFormat numberFormat) {
-        numberString = NumberFormat.convDecimalToRadix(number, numberFormat.radix);
-        if (numberFormat.formatType.equals(FormatType.GROUPING)) {
-            numberString = numberFormat.groupNumber(numberString);
-        }
+    public CNumber setNumberFormat(NumberFormat numberFormat) throws Exception {
+        numberString = numberFormat.convDecimalToRadix(number, wordSize);
+//        if (this.numberFormat.formatType.equals(FormatType.NORMAL) && numberFormat.formatType.equals(FormatType.GROUPING)) {
+//            numberString = numberFormat.groupNumber(numberString);
+//        }
         this.numberFormat = numberFormat;
         return this;
     }
@@ -93,6 +103,7 @@ public class CNumber {
     public void setNumber(BigDecimal number) {
         this.number = number;
     }
+
     public void setNumber(CNumber number) {
         this.numberString = number.numberString;
         this.numberFormat = number.numberFormat;
@@ -100,11 +111,21 @@ public class CNumber {
     }
 
     public String getBinaryValue() {
-        return NumberFormat.convDecimalToRadix(number, 2);
+        try {
+            return numberFormat.convDecimalToRadix(number, wordSize);
+        } catch (Exception ex) {
+            Logger.getLogger(CNumber.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     public String getHexaValue() {
-        return NumberFormat.convDecimalToRadix(number, 16);
+        try {
+            return numberFormat.convDecimalToRadix(number, wordSize);
+        } catch (Exception ex) {
+            Logger.getLogger(CNumber.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     public String getDecimalValue() {
@@ -112,29 +133,64 @@ public class CNumber {
     }
 
     public String getOctalValue() {
-        return NumberFormat.convDecimalToRadix(number, 8);
+        try {
+            return numberFormat.convDecimalToRadix(number,wordSize);
+        } catch (Exception ex) {
+            Logger.getLogger(CNumber.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     public CNumber add(CNumber n) {
-        return new CNumber(number.add(n.number)).setNumberFormat(numberFormat);
+        try {
+            return new CNumber(number.add(n.number)).setNumberFormat(numberFormat);
+        } catch (Exception ex) {
+            Logger.getLogger(CNumber.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     public CNumber substract(CNumber n) {
-        return new CNumber(number.subtract(n.number)).setNumberFormat(numberFormat);
+        try {
+            return new CNumber(number.subtract(n.number)).setNumberFormat(numberFormat);
+        } catch (Exception ex) {
+            Logger.getLogger(CNumber.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     public CNumber multiply(CNumber n) {
-        return new CNumber(number.multiply(n.number)).setNumberFormat(numberFormat);
+        try {
+            return new CNumber(number.multiply(n.number)).setNumberFormat(numberFormat);
+        } catch (Exception ex) {
+            Logger.getLogger(CNumber.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     public CNumber divide(CNumber n) {
-        return new CNumber(number.divide(n.number, MathContext.DECIMAL128)).setNumberFormat(numberFormat);
+        try {
+            return new CNumber(number.divide(n.number, MathContext.DECIMAL128)).setNumberFormat(numberFormat);
+        } catch (Exception ex) {
+            Logger.getLogger(CNumber.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     public static void main(String[] args) throws ParseException {
+//        System.out.println(Long.toUnsignedString(33333, 32));
         try {
-            CNumber n = new CNumber("1 0000", NumberFormat.GROUPING_BINARY);
+//            System.out.println(new CNumber("-2215", NumberFormat.NORMAL_DECIMAL, WordSize.WORD));
+//        System.out.println(NORMAL_BINARY.convRadixToDecimal(NORMAL_BINARY.convDecimalToRadix(new BigDecimal("-2215"), WordSize.WORD), WordSize.WORD));
+//        System.out.println(NORMAL_BINARY.convRadixToDecimal("10111100001", WordSize.WORD).toString());
+            CNumber n = new CNumber("9275", NumberFormat.NORMAL_DECIMAL);
+            System.out.println("add:"+n.add(n).number);
+            System.out.println("substract:"+n.substract(n).number);
+            System.out.println("multiply:"+n.multiply(n).number);
+            System.out.println("divide:"+n.divide(n).number);
+
             for (NumberFormat f : NumberFormat.values()) {
+                System.out.println(f.toString());
                 n.setNumberFormat(f);
                 test(n);
             }
@@ -144,8 +200,9 @@ public class CNumber {
     }
 
     public static void test(CNumber n) {
-        System.out.println("======================");
         System.out.println(n.getNumberString());
+        System.out.println("======================");
+
     }
 
     public boolean equalsTo(CNumber number) {

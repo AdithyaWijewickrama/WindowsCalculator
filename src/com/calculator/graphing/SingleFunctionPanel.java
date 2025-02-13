@@ -447,8 +447,6 @@ public class SingleFunctionPanel extends javax.swing.JPanel {
         }
         if (!getText().equals("")) {
             try {
-                ExpressionEvaluator parser = new ExpressionEvaluator(getText());
-
                 basicFunction = new BasicFunction(getText(), "x");
                 basicFunction.setColor(color);
                 basicFunction.setStroke(lineOptions.getStyle());

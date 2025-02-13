@@ -63,7 +63,7 @@ public abstract class ProgrammerNumberPanel extends CommonNumberPanel {
             } else {
                 t = Token.getTokenByKey(key);
             }
-            System.out.println(key);
+//            System.out.println(key);
             if (KeyEvent.VK_ENTER == key) {
                 if (getLastShowedToken() == Token.EQUAL) {
                     int i = scanFor(show, TokenType.OPARATOR);
@@ -98,6 +98,7 @@ public abstract class ProgrammerNumberPanel extends CommonNumberPanel {
                     tokenDigits.clear();
                     tokenDigits.addToken(ZEROTOKEN);
                 }
+//                System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"+getTypedNumber().getNumberString()+"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
                 setNumber(getTypedNumber());
                 setNumberToRadixPanel(currentNumber.number);
             } else if (t != null) {
@@ -111,12 +112,12 @@ public abstract class ProgrammerNumberPanel extends CommonNumberPanel {
 
     @Override
     public void reset() {
-        currentNumber = ZEROTOKEN;
-        show.clear();
-        tokensWithinSplitters.clear();
-        enter.clear();
-        tokenDigits.clear();
-        tokenDigits.addToken(ZEROTOKEN);
+//        currentNumber = ZEROTOKEN;
+//        show.clear();
+//        tokensWithinSplitters.clear();
+//        enter.clear();
+//        tokenDigits.clear();
+//        tokenDigits.addToken(ZEROTOKEN);
     }
 
     @Override
@@ -127,7 +128,7 @@ public abstract class ProgrammerNumberPanel extends CommonNumberPanel {
                     if (getLastShowedToken() == Token.EQUAL) {
                         show.clear();
                     }
-                    System.out.println(tokenDigits);
+//                    System.out.println(tokenDigits);
                     if (token.equalsTo(Token.DOT)) {
                         if (tokenDigits.find(token) != -1) {
                             break;
@@ -324,7 +325,7 @@ public abstract class ProgrammerNumberPanel extends CommonNumberPanel {
             CNumber t = getValue(token.equalsTo(Token.EQUAL));
             if (t != null) {
                 currentNumber = new Token(TokenType.NUMBER, t);
-                System.out.println("ANSWER\t" + t.getNumberString());
+//                System.out.println("ANSWER\t" + t.getNumberString());
                 setNumber(t);
                 setNumberToRadixPanel(currentNumber.number);
             }
@@ -348,9 +349,9 @@ public abstract class ProgrammerNumberPanel extends CommonNumberPanel {
                 }
             }
         }
-        System.out.println("[ENTER]" + enter.toLocalString());
-        System.out.println("[TOKENS]" + tokensWithinSplitters.toString());
-        System.out.println("[SHOW]" + show.toLocalString());
+//        System.out.println("[ENTER]" + enter.toLocalString());
+//        System.out.println("[TOKENS]" + tokensWithinSplitters.toString());
+//        System.out.println("[SHOW]" + show.toLocalString());
     }
 
     @Override
@@ -420,8 +421,12 @@ public abstract class ProgrammerNumberPanel extends CommonNumberPanel {
 
     @Override
     public void setNumber(CNumber number) {
-        numberText.setText(number.setNumberFormat(showingFormat).getNumberString());
-        setNumberToRadixPanel(number);
+        try {
+            numberText.setText(number.setNumberFormat(showingFormat).getNumberString());
+            setNumberToRadixPanel(number);
+        } catch (Exception ex) {
+            Logger.getLogger(ProgrammerNumberPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     private boolean isTokensEmpty() {
@@ -452,7 +457,6 @@ public abstract class ProgrammerNumberPanel extends CommonNumberPanel {
 
             @Override
             public void setNumberToRadixPanel(CNumber number) {
-                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
             }
         };
         JFrame frame = new JFrame("Common number field");

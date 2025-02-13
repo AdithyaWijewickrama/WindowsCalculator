@@ -23,14 +23,15 @@ public abstract class ButtonLayout {
     private String layoutString;
     private int layout = COLUMN;
     private char[][] buttonsCoordinates;
-    private Point point = new Point(-1,-1);
+    private Point point = new Point(-1, -1);
 
     public ButtonLayout(String layoutString) {
         this.layoutString = layoutString;
     }
-    public ButtonLayout(String layoutString,int layout) {
+
+    public ButtonLayout(String layoutString, int layout) {
         this.layoutString = layoutString;
-        this.layout=layout;
+        this.layout = layout;
     }
 
     public final void parse() throws Exception {
@@ -73,8 +74,10 @@ public abstract class ButtonLayout {
         return layoutString;
     }
 
-    public void setLayoutString(String layoutString) {
+    public void setLayoutString(String layoutString) throws Exception {
         this.layoutString = layoutString;
+        parse();
+        update();
     }
 
     public int getLayout() {
@@ -125,25 +128,25 @@ public abstract class ButtonLayout {
         }
         return i;
     }
-    
-    public char get(int x,int y){
+
+    public char get(int x, int y) {
         return buttonsCoordinates[y][x];
     }
-    
-    public int area(){
-        return width*height;
+
+    public int area() {
+        return width * height;
     }
 
     public void newIterator() {
-        point = new Point(-1,-1);
+        point = new Point(-1, -1);
     }
 
     public boolean hasNext() {
-        return !(point.x+1>width-1&&point.y+1>height-1);
+        return !(point.x + 1 > width - 1 && point.y + 1 > height - 1);
     }
 
     public char getNext() {
-        System.out.println(point);
+//        System.out.println(point);
         if (!hasNext()) {
             return ERROR;
         }
@@ -160,20 +163,24 @@ public abstract class ButtonLayout {
                 point.y++;
             }
         }
-        if(point.x==-1)point.x++;
-        if(point.y==-1)point.y++;
+        if (point.x == -1) {
+            point.x++;
+        }
+        if (point.y == -1) {
+            point.y++;
+        }
         return buttonsCoordinates[point.y][point.x];
     }
-    
-    public String toString(){
-        String s="";
-         for (char[] buttonsCoordinate : getButtonsCoordinates()) {
-                for (char c : buttonsCoordinate) {
-                    s+="[" + c + "]";
-                }
-                s+="\n";
+
+    public String toString() {
+        String s = "";
+        for (char[] buttonsCoordinate : getButtonsCoordinates()) {
+            for (char c : buttonsCoordinate) {
+                s += "[" + c + "]";
             }
-         return s;
+            s += "\n";
+        }
+        return s;
     }
 
     public abstract void update();
@@ -184,16 +191,26 @@ public abstract class ButtonLayout {
                     + "#.###\n"
                     + "#*###\n"
                     + "#####\n"
-                    + "#.###",ROW) {
+                    + "#.###", ROW) {
                 @Override
                 public void update() {
                 }
             };
             b.parse();
             System.out.println(b);
-            while(b.hasNext()){
+            while (b.hasNext()) {
                 System.out.println(b.getNext());
-        }
+            }
+            b.setLayoutString(""
+                    + "#.#*#\n"
+                    + "*****\n"
+                    + "#####\n"
+                    + "#.###");
+            b.parse();
+            System.out.println(b);
+            while (b.hasNext()) {
+                System.out.println(b.getNext());
+            }
         } catch (Exception ex) {
             Logger.getLogger(ButtonLayout.class.getName()).log(Level.SEVERE, null, ex);
         }

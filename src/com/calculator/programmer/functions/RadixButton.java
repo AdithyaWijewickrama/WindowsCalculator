@@ -5,6 +5,8 @@ import com.calculate.CNumber;
 import com.calculate.NumberFormat;
 import com.calculator.commonCalculator.Ui;
 import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.UIManager;
 
 /**
@@ -20,6 +22,7 @@ public abstract class RadixButton extends javax.swing.JPanel {
      */
     public RadixButton(Base radix) {
         initComponents();
+        mouseExit();
         jLabel1.setText(radix.name());
         this.radix = radix;
         java.awt.event.MouseAdapter listner = new java.awt.event.MouseAdapter() {
@@ -51,9 +54,14 @@ public abstract class RadixButton extends javax.swing.JPanel {
     }
 
     public void setNumber(CNumber n) {
-        String s=n.setNumberFormat(NumberFormat.getGroupingNumberFormat(radix)).getNumberString();
+        String s;
+        try {
+            s = n.setNumberFormat(NumberFormat.getGroupingNumberFormat(radix)).getNumberString();
         jTextArea1.setText(s);
-        System.out.println(s);
+//        System.out.println(s);
+        } catch (Exception ex) {
+            Logger.getLogger(RadixButton.class.getName()).log(Level.SEVERE, null, ex);
+        }
 //        setBoundsRelativeToText();
     }
 
@@ -101,15 +109,15 @@ public abstract class RadixButton extends javax.swing.JPanel {
         jLabel1.setPreferredSize(new java.awt.Dimension(30, 30));
         add(jLabel1);
 
-        jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
+        jTextArea1.setLineWrap(true);
         jTextArea1.setRows(5);
         jTextArea1.setText("0");
         jTextArea1.setAlignmentX(0.0F);
         jTextArea1.setMargin(new java.awt.Insets(6, 2, 6, 10));
-        jTextArea1.setMaximumSize(new java.awt.Dimension(10000, 30));
+        jTextArea1.setMaximumSize(new java.awt.Dimension(10000, 100));
         jTextArea1.setMinimumSize(new java.awt.Dimension(300, 20));
-        jTextArea1.setPreferredSize(new java.awt.Dimension(300, 30));
+        jTextArea1.setPreferredSize(new java.awt.Dimension(300, 100));
         add(jTextArea1);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -122,7 +130,7 @@ public abstract class RadixButton extends javax.swing.JPanel {
         setBackground(c);
     }
 
-    public void mouseExit() {
+    public final void mouseExit() {
         Color c = (Color) UIManager.get("Panel.background");
         jTextArea1.setBackground(c);
         setBackground(c);
@@ -141,6 +149,7 @@ public abstract class RadixButton extends javax.swing.JPanel {
         if (h != -1) {
             Ui.setSize(jTextArea1, jTextArea1.getWidth(), h + 12);
             Ui.setSize(this, getWidth(), h + 20);
+//            System.out.println(jTextArea1.getSize());
         }
     }
 }

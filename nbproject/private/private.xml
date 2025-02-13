@@ -3,34 +3,25 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/calculator/programmer/QuadrantBitKeyPanel.java</file>
             <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/calculator/programmer/ProgrammerNumberPanel.java</file>
+            <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/calculator/converter/CommonConverter.java</file>
             <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/calculator/graphing/GraphPanel.java</file>
-            <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/calculate/CNumber.java</file>
-            <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/calculate/NumberFormat.java</file>
-            <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/calculate/equation/Triaganometry.java</file>
-            <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/calculator/dateCalculation/DateCalculation.java</file>
-            <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/calculate/calculus/Function_.java</file>
-            <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/calculator/programmer/ProgrammerKeyPanel.java</file>
-            <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/calculator/commonCalculator/Ui.java</file>
-            <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/calculator/commonCalculator/CommonKeyPanel.java</file>
-            <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/calculate/equation/Calculate.java</file>
-            <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/calculator/graphing/BasicFunction.java</file>
-            <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/main/Main.java</file>
-            <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/calculator/graphing/SingleFunctionPanel.java</file>
-            <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/calculate/equation/ExpressionEvaluator.java</file>
-            <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/calculator/programmer/functions/RadixButton.java</file>
-            <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/calculator/standard/StandardFrame.java</file>
-            <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/database/Sql.java</file>
-            <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/database/DbConnect.java</file>
+            <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/calculator/commonCalculator/button/ButtonList.java</file>
+            <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/calculator/programmer/wordSize/QuadrantBitKeyPanel.java</file>
             <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/calculator/programmer/ProgrammerFrame.java</file>
             <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/tokenizing/Token.java</file>
+            <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/calculator/commonCalculator/button/ButtonLayout.java</file>
+            <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/calculator/graphing/GraphPlotter.java</file>
             <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/calculator/graphing/FunctionPanel.java</file>
             <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/calculator/programmer/functions/RadixSelector.java</file>
-            <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/calculator/commonCalculator/CommonNumberPanel.java</file>
-            <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/calculator/commonCalculator/history/HistoryCell.java</file>
+            <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/calculator/programmer/optionsBar.java</file>
+            <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/calculator/commonCalculator/CommonKeyPanel.java</file>
+            <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/calculator/graphing/GraphingFrame.java</file>
+            <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/calculator/commonCalculator/button/CommonButton.java</file>
+            <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/calculator/converter/Converts.java</file>
             <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/calculator/converter/convert/Units.java</file>
-            <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/tokenizing/TokenParser.java</file>
+            <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/main/Main.java</file>
+            <file>file:/E:/Projects%20-%20Java/NetBeans/WindowsCalculator/src/com/calculator/programmer/wordSize/BitKeyPanel.java</file>
         </group>
     </open-files>
 </project-private>

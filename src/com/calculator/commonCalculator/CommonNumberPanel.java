@@ -90,7 +90,11 @@ public abstract class CommonNumberPanel extends javax.swing.JPanel {
     }
 
     public void setNumber(CNumber number) {
-        numberText.setText(number.setNumberFormat(showingFormat).getNumberString());
+        try {
+            numberText.setText(number.setNumberFormat(showingFormat).getNumberString());
+        } catch (Exception ex) {
+            Logger.getLogger(CommonNumberPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void setEquation(TokenList tl) {
@@ -104,7 +108,11 @@ public abstract class CommonNumberPanel extends javax.swing.JPanel {
             } else if (t.equalsTo(Token.CLOSE_PRANTHESIS)) {
                 text += String.format(" %s ", t.toLocalString());
             } else if (t.type == TokenType.NUMBER) {
-                text += t.number.setNumberFormat(showingFormat).getNumberString();
+                try {
+                    text += t.number.setNumberFormat(showingFormat).getNumberString();
+                } catch (Exception ex) {
+                    Logger.getLogger(CommonNumberPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } else {
                 text += t.toLocalString();
             }
@@ -158,11 +166,19 @@ public abstract class CommonNumberPanel extends javax.swing.JPanel {
     }
 
     public void addMemory(CNumber add) {
-        setNumber(getNumber().add(add));
+        try {
+            setNumber(getNumber().add(add));
+        } catch (Exception ex) {
+            Logger.getLogger(CommonNumberPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void subMemory(CNumber add) {
-        setNumber(getNumber().substract(add));
+        try {
+            setNumber(getNumber().substract(add));
+        } catch (Exception ex) {
+            Logger.getLogger(CommonNumberPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public abstract void addHistory(TokenList equation, CNumber answer);

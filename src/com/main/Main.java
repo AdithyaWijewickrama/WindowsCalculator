@@ -33,11 +33,11 @@ public class Main extends javax.swing.JFrame {
     public static final int TOP_HEIGHT = 40;
     public static Dimension maxSize = new Dimension(6000, 6000);
     public static Dimension minSize = new Dimension(400, 600);
-    private StandardFrame standardFrame=new StandardFrame();
-    private ScientificFrame scientificFrame=new ScientificFrame();
-    private ProgrammerFrame programmerFrame=new ProgrammerFrame();
-    private GraphingFrame graphingFrame=new GraphingFrame();
-    private DateCalculation dateCalculation=new DateCalculation();
+    private final StandardFrame standardFrame=new StandardFrame();
+    private final ScientificFrame scientificFrame=new ScientificFrame();
+    private final ProgrammerFrame programmerFrame=new ProgrammerFrame();
+    private final GraphingFrame graphingFrame=new GraphingFrame();
+    private final DateCalculation dateCalculation=new DateCalculation();
 
     /**
      * Creates new form Main
@@ -620,17 +620,22 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton17ActionPerformed
 
     public void setFrame(int type) {
+        calculatorPanel.removeAll();
         switch (type) {
             case STANDARD:
                 calculatorPanel.add(standardFrame);
                 break;
             case SCIENTIFIC:
+                calculatorPanel.add(scientificFrame);
                 break;
             case PROGRAMMER:
+                calculatorPanel.add(programmerFrame);
                 break;
             case GRAPHING:
+                calculatorPanel.add(graphingFrame);
                 break;
             case DATE_CALCULATION:
+                calculatorPanel.add(dateCalculation);
                 break;
             case CURRENCY:
             case VOLUME:
@@ -649,6 +654,8 @@ public class Main extends javax.swing.JFrame {
             default:
                 throw new AssertionError();
         }
+        calculatorPanel.revalidate();
+        calculatorPanel.repaint();
     }
 
     public static final int STANDARD = 0;

@@ -42,7 +42,7 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class CommonKeyPanel extends javax.swing.JPanel {
 
-    final ButtonList buttons;
+    public final ButtonList buttons;
     final ArrayList<JPanel> blocks;
     final CommonNumberPanel parentText;
 

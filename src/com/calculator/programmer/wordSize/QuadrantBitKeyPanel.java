@@ -1,4 +1,4 @@
-package com.calculator.programmer;
+package com.calculator.programmer.wordSize;
 
 import com.calculator.commonCalculator.Ui;
 import static com.main.FrontFrame.APP_THEME;
@@ -16,6 +16,8 @@ public class QuadrantBitKeyPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form BitKeyPanel
+     *
+     * @param exponent
      */
     public QuadrantBitKeyPanel(int exponent) {
         this.exponent = exponent;
@@ -24,7 +26,7 @@ public class QuadrantBitKeyPanel extends javax.swing.JPanel {
     }
 
     public void setBit(int i, int bit) {
-        if(i<0||i>4||(bit!=0&&bit!=1)){
+        if (i < 0 || i > 3 || (bit != 0 && bit != 1)) {
             return;
         }
         JButton b;
@@ -45,6 +47,7 @@ public class QuadrantBitKeyPanel extends javax.swing.JPanel {
                 throw new AssertionError();
         }
         b.setText(bit + "");
+
         switch (bit) {
             case 0:
                 b.setForeground((Color) UIManager.get("Buttton.foreground"));
@@ -56,13 +59,35 @@ public class QuadrantBitKeyPanel extends javax.swing.JPanel {
                 throw new AssertionError();
         }
     }
-    
-    public String getBinaryString(){
-        return bin1.getText()+bin2.getText()+bin3.getText()+bin4.getText();
+
+    public String getBinaryString() {
+        return bin1.getText() + bin2.getText() + bin3.getText() + bin4.getText();
     }
-    
-    public String getBinaryValue(){
-        return getBinaryString()+"0".repeat(exponent);
+
+    public String getBinaryValue() {
+        return getBinaryString() + "0".repeat(exponent);
+    }
+
+    private boolean enabled = true;
+
+    public void enablePanel(boolean enable) {
+        if (enabled != enable) {
+            if(!enable){
+                bin1.setText("0");
+                bin2.setText("0");
+                bin3.setText("0");
+                bin4.setText("0");
+            }
+            bin1.setEnabled(enable);
+            bin2.setEnabled(enable);
+            bin3.setEnabled(enable);
+            bin4.setEnabled(enable);
+            enabled=!enabled;
+        }
+    }
+
+    public int getExponent() {
+        return exponent;
     }
 
     /**
@@ -122,11 +147,6 @@ public class QuadrantBitKeyPanel extends javax.swing.JPanel {
         bin4.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
         bin4.setText("0");
         bin4.setBorder(null);
-        bin4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                bin4setBinKey(evt);
-            }
-        });
         bin4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bin4ActionPerformed(evt);
@@ -157,27 +177,21 @@ public class QuadrantBitKeyPanel extends javax.swing.JPanel {
         binKeyPanel0Layout.setVerticalGroup(
             binKeyPanel0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(binKeyPanel0Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(binKeyPanel0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bin4)
                     .addComponent(bin3)
                     .addComponent(bin2)
                     .addComponent(bin1))
-                .addGap(10, 10, 10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel12.add(binKeyPanel0);
 
         add(jPanel12);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void bin4setBinKey(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bin4setBinKey
-        JButton b = (JButton) evt.getSource();
-        b.setText(b.getText().equals("0") ? "1" : "0");
-        b.setForeground(b.getText().equals("0") ? b.getParent().getBackground() : APP_THEME);
-    }//GEN-LAST:event_bin4setBinKey
 
     private void bin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bin1ActionPerformed
         setBit(0, ((JButton) evt.getSource()).getText().equals("1") ? 0 : 1);
@@ -192,7 +206,7 @@ public class QuadrantBitKeyPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_bin3ActionPerformed
 
     private void bin4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bin4ActionPerformed
-        setBit(4, ((JButton) evt.getSource()).getText().equals("1") ? 0 : 1);
+        setBit(3, ((JButton) evt.getSource()).getText().equals("1") ? 0 : 1);
     }//GEN-LAST:event_bin4ActionPerformed
 
 

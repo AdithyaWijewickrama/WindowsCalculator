@@ -60,10 +60,10 @@ public class GraphPanel extends JPanel implements Runnable {
                     xScale = xScaleFactor;
                     yScale = yScaleFactor;
                 } else {
-                    xScaleFactor = (newWidth - margin * 2) / xScaleFactor;
-                    yScaleFactor = (newHeight - margin * 2) / yScaleFactor;
-                    xScale = xScaleFactor;
-                    yScale = yScaleFactor;
+//                    xScaleFactor = (newWidth - margin * 2) / xScaleFactor;
+//                    yScaleFactor = (newHeight - margin * 2) / yScaleFactor;
+//                    xScale = xScaleFactor;
+//                    yScale = yScaleFactor;
                 }
                 if (center == null) {
                     center = new Point();

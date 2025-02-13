@@ -4,13 +4,13 @@ import Programmer.Base;
 import com.tokenizing.TokenList;
 import com.calculate.CNumber;
 import com.calculator.commonCalculator.Ui;
-import com.calculator.commonCalculator.history.HistoryCell;
-import com.calculator.commonCalculator.history.HistoryPanel;
-import com.calculator.commonCalculator.memory.MemoryBar;
 import com.calculator.commonCalculator.memory.MemoryCell;
 import com.calculator.commonCalculator.memory.MemoryPanel;
 import com.calculator.programmer.functions.RadixSelector;
 import com.calculator.programmer.functions.FunctionsPanel;
+import com.calculator.programmer.wordSize.BitKeyPanel;
+import com.calculator.programmer.wordSize.WordSize;
+import static com.calculator.programmer.wordSize.WordSize.*;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Color;
 import java.util.logging.Level;
@@ -32,7 +32,7 @@ public class ProgrammerFrame extends javax.swing.JPanel {
     public FunctionsPanel functionsPanel;
     public ProgrammerKeyPanel keyPanel;
     public MemoryPanel memoryPanel;
-    public MemoryBar memoryBar;
+    public BitKeyPanel bitKeyPanel;
 
     /**
      * Creates new form Standard
@@ -46,30 +46,73 @@ public class ProgrammerFrame extends javax.swing.JPanel {
 
             @Override
             public void setNumberToRadixPanel(CNumber number) {
-                radixSelector.setNumber(number);
+                if (radixSelector != null) {
+                    radixSelector.setNumber(number);
+                }
             }
         };
-        functionsPanel=new FunctionsPanel(numberPanel);
+        bitKeyPanel = new BitKeyPanel();
+        functionsPanel = new FunctionsPanel(numberPanel);
         keyPanel = new ProgrammerKeyPanel(numberPanel);
         memoryPanel = new MemoryPanel();
-        radixSelector=new RadixSelector() {
+        radixSelector = new RadixSelector() {
             @Override
             public void radixChoosed(Base radix) {
-                
+                numberPanel.setRadix(radix);
+                String pattern = ""
+                        + "#####\n"
+                        + "#####\n"
+                        + "#####\n"
+                        + "#####\n"
+                        + "#####\n"
+                        + "#####\n";
+                switch (radix) {
+                    case BIN:
+                        pattern = ""
+                                + "*####\n"
+                                + "*####\n"
+                                + "****#\n"
+                                + "****#\n"
+                                + "*#**#\n"
+                                + "*##*#\n";
+                        break;
+                    case OCT:
+                        pattern = ""
+                                + "*####\n"
+                                + "*####\n"
+                                + "*#**#\n"
+                                + "*####\n"
+                                + "*####\n"
+                                + "*####\n";
+                        break;
+                    case DEC:
+                        pattern = ""
+                                + "*####\n"
+                                + "*####\n"
+                                + "*####\n"
+                                + "*####\n"
+                                + "*####\n"
+                                + "*####\n";
+                        break;
+                }
+                try {
+                    keyPanel.keyPanel.buttons.setLayoutString(pattern);
+                } catch (Exception ex) {
+                    Logger.getLogger(ProgrammerFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         };
-        memoryBar=new MemoryBar(memoryPanel, numberPanel);
-        jTabbedPane1.add("Memory",memoryPanel);
+        jTabbedPane1.add("Memory", memoryPanel);
         mainPanel.add(numberPanel);
         mainPanel.add(radixSelector);
-        mainPanel.add(memoryBar);
+        mainPanel.add(jPanel1);
         JSeparator seperater = new JSeparator(SwingConstants.HORIZONTAL);
         Ui.setSize(seperater, 10000, 10);
         mainPanel.add(seperater);
         mainPanel.add(functionsPanel);
         mainPanel.add(keyPanel);
         numberPanel.setAlignmentY(0.f);
-        memoryBar.setAlignmentY(0.f);
+        jPanel1.setAlignmentY(0.f);
         keyPanel.setAlignmentY(0.f);
     }
 
@@ -81,6 +124,10 @@ public class ProgrammerFrame extends javax.swing.JPanel {
             }
         });
     }
+
+    boolean bitKeyPanelEnabled = false;
+    WordSize wordSize = BYTE;
+    int wordSizeIndex;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -94,6 +141,11 @@ public class ProgrammerFrame extends javax.swing.JPanel {
         sidePanel = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jToolBar1 = new javax.swing.JToolBar();
+        jPanel1 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         mainPanel = new javax.swing.JPanel();
 
         sidePanel.setMaximumSize(new java.awt.Dimension(300, 2147483647));
@@ -105,6 +157,53 @@ public class ProgrammerFrame extends javax.swing.JPanel {
         jToolBar1.setRollover(true);
         jToolBar1.setBorderPainted(false);
 
+        jPanel1.setMaximumSize(new java.awt.Dimension(32767, 60));
+
+        jButton1.setText("ko");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("ko");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("ko");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("ko");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jButton1)
+                .addGap(0, 0, 0)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
+                .addComponent(jButton4)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         setAlignmentX(0.0F);
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.X_AXIS));
 
@@ -115,6 +214,32 @@ public class ProgrammerFrame extends javax.swing.JPanel {
         add(mainPanel);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (bitKeyPanelEnabled) {
+            mainPanel.remove(bitKeyPanel);
+            mainPanel.add(functionsPanel);
+            mainPanel.add(keyPanel);
+            mainPanel.revalidate();
+            mainPanel.repaint();
+            bitKeyPanelEnabled = false;
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if (!bitKeyPanelEnabled) {
+            mainPanel.remove(keyPanel);
+            mainPanel.remove(functionsPanel);
+            mainPanel.add(bitKeyPanel);
+            mainPanel.revalidate();
+            mainPanel.repaint();
+            bitKeyPanelEnabled = true;
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        wordSize = WordSize.values()[wordSizeIndex==3?0:++wordSizeIndex];
+        bitKeyPanel.setWordSize(wordSize);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     public static void main(String[] args) {
         try {
@@ -122,9 +247,9 @@ public class ProgrammerFrame extends javax.swing.JPanel {
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(ProgrammerFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Color background=new Color(30,30,30);
-        Color background2=new Color(50,50,50);
-        Color foreground=new Color(200,200,200);
+        Color background = new Color(30, 30, 30);
+        Color background2 = new Color(50, 50, 50);
+        Color foreground = new Color(200, 200, 200);
         UIManager.put("Button.background", background2);
         UIManager.put("Button.foreground", foreground);
         UIManager.put("Button.focusedBorderColor", background);
@@ -133,13 +258,13 @@ public class ProgrammerFrame extends javax.swing.JPanel {
 //        UIManager.put("Button.font", new Font("Dialog",1,18));
         UIManager.put("TextField.background", background);
         UIManager.put("ToggleButton.background", background);
-        UIManager.put("ToggleButton.selectedBackground", new Color(0,8,10));
+        UIManager.put("ToggleButton.selectedBackground", new Color(0, 8, 10));
         UIManager.put("Panel.background", background);
         UIManager.put("Frame.background", background);
         ProgrammerFrame p = new ProgrammerFrame();
         JFrame frame = new JFrame("Common number field");
         frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        frame.setBounds(200, 200, 300, 400);
+        frame.setBounds(200, 200, 300, 700);
         frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(new javax.swing.BoxLayout(frame.getContentPane(), javax.swing.BoxLayout.PAGE_AXIS));
         frame.getContentPane().add(p);
@@ -161,9 +286,14 @@ public class ProgrammerFrame extends javax.swing.JPanel {
             frame.setVisible(true);
         });
     }
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JToolBar jToolBar1;
     public javax.swing.JPanel mainPanel;
