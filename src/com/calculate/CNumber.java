@@ -1,12 +1,11 @@
 package com.calculate;
 
-import static com.calculate.NumberFormat.NORMAL_BINARY;
-import com.calculator.programmer.wordSize.WordSize;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import programmer.WordSize;
 
 /**
  *

@@ -1,8 +1,11 @@
 .tmp.driveupload/
-/build
+build/
 /build/classes/
 /build/classes/com/calculate/calculus
 /build/classes/com
 /build/classes/com/calculate
 /build/classes/com/calculate/equation
 /build/classes/com/calculate
+/build
+/build/classes
+/build

@@ -16,11 +16,10 @@ public class TokenParser extends TokenList {
     private final String exp;
     private VariableList variableList;
 
-    public TokenParser(String exp) throws Exception {
+    public TokenParser(String exp) {
         super();
         this.exp = exp;
         variableList = new VariableList();
-        parse();
     }
 
     public TokenParser(TokenList tokenList) throws Exception {
@@ -41,7 +40,7 @@ public class TokenParser extends TokenList {
     }
 
     public void setTokenList(TokenList tokenList) {
-        setTokenList(tokenList.tokenList);
+        setTokenArrayList(tokenList.tokenList);
         try {
             updateTokens(this);
         } catch (Exception ex) {

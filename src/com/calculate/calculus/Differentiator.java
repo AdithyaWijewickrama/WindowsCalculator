@@ -1,7 +1,6 @@
 package com.calculate.calculus;
 
 import com.calculate.equation.ExpressionEvaluator;
-import com.calculate.*;
 import com.tokenizing.Token;
 import com.tokenizing.TokenList;
 import com.tokenizing.TokenParser;
@@ -23,6 +22,7 @@ public final class Differentiator extends TokenParser {
 
     public Differentiator(String exp) throws Exception {
         super(exp);
+        parse();
     }
 
     public Differentiator(TokenList tokens) throws Exception {
@@ -30,7 +30,10 @@ public final class Differentiator extends TokenParser {
     }
 
     public TokenList differentiate(int coefficient) throws Exception {
-        if (coefficient <= 0) {
+        if(coefficient <0){
+            throw new RuntimeException("Cannot have a negetive coefficient");
+        }
+        if (coefficient == 0) {
             return this;
         }
         if (hasIndependent()||hasDependent()) {
@@ -57,21 +60,21 @@ public final class Differentiator extends TokenParser {
         int index;
         Token token;
         TokenList list = new TokenList();
-        Calculus c = null;
+        DifferentialCalculus c = null;
         index = scanFor(tokens, Token.PLUS);
         if (index != -1) {
             token = tokens.tokenAt(index);
-            c = new Oparator((tokens.split(0, index)), token, (tokens.split(index + 1, tokens.size())));
+            c = new Operator((tokens.split(0, index)), token, (tokens.split(index + 1, tokens.size())));
         } else {
             index = scanFor(tokens, Token.MINUS);
             if (index != -1) {
                 token = tokens.tokenAt(index);
-                c = new Oparator((tokens.split(0, index)), token, (tokens.split(index + 1, tokens.size())));
+                c = new Operator((tokens.split(0, index)), token, (tokens.split(index + 1, tokens.size())));
             } else {
                 index = scanFor(tokens, TokenType.OPARATOR);
                 if (index != -1) {
                     token = tokens.tokenAt(index);
-                    c = new Oparator((tokens.split(0, index)), token, (tokens.split(index + 1, tokens.size())));
+                    c = new Operator((tokens.split(0, index)), token, (tokens.split(index + 1, tokens.size())));
                 } else {
                     index = scanFor(tokens, TokenType.FUNCTION_);
                     if (index != -1) {
@@ -212,14 +215,14 @@ public final class Differentiator extends TokenParser {
         String cmd;
         OUTER:
         do {
-            System.out.print("\nGive an function to differentiate:\n\t");
+            System.out.print("\nGive an function to differentiate:\n\t"+"Differentiator.java:218");
             cmd = s.nextLine();
             if (cmd.isEmpty()) {
-                break;
+                continue;
             }
             try {
                 t = new Differentiator(cmd);
-                t.differentiate(2);
+                t.differentiate(1);
 //                System.out.print("\nValue at/(n for next space for extit):\n\t");
 //                cmd = s.nextLine();
 //                switch (cmd) {

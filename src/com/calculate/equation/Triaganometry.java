@@ -1,6 +1,5 @@
 package com.calculate.equation;
 
-import Convert.Angle;
 import com.tokenizing.Token;
 import com.calculate.CNumber;
 import static com.tokenizing.Token.ACOS;
@@ -29,6 +28,7 @@ import static com.tokenizing.Token.TAN;
 import static com.tokenizing.Token.TANH;
 import static com.calculate.equation.Triaganometry.InverseHyperbolicFunctions.acosh;
 import static com.calculate.equation.Triaganometry.InverseHyperbolicFunctions.asinh;
+import convert.Angle;
 import static org.apache.commons.math3.util.FastMath.atanh;
 
 /**

@@ -1,17 +1,15 @@
 package com.main;
 
-import com.calculator.converter.Converts;
 import com.calculator.commonCalculator.history.HistoryPanel;
 import com.calculator.commonCalculator.memory.MemoryPanel;
 import com.calculator.graphing.FunctionPanel;
 import com.calculator.graphing.Graphical;
-import Programmer.Base;
-import static Programmer.Base.OCT;
-import Programmer.Decimal;
 import com.calculator.dateCalculation.DateCalculation;
 import com.codes.Scifi;
 import com.codes.Trigonometry;
 import com.calculator.commonCalculator.Ui;
+import com.calculator.converter.Converts;
+import com.calculator.graphing.GraphPanel;
 import com.database.DbConnect;
 import static com.database.Sql.Execute;
 import static com.database.Sql.ExecuteSQL;
@@ -29,12 +27,9 @@ import static com.calculator.converter.Converts.getComboModel;
 import static com.calculator.converter.Converts.getFocus;
 import static com.calculator.graphing.Graphical.getUIColor;
 import static com.calculator.graphing.Graphical.getUIColorType;
-import grapher.GraphPanel;
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -60,6 +55,8 @@ import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import org.apache.commons.math3.special.Gamma;
+import programmer.Base;
+import programmer.Decimal;
 
 public final class FrontFrame extends javax.swing.JFrame {
 
@@ -80,7 +77,6 @@ public final class FrontFrame extends javax.swing.JFrame {
     public boolean startNew = false;
     public Double value = 0.;
     String COLOR = "White";
-    Prog prog = new Prog(Base.DEC);
     JTextField calTxt;
     public static final char PLUS = '+';
     public static final char SUB = '-';
@@ -185,16 +181,16 @@ public final class FrontFrame extends javax.swing.JFrame {
         jButton2.doClick();
         jScrollPane5.getVerticalScrollBar().setUnitIncrement(100);
         setProgHover(() -> {
-            setPogrammer(Base.DEC);
+            getPogrammer(Base.DEC);
         }, decBar, decTxt, decLabel);
         setProgHover(() -> {
-            setPogrammer(Base.BIN);
+            getPogrammer(Base.BIN);
         }, binBar, binTxt, binLabel);
         setProgHover(() -> {
-            setPogrammer(Base.OCT);
+            getPogrammer(Base.OCT);
         }, octBar, octTxt, octLabel);
         setProgHover(() -> {
-            setPogrammer(Base.HEX);
+            getPogrammer(Base.HEX);
         }, hexBar, hexTxt, hexLabel);
     }
 
@@ -355,15 +351,6 @@ public final class FrontFrame extends javax.swing.JFrame {
         equation2.setText(equation.getText());
         equation.setText("" + opr + "(" + Exact(Num) + ") = " + ans + "");
         return ans;
-    }
-
-    public static String Exact(Double val) {
-        String Value;
-        Value = Double.toString(val);
-        if (val % 1 == 0) {
-            return BigDecimal.valueOf(val).toBigInteger().toString();
-        }
-        return Value;
     }
 
     public static String Exact(String value) {
@@ -768,7 +755,7 @@ public final class FrontFrame extends javax.swing.JFrame {
         ArithOpars.setEnabled(b);
     }
 
-    public Prog setPogrammer(Base base) {
+    public Prog getPogrammer(Base base) {
         Prog p = new Prog(base);
         switch (base) {
             case BIN:
@@ -5805,191 +5792,6 @@ public final class FrontFrame extends javax.swing.JFrame {
 
     }
 
-    public class Prog extends Programmer.BaseN {
-
-        private Double answer;
-        private Double firstnum;
-        private Double secondnum;
-        private int numType;
-        private String Opar;
-        protected static final String PLUS = "+";
-        protected static final String SUB = "-";
-        protected static final String MULT = "x";
-        protected static final String DIV = "/";
-        protected static final int BIN = 2;
-        protected static final int HEX = 16;
-        protected static final int OCT = 8;
-        protected static final int DEC = 10;
-
-        public Prog(Base b) {
-            super(b);
-            this.numType = b.BASE;
-            firstnum = getDecimal("0", numType);
-            secondnum = getDecimal("0", numType);
-        }
-
-        public void setValues(String fnum, String snum, int numType, String Opar) {
-            this.numType = numType;
-            firstnum = getDecimal(fnum, numType);
-            secondnum = getDecimal(snum, numType);
-            this.Opar = Opar;
-        }
-
-        public void resetVals() {
-            numType = DEC;
-            firstnum = null;
-            secondnum = null;
-            Opar = null;
-        }
-
-        public String getAns(int numType) {
-            String NTans = null;
-            switch (base) {
-                case BIN:
-                    NTans = DecimaltoNBase(doMath(), 2);
-                    break;
-                case HEX:
-                    NTans = DecimaltoNBase(doMath(), 16);
-                    break;
-                case OCT:
-                    NTans = DecimaltoNBase(doMath(), 8);
-                    break;
-            }
-            return NTans;
-        }
-
-        public Double doMath() {
-            switch (Opar) {
-                case PLUS:
-                    answer = add();
-                    break;
-                case SUB:
-                    answer = sub();
-                    break;
-                case MULT:
-                    answer = mul();
-                    break;
-                case DIV:
-                    answer = div();
-                    break;
-            }
-            return answer;
-        }
-
-        public final Double getDecimal(String bin, int ragex) {
-            Double num = 0.;
-            char Number[] = bin.toCharArray();
-            char arr[] = ("abcdefABCDEF").toCharArray();
-            String nums[] = new String[Number.length];
-            for (int i = 0; i < Number.length; i++) {
-                nums[i] = Character.toString(Number[i]);
-            }
-            double Index1 = 0;
-            for (int Index = bin.length() - 1; Index >= 0; Index--) {
-                for (char c : arr) {
-                    if (c == Number[Index]) {
-                        nums[Index] = Integer.toString(Integer.parseUnsignedInt(Character.toString(Number[Index]), ragex));
-                    }
-                }
-//            System.out.println(num + " + " + (Math.pow(ragex, Index1)) + " * " + Integer.parseInt(nums[Index]) + " = " + (num + (Math.pow(ragex, Index1)) * Integer.parseInt(nums[Index])));
-                num = num + (Math.pow(ragex, Index1)) * Integer.parseInt(nums[Index]);
-                Index1++;
-            }
-            return num;
-        }
-
-        public String getNumType(Integer num, int numType) {
-            String number = null;
-            switch (numType) {
-                case BIN:
-                    number = Integer.toBinaryString(num);
-                    break;
-                case HEX:
-                    number = Integer.toHexString(num);
-                    break;
-                case OCT:
-                    number = Integer.toOctalString(num);
-                    break;
-            }
-            return number;
-        }
-
-        public String DecimaltoNBase(Double Val, Integer ragex) {
-            String dec = "";
-            while (true) {
-                String cc = Double.toString((Val % ragex));
-                if (Val < Integer.MAX_VALUE) {
-                    Val = (double) (Val.intValue() / ragex);
-                } else {
-                    Val = getInteger(Val / ragex.doubleValue());
-                }
-                boolean b = true;
-                Double arr[] = {10., 11., 12., 13., 14., 15.};
-                if (ragex == 16) {
-                    for (Double arr1 : arr) {
-                        if (cc.equals(Double.toString(arr1))) {
-                            cc = Integer.toHexString(arr1.intValue());
-                            b = false;
-                            break;
-                        }
-                    }
-                }
-                if (b) {
-                    cc = Integer.toString((int) (Double.parseDouble(cc)));
-                }
-                dec = String.join("", cc, dec);
-                if (0 >= Val.intValue()) {
-                    break;
-                }
-            }
-            return dec.toUpperCase();
-        }
-
-        public Double getInteger(Double Val) {
-            String vl = Double.toString(Val);
-            char cc[] = vl.toCharArray();
-            boolean b = false;
-            int Index = 0;
-            for (int i = 0; i < cc.length; i++) {
-                if (cc[i] == 'E') {
-                    b = true;
-                    Index = i++;
-                    break;
-                }
-            }
-            if (b) {
-                String vlBeforeE = String.valueOf(cc, 0, Index);
-                String vlAfterE = String.valueOf(cc, Index + 1, cc.length - vlBeforeE.length() - 1);
-                String vlAfterDot = String.valueOf(cc, 2, Index - 2);
-                if (vlAfterDot.length() <= Integer.parseInt(vlAfterE)) {
-                    return Val;
-                } else {
-                    vl = String.copyValueOf(cc, 0, Integer.parseInt(vlAfterE) + 2);
-                    return Double.parseDouble(vl + "E" + Integer.parseInt(vlAfterE));
-                }
-            } else {
-                return Val;
-            }
-
-        }
-
-        private Double add() {
-            return firstnum + secondnum;
-        }
-
-        private Double sub() {
-            return firstnum - secondnum;
-        }
-
-        private Double mul() {
-            return firstnum * secondnum;
-        }
-
-        private Double div() {
-            return firstnum / secondnum;
-        }
-
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBoxMenuItem AOTop;
     private javax.swing.JToolBar ArithOpars;

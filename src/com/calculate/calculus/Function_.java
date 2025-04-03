@@ -1,17 +1,17 @@
 package com.calculate.calculus;
 
-import Convert.Angle;
 import com.tokenizing.Token;
 import static com.tokenizing.Token.*;
 import com.tokenizing.TokenList;
 import com.tokenizing.TokenType;
 import com.calculate.CNumber;
+import convert.Angle;
 
 /**
  *
  * @author AW Developer
  */
-public class Function_ extends Calculus {
+public class Function_ extends DifferentialCalculus {
 
     Token function_;
     Angle angleType = Angle.radians;
@@ -54,25 +54,25 @@ public class Function_ extends Calculus {
                 return new Triaganometry(fx, function_, angleType).doTheMath();
             } else if (function_ == CUBE) {
                 t.addToken(new Token(TokenType.NUMBER, CNumber.parseNumber(3.)));
-                return new Oparator(fx, RAISED, t).doTheMath();
+                return new Operator(fx, RAISED, t).doTheMath();
             } else if (function_ == CUBEROOT) {
                 t.addToken(new Token(TokenType.NUMBER, CNumber.parseNumber(1 / 3.)));
-                return new Oparator(fx, RAISED, t).doTheMath();
+                return new Operator(fx, RAISED, t).doTheMath();
             } else if (function_ == SQUARED) {
                 t.addToken(new Token(TokenType.NUMBER, CNumber.parseNumber(2.)));
-                return new Oparator(fx, RAISED, t).doTheMath();
+                return new Operator(fx, RAISED, t).doTheMath();
             } else if (function_ == SQUREROOT) {
                 t.addToken(new Token(TokenType.NUMBER, CNumber.parseNumber(1 / 2.)));
-                return new Oparator(fx, RAISED, t).doTheMath();
+                return new Operator(fx, RAISED, t).doTheMath();
             } else if (function_ == TENRAISED) {
                 t.addToken(new Token(TokenType.NUMBER, CNumber.parseNumber(10.)));
-                return new Oparator(t, RAISED, fx).doTheMath();
+                return new Operator(t, RAISED, fx).doTheMath();
             } else if (function_ == TWORAISED) {
                 t.addToken(new Token(TokenType.NUMBER, CNumber.parseNumber(2.)));
-                return new Oparator(t, RAISED, fx).doTheMath();
+                return new Operator(t, RAISED, fx).doTheMath();
             } else if (function_ == eRAISED) {
                 t.addToken(new Token(TokenType.NUMBER, e.number));
-                return new Oparator(t, RAISED, fx).doTheMath();
+                return new Operator(t, RAISED, fx).doTheMath();
             } else if (function_ == LOG10) {
                 t.addToken(new Token(TokenType.NUMBER, CNumber.parseNumber(10.)));
                 return new _Function_(LOGBASEY, t, fx).doTheMath();

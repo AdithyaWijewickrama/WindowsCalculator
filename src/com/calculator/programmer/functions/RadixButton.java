@@ -1,6 +1,5 @@
 package com.calculator.programmer.functions;
 
-import Programmer.Base;
 import com.calculate.CNumber;
 import com.calculate.NumberFormat;
 import com.calculator.commonCalculator.Ui;
@@ -8,6 +7,7 @@ import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
+import programmer.Base;
 
 /**
  *

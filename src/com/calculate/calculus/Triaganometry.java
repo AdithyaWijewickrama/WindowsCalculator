@@ -1,9 +1,9 @@
 package com.calculate.calculus;
 
-import Convert.Angle;
 import com.tokenizing.Token;
 import static com.tokenizing.Token.*;
 import com.tokenizing.TokenList;
+import convert.Angle;
 
 /**
  *

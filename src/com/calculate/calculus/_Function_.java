@@ -9,7 +9,7 @@ import com.tokenizing.TokenType;
  *
  * @author AW Developer
  */
-public class _Function_ extends Calculus {
+public class _Function_ extends DifferentialCalculus {
 
     Token _function_;
 
@@ -23,7 +23,7 @@ public class _Function_ extends Calculus {
         TokenList t = new TokenList();
         try {
             if (_function_ == YROOT) {
-                t = new Oparator(gx, RAISED, fx.reciprocal()).doTheMath();
+                t = new Operator(gx, RAISED, fx.reciprocal()).doTheMath();
             } else if (_function_ == LOGBASEY) {
                 t.addToken(OPEN_PRANTHESIS);
                 t.addTokens(gx.reciprocal());

@@ -1,26 +1,26 @@
 package com.calculator.converter;
 
-import Convert.Angle;
-import static Convert.Convert.angle;
-import static Convert.Convert.area;
-import static Convert.Convert.data;
-import static Convert.Convert.length;
-import static Convert.Convert.mass;
-import static Convert.Convert.power;
-import static Convert.Convert.presure;
-import static Convert.Convert.speed;
-import static Convert.Convert.temperature;
-import static Convert.Convert.time;
-import static Convert.Convert.volume;
-import Convert.Data;
-import Convert.Energy;
-import Convert.Length;
-import Convert.Mass;
-import Convert.Power;
-import Convert.Presure;
-import Convert.Temperature;
-import Convert.Time;
-import Convert.Volume;
+import convert.Angle;
+import static convert.Convert.angle;
+import static convert.Convert.area;
+import static convert.Convert.data;
+import static convert.Convert.length;
+import static convert.Convert.mass;
+import static convert.Convert.power;
+import static convert.Convert.presure;
+import static convert.Convert.speed;
+import static convert.Convert.temperature;
+import static convert.Convert.time;
+import static convert.Convert.volume;
+import convert.Data;
+import convert.Energy;
+import convert.Length;
+import convert.Mass;
+import convert.Power;
+import convert.Presure;
+import convert.Temperature;
+import convert.Time;
+import convert.Volume;
 import java.awt.Font;
 import javax.swing.JTextField;
 
@@ -134,9 +134,9 @@ public class Converts {
 
     public static double getConvertedValue(int type, double fVal, Object FU, Object SU, Object FU1, Object SU1) {
         if (type == SPEED) {
-            return speed(0, (Length) FU, (Convert.Time) SU, (Length) FU1, (Convert.Time) SU1);
+            return speed(0, (Length) FU, (Time) SU, (Length) FU1, (Time) SU1);
         } else {
-            return power(fVal, (Energy) FU, (Convert.Time) SU, (Energy) FU1, (Convert.Time) SU1);
+            return power(fVal, (Energy) FU, (Time) SU, (Energy) FU1, (Time) SU1);
         }
     }
 
@@ -169,7 +169,7 @@ public class Converts {
             case ENERGY:
                 break;
             case TIME:
-                val = time(fVal, (Convert.Time) FU, (Convert.Time) SU);
+                val = time(fVal, (Time) FU, (Time) SU);
                 break;
             case POWER:
                 val = power(fVal, (Power) FU, (Power) SU);
