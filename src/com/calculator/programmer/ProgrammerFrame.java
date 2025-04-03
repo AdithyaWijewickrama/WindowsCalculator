@@ -1,6 +1,5 @@
 package com.calculator.programmer;
 
-import Programmer.Base;
 import com.tokenizing.TokenList;
 import com.calculate.CNumber;
 import com.calculator.commonCalculator.Ui;
@@ -9,8 +8,6 @@ import com.calculator.commonCalculator.memory.MemoryPanel;
 import com.calculator.programmer.functions.RadixSelector;
 import com.calculator.programmer.functions.FunctionsPanel;
 import com.calculator.programmer.wordSize.BitKeyPanel;
-import com.calculator.programmer.wordSize.WordSize;
-import static com.calculator.programmer.wordSize.WordSize.*;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Color;
 import java.util.logging.Level;
@@ -20,6 +17,12 @@ import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import programmer.Base;
+import static programmer.Base.BIN;
+import static programmer.Base.DEC;
+import static programmer.Base.OCT;
+import programmer.WordSize;
+import static programmer.WordSize.BYTE;
 
 /**
  *
@@ -43,7 +46,6 @@ public class ProgrammerFrame extends javax.swing.JPanel {
             @Override
             public void addHistory(TokenList equation, CNumber answer) {
             }
-
             @Override
             public void setNumberToRadixPanel(CNumber number) {
                 if (radixSelector != null) {

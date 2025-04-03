@@ -1,8 +1,6 @@
 package com.calculate;
 
-import Programmer.Base;
 import static com.calculate.FormatType.*;
-import com.calculator.programmer.wordSize.WordSize;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.text.DecimalFormat;
@@ -10,8 +8,12 @@ import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import programmer.Base;
+import static programmer.Base.BIN;
+import static programmer.Base.DEC;
+import static programmer.Base.HEX;
+import static programmer.Base.OCT;
+import programmer.WordSize;
 
 /**
  *

@@ -1,12 +1,12 @@
 package com.calculate.equation;
 
-import Convert.Angle;
 import com.tokenizing.Token;
 import static com.tokenizing.Token.*;
 import com.tokenizing.TokenType;
 import com.calculate.CNumber;
 import static java.lang.Math.E;
 import static com.tokenizing.Token.LOG10;
+import convert.Angle;
 
 /**
  *

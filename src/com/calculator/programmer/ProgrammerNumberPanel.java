@@ -1,6 +1,5 @@
 package com.calculator.programmer;
 
-import Programmer.Base;
 import com.tokenizing.Token;
 import com.tokenizing.TokenList;
 import com.tokenizing.TokenType;
@@ -9,7 +8,6 @@ import com.calculate.NumberFormat;
 import com.calculate.equation.ExpressionEvaluator;
 import static com.calculate.equation.ExpressionEvaluator.scanFor;
 import com.calculator.commonCalculator.CommonNumberPanel;
-import com.calculator.programmer.functions.RadixSelector;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.event.KeyEvent;
 import java.util.logging.Level;
@@ -17,6 +15,7 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import programmer.Base;
 
 /**
  *

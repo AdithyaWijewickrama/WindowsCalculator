@@ -5,7 +5,6 @@
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="0" green="66" red="66" type="rgb"/>
     </Property>
-    <Property name="alignmentX" type="float" value="0.5"/>
     <Property name="alignmentY" type="float" value="0.0"/>
     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[10000, 1000]"/>

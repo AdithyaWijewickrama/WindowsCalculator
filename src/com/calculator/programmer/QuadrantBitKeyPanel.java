@@ -1,6 +1,6 @@
 package com.calculator.programmer;
 
-import com.calculator.commonCalculator.ui.Ui;
+import com.calculator.commonCalculator.Ui;
 import static com.main.FrontFrame.APP_THEME;
 import java.awt.Color;
 import javax.swing.JButton;

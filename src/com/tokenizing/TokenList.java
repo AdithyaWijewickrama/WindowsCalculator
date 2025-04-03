@@ -81,7 +81,7 @@ public class TokenList {
         return new TokenList(t);
     }
 
-    public void setTokenList(ArrayList<Token> tokenList) {
+    public void setTokenArrayList(ArrayList<Token> tokenList) {
         this.tokenList = tokenList;
     }
 

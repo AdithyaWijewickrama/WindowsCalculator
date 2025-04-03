@@ -74,7 +74,6 @@ public class ButtonList extends ButtonLayout {
                     buttons.get(i++).setEnabled(true);
                     break;
                 case DISABLED:
-                    System.out.println("11111111111111111111111111111111111111111111111111111111111111111111111111");
                     buttons.get(i++).setEnabled(false);
                     break;
                 case ERROR:
