@@ -1,7 +1,7 @@
-package com.calculator.commonCalculator.memory;
+package com.calculator.commoncalculator.memory;
 
 import com.calculate.CNumber;
-import com.calculator.commonCalculator.Ui;
+import com.calculator.commoncalculator.Ui;
 import java.awt.Color;
 import java.awt.Container;
 

@@ -1,8 +1,8 @@
-package com.calculator.commonCalculator;
+package com.calculator.commoncalculator;
 
-import com.calculator.commonCalculator.button.CommonButton;
-import com.calculator.commonCalculator.button.ButtonLayout;
-import com.calculator.commonCalculator.button.ButtonList;
+import com.calculator.commoncalculator.button.CommonButton;
+import com.calculator.commoncalculator.button.ButtonLayout;
+import com.calculator.commoncalculator.button.ButtonList;
 import com.tokenizing.Token;
 import static com.tokenizing.Token.DIVIDE;
 import static com.tokenizing.Token.DOT;

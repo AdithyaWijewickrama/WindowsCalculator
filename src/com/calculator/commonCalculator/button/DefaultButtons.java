@@ -1,4 +1,4 @@
-package com.calculator.commonCalculator.button;
+package com.calculator.commoncalculator.button;
 
 import com.calculate.CNumber;
 import com.tokenizing.Token;

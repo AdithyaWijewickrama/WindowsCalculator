@@ -1,4 +1,4 @@
-package com.calculator.commonCalculator.popupPanel;
+package com.calculator.commoncalculator.popupPanel;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

@@ -1,4 +1,3 @@
-.tmp.driveupload/
 build/
 /build/classes/
 /build/classes/com/calculate/calculus
@@ -9,3 +8,5 @@ build/
 /build
 /build/classes
 /build
+/nbproject
+/idea

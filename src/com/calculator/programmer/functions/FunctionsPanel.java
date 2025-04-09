@@ -1,11 +1,11 @@
 package com.calculator.programmer.functions;
 
-import com.calculator.commonCalculator.button.ButtonLayout;
-import com.calculator.commonCalculator.CommonKeyPanel;
-import com.calculator.commonCalculator.CommonNumberPanel;
-import com.calculator.commonCalculator.Ui;
-import com.calculator.commonCalculator.popupPanel.PopupButton;
-import com.calculator.commonCalculator.popupPanel.PopupPanel;
+import com.calculator.commoncalculator.button.ButtonLayout;
+import com.calculator.commoncalculator.CommonKeyPanel;
+import com.calculator.commoncalculator.CommonNumberPanel;
+import com.calculator.commoncalculator.Ui;
+import com.calculator.commoncalculator.popupPanel.PopupButton;
+import com.calculator.commoncalculator.popupPanel.PopupPanel;
 import static com.tokenizing.Token.*;
 import com.tokenizing.TokenList;
 import java.util.logging.Level;

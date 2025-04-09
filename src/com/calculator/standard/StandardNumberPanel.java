@@ -6,7 +6,7 @@ import com.tokenizing.TokenType;
 import com.calculate.CNumber;
 import com.calculate.equation.ExpressionEvaluator;
 import static com.calculate.equation.ExpressionEvaluator.scanFor;
-import com.calculator.commonCalculator.CommonNumberPanel;
+import com.calculator.commoncalculator.CommonNumberPanel;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;

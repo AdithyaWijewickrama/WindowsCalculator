@@ -2,12 +2,12 @@ package com.calculator.scientific;
 
 import com.tokenizing.TokenList;
 import com.calculate.CNumber;
-import com.calculator.commonCalculator.Ui;
-import com.calculator.commonCalculator.history.HistoryCell;
-import com.calculator.commonCalculator.history.HistoryPanel;
-import com.calculator.commonCalculator.memory.MemoryBar;
-import com.calculator.commonCalculator.memory.MemoryCell;
-import com.calculator.commonCalculator.memory.MemoryPanel;
+import com.calculator.commoncalculator.Ui;
+import com.calculator.commoncalculator.history.HistoryCell;
+import com.calculator.commoncalculator.history.HistoryPanel;
+import com.calculator.commoncalculator.memory.MemoryBar;
+import com.calculator.commoncalculator.memory.MemoryCell;
+import com.calculator.commoncalculator.memory.MemoryPanel;
 import com.calculator.scientific.functions.FunctionsPanel;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Color;

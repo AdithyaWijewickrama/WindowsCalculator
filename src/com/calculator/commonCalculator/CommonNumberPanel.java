@@ -1,4 +1,4 @@
-package com.calculator.commonCalculator;
+package com.calculator.commoncalculator;
 
 import com.tokenizing.Token;
 import com.tokenizing.TokenList;

@@ -1,7 +1,6 @@
 package com.calculator.programmer.wordSize;
 
-import com.calculator.commonCalculator.Ui;
-import static com.main.FrontFrame.APP_THEME;
+import com.calculator.commoncalculator.Ui;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.UIManager;

@@ -1,13 +1,9 @@
 package Images;
 
-import com.codes.Commons;
+import com.helper.Commons;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 
-/**
- *
- * @author adith
- */
 public enum Images {
     SHOWPSW("src\\Images\\ShowPassword-" + getColor() + ".png"),
     HIDEPSW("src\\Images\\HidePassword-" + getColor() + ".png"),;

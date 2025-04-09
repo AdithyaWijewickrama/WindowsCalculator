@@ -1,7 +1,7 @@
-package com.calculator.commonCalculator.history;
+package com.calculator.commoncalculator.history;
 
 import com.tokenizing.TokenList;
-import com.codes.test;
+import com.helper.test;
 import javax.swing.JPanel;
 import com.calculate.CNumber;
 import java.awt.Dimension;

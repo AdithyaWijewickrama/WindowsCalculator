@@ -1,4 +1,4 @@
-package com.calculator.commonCalculator;
+package com.calculator.commoncalculator;
 
 import java.awt.Color;
 import java.awt.Dimension;

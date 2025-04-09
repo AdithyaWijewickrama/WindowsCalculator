@@ -2,9 +2,9 @@ package com.calculator.programmer;
 
 import com.tokenizing.TokenList;
 import com.calculate.CNumber;
-import com.calculator.commonCalculator.Ui;
-import com.calculator.commonCalculator.memory.MemoryCell;
-import com.calculator.commonCalculator.memory.MemoryPanel;
+import com.calculator.commoncalculator.Ui;
+import com.calculator.commoncalculator.memory.MemoryCell;
+import com.calculator.commoncalculator.memory.MemoryPanel;
 import com.calculator.programmer.functions.RadixSelector;
 import com.calculator.programmer.functions.FunctionsPanel;
 import com.calculator.programmer.wordSize.BitKeyPanel;

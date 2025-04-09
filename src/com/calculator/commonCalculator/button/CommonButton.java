@@ -1,6 +1,6 @@
-package com.calculator.commonCalculator.button;
+package com.calculator.commoncalculator.button;
 
-import com.calculator.commonCalculator.CommonNumberPanel;
+import com.calculator.commoncalculator.CommonNumberPanel;
 import com.tokenizing.Token;
 import com.tokenizing.TokenList;
 import java.awt.Font;

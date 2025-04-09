@@ -1,6 +1,6 @@
 package com.calculate.equation;
 
-import com.calculate.calculus.Differentiator;
+import com.calculate.calculus.defferential.Differentiator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

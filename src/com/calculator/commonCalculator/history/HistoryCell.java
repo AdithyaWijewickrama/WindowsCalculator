@@ -1,8 +1,8 @@
-package com.calculator.commonCalculator.history;
+package com.calculator.commoncalculator.history;
 
 import com.tokenizing.TokenList;
 import com.calculate.CNumber;
-import com.calculator.commonCalculator.Ui;
+import com.calculator.commoncalculator.Ui;
 import java.awt.Color;
 
 /**

@@ -7,7 +7,7 @@ import com.calculate.CNumber;
 import com.calculate.NumberFormat;
 import com.calculate.equation.ExpressionEvaluator;
 import static com.calculate.equation.ExpressionEvaluator.scanFor;
-import com.calculator.commonCalculator.CommonNumberPanel;
+import com.calculator.commoncalculator.CommonNumberPanel;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.event.KeyEvent;
 import java.util.logging.Level;

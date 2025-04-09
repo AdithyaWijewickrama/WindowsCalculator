@@ -1,4 +1,4 @@
-package com.calculator.commonCalculator.popupPanel;
+package com.calculator.commoncalculator.popupPanel;
 
 import javax.swing.JComponent;
 

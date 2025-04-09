@@ -1,6 +1,6 @@
-package com.calculator.commonCalculator.memory;
+package com.calculator.commoncalculator.memory;
 
-import com.calculator.commonCalculator.CommonNumberPanel;
+import com.calculator.commoncalculator.CommonNumberPanel;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 

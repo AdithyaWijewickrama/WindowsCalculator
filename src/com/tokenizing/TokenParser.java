@@ -16,10 +16,11 @@ public class TokenParser extends TokenList {
     private final String exp;
     private VariableList variableList;
 
-    public TokenParser(String exp) {
+    public TokenParser(String exp) throws Exception {
         super();
         this.exp = exp;
         variableList = new VariableList();
+        parse();
     }
 
     public TokenParser(TokenList tokenList) throws Exception {

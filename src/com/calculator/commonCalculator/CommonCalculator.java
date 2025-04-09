@@ -1,4 +1,4 @@
-package com.calculator.commonCalculator;
+package com.calculator.commoncalculator;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
