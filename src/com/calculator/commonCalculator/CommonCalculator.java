@@ -14,5 +14,5 @@ public class CommonCalculator {
         this.name = name;
         this.icon = icon;
     }
-    
+
 }

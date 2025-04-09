@@ -177,7 +177,6 @@ public class CommonKeyPanel extends javax.swing.JPanel {
             }
             System.exit(0);
         }).start();
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             frame.setVisible(true);
         });
