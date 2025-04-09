@@ -1,5 +1,6 @@
 package com.calculator.commoncalculator.memory;
 
+import com.calculate.number.CNumber;
 import com.calculator.commoncalculator.CommonNumberPanel;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -36,7 +37,7 @@ public class MemoryBar extends javax.swing.JPanel {
     public void memoryStore() {
         memoryPanel.newMemory(new MemoryCell(numberPanel.getNumber()) {
             @Override
-            public void memoryItemClicked(com.calculate.CNumber num) {
+            public void memoryItemClicked(CNumber num) {
                 numberPanel.setNumber(num);
             }
         });

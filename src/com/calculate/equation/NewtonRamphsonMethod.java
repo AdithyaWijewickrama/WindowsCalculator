@@ -1,13 +1,10 @@
 package com.calculate.equation;
 
 import com.calculate.calculus.defferential.Differentiator;
+import com.calculate.number.CNumber;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author AW Developer
- */
 public class NewtonRamphsonMethod {
 
     private final String fx;
@@ -22,7 +19,7 @@ public class NewtonRamphsonMethod {
     }
 
     public Number findRoot(double init) throws Exception {
-        return init - (_fx.evaluateAt(com.calculate.CNumber.parseNumber(init)).doubleValue() / ddx_fx.evaluateAt(com.calculate.CNumber.parseNumber(init)).doubleValue());
+        return init - (_fx.evaluateAt(CNumber.parseNumber(init)).doubleValue() / ddx_fx.evaluateAt(CNumber.parseNumber(init)).doubleValue());
     }
 
     public static void main(String[] args) {

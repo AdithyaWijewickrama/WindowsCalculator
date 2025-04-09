@@ -1,7 +1,7 @@
 package com.calculator.commoncalculator.history;
 
 import com.tokenizing.TokenList;
-import com.calculate.CNumber;
+import com.calculate.number.CNumber;
 import com.calculator.commoncalculator.Ui;
 import java.awt.Color;
 

@@ -3,7 +3,7 @@ package com.calculator.scientific;
 import com.tokenizing.Token;
 import com.tokenizing.TokenList;
 import com.tokenizing.TokenType;
-import com.calculate.CNumber;
+import com.calculate.number.CNumber;
 import com.calculate.equation.ExpressionEvaluator;
 import static com.calculate.equation.ExpressionEvaluator.scanFor;
 import com.calculator.commoncalculator.CommonNumberPanel;

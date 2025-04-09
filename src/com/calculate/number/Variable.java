@@ -1,12 +1,7 @@
-package com.calculate.calculus.defferential;
+package com.calculate.number;
 
-import com.calculate.number.CNumber;
 import java.math.BigDecimal;
 
-/**
- *
- * @author AW Developer
- */
 public class Variable extends CNumber{
     private String name;
 
@@ -24,8 +19,7 @@ public class Variable extends CNumber{
     }
     
     public Variable(String name,double number) {
-        super(new BigDecimal(number));
+        super(number);
         this.name=name;
     }
-    
 }

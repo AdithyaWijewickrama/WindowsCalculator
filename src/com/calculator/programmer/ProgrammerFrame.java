@@ -1,7 +1,7 @@
 package com.calculator.programmer;
 
 import com.tokenizing.TokenList;
-import com.calculate.CNumber;
+import com.calculate.number.CNumber;
 import com.calculator.commoncalculator.Ui;
 import com.calculator.commoncalculator.memory.MemoryCell;
 import com.calculator.commoncalculator.memory.MemoryPanel;

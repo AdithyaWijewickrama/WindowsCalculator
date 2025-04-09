@@ -4,18 +4,14 @@ import com.tokenizing.Token;
 import com.tokenizing.TokenList;
 import com.tokenizing.TokenParser;
 import com.tokenizing.TokenType;
-import com.calculate.CNumber;
-import com.calculate.Root;
+import com.calculate.number.CNumber;
+import com.calculate.number.Root;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author AW Developer
- */
 public class ExpressionEvaluator extends TokenParser {
 
 //    private TokenList tokens;

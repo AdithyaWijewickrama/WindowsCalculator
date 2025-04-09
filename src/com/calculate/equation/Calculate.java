@@ -1,12 +1,8 @@
 package com.calculate.equation;
 
 import com.tokenizing.TokenType;
-import com.calculate.CNumber;
+import com.calculate.number.CNumber;
 
-/**
- *
- * @author AW Developer
- */
 public abstract class Calculate {
     protected Calculate value1;
     protected Calculate value2;

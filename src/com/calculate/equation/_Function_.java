@@ -5,7 +5,7 @@ import static com.tokenizing.Token.LOGBASEY;
 import static com.tokenizing.Token.MODULO;
 import static com.tokenizing.Token.YROOT;
 import com.tokenizing.TokenType;
-import com.calculate.CNumber;
+import com.calculate.number.CNumber;
 
 /**
  *

@@ -6,7 +6,7 @@ import static com.tokenizing.Token.MINUS;
 import static com.tokenizing.Token.RAISED;
 import static com.tokenizing.Token.PLUS;
 import com.tokenizing.TokenType;
-import com.calculate.CNumber;
+import com.calculate.number.CNumber;
 import static com.tokenizing.Token.MULTIPLY;
 
 /**

@@ -1,4 +1,4 @@
-package Images;
+package com.calculator.ui;
 
 import com.helper.Commons;
 import javax.swing.ImageIcon;

@@ -407,7 +407,7 @@ public class SingleFunctionPanel extends javax.swing.JPanel {
 
     private void jButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseEntered
         jButton3.setText("");
-        jButton3.setIcon(functionIsVisible() ? Images.Images.HIDEPSW.getImage(30, 30) : Images.Images.SHOWPSW.getImage(30, 30));
+        jButton3.setIcon(functionIsVisible() ? com.calculator.ui.Images.HIDEPSW.getImage(30, 30) : com.calculator.ui.Images.SHOWPSW.getImage(30, 30));
     }//GEN-LAST:event_jButton3MouseEntered
 
     private void jButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseExited

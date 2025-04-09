@@ -1,6 +1,6 @@
 package com.calculator.programmer.functions;
 
-import com.calculate.CNumber;
+import com.calculate.number.CNumber;
 import java.util.ArrayList;
 import programmer.Base;
 

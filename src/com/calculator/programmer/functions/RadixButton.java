@@ -1,7 +1,7 @@
 package com.calculator.programmer.functions;
 
-import com.calculate.CNumber;
-import com.calculate.NumberFormat;
+import com.calculate.number.CNumber;
+import com.calculate.number.NumberFormat;
 import com.calculator.commoncalculator.Ui;
 import java.awt.Color;
 import java.util.logging.Level;

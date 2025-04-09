@@ -4,7 +4,7 @@ import com.tokenizing.Token;
 import static com.tokenizing.Token.*;
 import com.tokenizing.TokenList;
 import com.tokenizing.TokenType;
-import com.calculate.CNumber;
+import com.calculate.number.CNumber;
 import convert.Angle;
 
 /**

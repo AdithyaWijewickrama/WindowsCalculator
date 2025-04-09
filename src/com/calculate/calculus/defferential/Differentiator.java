@@ -5,7 +5,7 @@ import com.tokenizing.Token;
 import com.tokenizing.TokenList;
 import com.tokenizing.TokenParser;
 import com.tokenizing.TokenType;
-import com.calculate.CNumber;
+import com.calculate.number.CNumber;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;

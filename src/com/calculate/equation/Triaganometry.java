@@ -1,7 +1,7 @@
 package com.calculate.equation;
 
 import com.tokenizing.Token;
-import com.calculate.CNumber;
+import com.calculate.number.CNumber;
 import static com.tokenizing.Token.ACOS;
 import static com.tokenizing.Token.ACOSH;
 import static com.tokenizing.Token.ACOT;

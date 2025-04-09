@@ -5,7 +5,7 @@ import static com.tokenizing.Token.*;
 import com.tokenizing.TokenList;
 import com.tokenizing.TokenType;
 import com.calculate.equation.ExpressionEvaluator;
-import com.calculate.CNumber;
+import com.calculate.number.CNumber;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

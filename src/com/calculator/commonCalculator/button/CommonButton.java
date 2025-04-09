@@ -3,16 +3,13 @@ package com.calculator.commoncalculator.button;
 import com.calculator.commoncalculator.CommonNumberPanel;
 import com.tokenizing.Token;
 import com.tokenizing.TokenList;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import java.util.ArrayList;
 import javax.swing.JButton;
 
-/**
- *
- * @author AW Developer
- */
 public class CommonButton extends JButton {
 
     public Character keyChar;
@@ -23,42 +20,38 @@ public class CommonButton extends JButton {
     public CommonButton(Token token) {
         super(token.name);
         this.token = token;
-//        setBackground(getUIColor());
-        setFont(new java.awt.Font("Yu Gothic UI", Font.PLAIN, 15));
+        setFont(new Font("Yu Gothic UI", Font.PLAIN, 15));
         setBorder(getBorder());
-        setMaximumSize(new java.awt.Dimension(1000, 1000));
-        setMinimumSize(new java.awt.Dimension(40, 30));
-//        setName(keyChar.toString());
-        setPreferredSize(new java.awt.Dimension(70, 47));
-//        addComponentListener(new ComponentAdapter() {
-//            public void componentResized(ComponentEvent e) {
-//
-//            }
-//        });
+        setMaximumSize(new Dimension(1000, 1000));
+        setMinimumSize(new Dimension(40, 30));
+        setPreferredSize(new Dimension(70, 47));
     }
 
     public CommonButton(TokenList tokenList) {
         super(tokenList.tokenAt(0).name);
         this.tokenList = tokenList;
-//        setBackground(getUIColor());
-        setFont(new java.awt.Font("Yu Gothic UI", Font.PLAIN, 15));
+        setFont(new Font("Yu Gothic UI", Font.PLAIN, 15));
         setBorder(getBorder());
-        setMaximumSize(new java.awt.Dimension(1000, 1000));
-        setMinimumSize(new java.awt.Dimension(40, 30));
-//        setName(keyChar.toString());
-        setPreferredSize(new java.awt.Dimension(70, 47));
-//        addComponentListener(new ComponentAdapter() {
-//            public void componentResized(ComponentEvent e) {
-//
-//            }
-//        });
+        setMaximumSize(new Dimension(1000, 1000));
+        setMinimumSize(new Dimension(40, 30));
+        setPreferredSize(new Dimension(70, 47));
+    }
+
+    public CommonButton updateUi(ButtonUi bu) {
+        setBackground(bu.BACKGROUND);
+        setFont(bu.FONT);
+        setBorder(bu.BORDER);
+        if (bu.FONT_RESIZING) {
+            setFontResizing(this);
+        }
+        return this;
     }
 
     private int currentKey;
 
     public void setParentTextField(CommonNumberPanel text) {
         parentText = text;
-        addActionListener((java.awt.event.ActionEvent evt) -> {
+        addActionListener((ActionEvent evt) -> {
             if (tokenList != null) {
                 if (currentKey == tokenList.size()) {
                     currentKey = 0;
@@ -66,6 +59,15 @@ public class CommonButton extends JButton {
                 parentText.newKey(tokenList.tokenAt(currentKey++).key);
             } else {
                 parentText.newKey(token.key);
+            }
+        });
+    }
+
+    public static void setFontResizing(JButton button) {
+        button.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                button.setFont(button.getFont().deriveFont(button.getHeight() / 3.f));
             }
         });
     }

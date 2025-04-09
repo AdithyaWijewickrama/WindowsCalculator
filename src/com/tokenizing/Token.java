@@ -4,7 +4,7 @@
  */
 package com.tokenizing;
 
-import com.calculate.CNumber;
+import com.calculate.number.CNumber;
 
 /**
  *

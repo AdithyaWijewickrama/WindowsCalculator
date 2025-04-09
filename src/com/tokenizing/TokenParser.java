@@ -1,9 +1,9 @@
 package com.tokenizing;
 
 import com.calculate.equation.ExpressionEvaluator;
-import com.calculate.CNumber;
-import com.calculate.Variable;
-import com.calculate.VariableList;
+import com.calculate.number.CNumber;
+import com.calculate.number.Variable;
+import com.calculate.number.VariableList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

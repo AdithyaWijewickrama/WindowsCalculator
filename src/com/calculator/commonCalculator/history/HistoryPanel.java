@@ -3,7 +3,7 @@ package com.calculator.commoncalculator.history;
 import com.tokenizing.TokenList;
 import com.helper.test;
 import javax.swing.JPanel;
-import com.calculate.CNumber;
+import com.calculate.number.CNumber;
 import java.awt.Dimension;
 import java.util.ArrayList;
 

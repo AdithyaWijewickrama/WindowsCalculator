@@ -3,15 +3,11 @@ package com.calculate.equation;
 import com.tokenizing.Token;
 import static com.tokenizing.Token.*;
 import com.tokenizing.TokenType;
-import com.calculate.CNumber;
+import com.calculate.number.CNumber;
 import static java.lang.Math.E;
 import static com.tokenizing.Token.LOG10;
 import convert.Angle;
 
-/**
- *
- * @author AW Developer
- */
 public class Function_ extends Calculate {
 
     Token function_;

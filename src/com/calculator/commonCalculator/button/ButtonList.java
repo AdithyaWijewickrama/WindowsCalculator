@@ -4,10 +4,6 @@ import com.tokenizing.Token;
 import com.tokenizing.TokenList;
 import java.util.ArrayList;
 
-/**
- *
- * @author AW Developer
- */
 public class ButtonList extends ButtonLayout {
 
     TokenList buttonTokens;

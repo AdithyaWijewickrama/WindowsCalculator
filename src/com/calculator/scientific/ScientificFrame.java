@@ -1,7 +1,7 @@
 package com.calculator.scientific;
 
 import com.tokenizing.TokenList;
-import com.calculate.CNumber;
+import com.calculate.number.CNumber;
 import com.calculator.commoncalculator.Ui;
 import com.calculator.commoncalculator.history.HistoryCell;
 import com.calculator.commoncalculator.history.HistoryPanel;

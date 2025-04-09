@@ -5,10 +5,6 @@ import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author AW Developer
- */
 public abstract class ButtonLayout {
 
     public static final int COLUMN = 0;

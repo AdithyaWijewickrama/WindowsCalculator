@@ -1,5 +1,6 @@
 package com.calculator.grapher;
 
+import com.calculate.number.CNumber;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
@@ -234,9 +235,9 @@ public class GraphPanel extends JPanel implements Runnable {
     }
 
     public static double getXIncrement(BasicFunction f, double x) {
-        double y = f.evaluateAt(com.calculate.CNumber.parseNumber(x)).doubleValue();
+        double y = f.evaluateAt(CNumber.parseNumber(x)).doubleValue();
         double x0 = x + 1;
-        double y0 = f.evaluateAt(com.calculate.CNumber.parseNumber(x0)).doubleValue();
+        double y0 = f.evaluateAt(CNumber.parseNumber(x0)).doubleValue();
         return (y - y0) / (x - x0);
     }
 
@@ -313,7 +314,7 @@ public class GraphPanel extends JPanel implements Runnable {
                 double xv[] = new double[2];
                 double yv[] = new double[2];
                 xv[1] = margin;
-                yv[1] = getYOnPanel(function.evaluateAt(com.calculate.CNumber.parseNumber(getXOnGrid(margin))).doubleValue());
+                yv[1] = getYOnPanel(function.evaluateAt(CNumber.parseNumber(getXOnGrid(margin))).doubleValue());
                 path.moveTo(xv[1], yv[1]);
                 double x = margin;
                 boolean lineBreak = false;
@@ -321,7 +322,7 @@ public class GraphPanel extends JPanel implements Runnable {
                     double m = Math.abs(getXIncrement(function, x));
                     x += inc;
                     double xVal = getXOnGrid(x);
-                    double yVal = function.evaluateAt(com.calculate.CNumber.parseNumber(xVal)).doubleValue();
+                    double yVal = function.evaluateAt(CNumber.parseNumber(xVal)).doubleValue();
                     if (x > width - margin) {
                         break;
                     }

@@ -1,6 +1,6 @@
 package com.calculator.commoncalculator.button;
 
-import com.calculate.CNumber;
+import com.calculate.number.CNumber;
 import com.tokenizing.Token;
 import com.tokenizing.TokenType;
 import java.awt.event.KeyEvent;
