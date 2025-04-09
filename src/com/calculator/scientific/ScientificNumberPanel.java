@@ -15,10 +15,6 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-/**
- *
- * @author AW Developer
- */
 public abstract class ScientificNumberPanel extends CommonNumberPanel {
 
     private TokenList tokensWithisSplitters = new TokenList();

@@ -1,9 +1,7 @@
 package com.calculator.grapher;
 
-import com.calculator.commoncalculator.Ui;
 import static com.calculator.grapher.SingleFunctionPanel.colorFunctions;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -13,12 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComponent;
 import javax.swing.JToggleButton;
-import javax.swing.border.LineBorder;
 
-/**
- *
- * @author AW Developer
- */
 public class LineOptions extends javax.swing.JDialog {
 
     private Color color;

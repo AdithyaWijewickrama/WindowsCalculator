@@ -1,15 +1,8 @@
 package com.calculator.programmer;
 
-/**
- *
- * @author AW Developer
- */
-public class optionsBar extends javax.swing.JPanel {
+public class OptionsBar extends javax.swing.JPanel {
 
-    /**
-     * Creates new form optionsBar
-     */
-    public optionsBar() {
+    public OptionsBar() {
         initComponents();
     }
 

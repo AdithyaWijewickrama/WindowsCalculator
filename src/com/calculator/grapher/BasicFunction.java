@@ -10,10 +10,6 @@ import com.calculate.number.CNumber;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author AW Developer
- */
 public class BasicFunction {
 
     protected String functionString;
@@ -29,7 +25,7 @@ public class BasicFunction {
         this.functionString = exp;
         this.varient = varient;
         try {
-            this.functionExpresion=new ExpressionEvaluator(exp);
+            this.functionExpresion = new ExpressionEvaluator(exp);
         } catch (Exception ex) {
             Logger.getLogger(BasicFunction.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -111,7 +107,7 @@ public class BasicFunction {
     }
 
     public void setVariableValue(String chr, CNumber value) {
-        if (variables.get(chr)!= null) {
+        if (variables.get(chr) != null) {
             variables.setValue(chr, value);
             assignVariableValues();
         }

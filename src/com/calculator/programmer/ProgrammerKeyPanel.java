@@ -11,20 +11,16 @@ import static com.calculator.commoncalculator.button.DefaultButtons.CE;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author AW Developer
- */
 public final class ProgrammerKeyPanel extends javax.swing.JPanel {
 
     CommonKeyPanel keyPanel;
     CommonNumberPanel numberPanel;
-    TokenList buttons = new TokenList(A,LSH,RSH,CE,BACK,
-    B,OPEN_PRANTHESIS,CLOSE_PRANTHESIS,MODULO,DIVIDE,
-    C,SEVEN,EIGHT,NINE,MULTIPLY,
-    D,FOUR,FIVE,SIX,MINUS,
-    E,ONE,TWO,THREE,PLUS,
-    F,PLUS_OR_MINUS,ZERO,DOT,EQUAL);
+    TokenList buttons = new TokenList(A, LSH, RSH, CE, BACK,
+            B, OPEN_PRANTHESIS, CLOSE_PRANTHESIS, MODULO, DIVIDE,
+            C, SEVEN, EIGHT, NINE, MULTIPLY,
+            D, FOUR, FIVE, SIX, MINUS,
+            E, ONE, TWO, THREE, PLUS,
+            F, PLUS_OR_MINUS, ZERO, DOT, EQUAL);
     String pattern = ""
             + "#####\n"
             + "#####\n"
@@ -33,10 +29,6 @@ public final class ProgrammerKeyPanel extends javax.swing.JPanel {
             + "#####\n"
             + "#####\n";
 
-    /**
-     * Creates new form StandardKeyPanel
-     * @param numberPanel
-     */
     public ProgrammerKeyPanel(CommonNumberPanel numberPanel) {
         this.numberPanel = numberPanel;
         initComponents();

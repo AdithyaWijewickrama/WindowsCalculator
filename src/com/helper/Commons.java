@@ -8,27 +8,14 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 
 public class Commons {
 
     public static Date date = Calendar.getInstance().getTime();
-    static int month;
-    static int day;
-    static int year;
-    static int Second;
-    static int Minute;
-    static int Hour;
-    static PreparedStatement pst = null;
-    static ResultSet rs = null;
-    static String defaultImage = "src\\Images\\WhiteBackground.png";
-    public static final String APPLICATIONNAME = "Calculator";
 
     public static void CopytoClipboard(String text) {
         java.awt.datatransfer.Clipboard clip = Toolkit.getDefaultToolkit().getSystemClipboard();
@@ -44,37 +31,11 @@ public class Commons {
         JOptionPane.showMessageDialog(null, e);
     }
 
-    public static int getInt(String val) {
-        try {
-            Integer.parseInt(val);
-            return Integer.parseInt(val);
-        } catch (NumberFormatException e) {
-            return 0;
-        }
-    }
-
-    public static double getDouble(String val) {
-        try {
-            Double.parseDouble(val);
-            return Double.parseDouble(val);
-        } catch (NumberFormatException e) {
-            return 0;
-        }
-    }
-
-    public static boolean tableIsSelected(JTable table) {
-        if (table.getSelectedRow() == -1) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
     public static void showMsg(String e) {
         JOptionPane.showMessageDialog(null, e);
     }
 
-    public static void CopyPasteFile(String CurrentPath, String NewPath) {
+    public static void copyPasteFile(String CurrentPath, String NewPath) {
         try {
             FileInputStream in = new FileInputStream(CurrentPath);
             FileOutputStream out = new FileOutputStream(NewPath);
@@ -95,38 +56,34 @@ public class Commons {
         }
     }
 
-    public static String CurrentDate() {
+    public static String currentDate() {
         return String.format("%04d-%02d-%02d", date.getYear() + 1900, date.getMonth() + 1, date.getDate());
     }
 
-    public static Date currentDate() {
-        return date;
-    }
-
-    public static String CurrentTime() {
+    public static String currentTime() {
         return String.format("%02d:%02d:%02d", date.getHours(), date.getMinutes(), date.getSeconds());
     }
 
-    public static void Document(String Path_Name) throws IOException {
+    public static void openDocument(String Path_Name) throws IOException {
         Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + Path_Name);
 
     }
 
-    public static ImageIcon getImage(String ImagePath, int Width, int Height) {
+    public static ImageIcon getImage(String imagePath, int w, int h) {
         ImageIcon Imge;
-        if (ImagePath != null) {
-            Imge = new ImageIcon(ImagePath);
+        if (imagePath != null) {
+            Imge = new ImageIcon(imagePath);
         } else {
-            Imge = new ImageIcon(defaultImage);
+            throw new RuntimeException("Image path is null");
         }
-        if (Width == 0) {
-            Width = Imge.getIconWidth();
+        if (w == 0) {
+            w = Imge.getIconWidth();
         }
-        if (Height == 0) {
-            Height = Imge.getIconHeight();
+        if (h == 0) {
+            h = Imge.getIconHeight();
         }
         java.awt.Image img = Imge.getImage();
-        java.awt.Image newimg = img.getScaledInstance(Width, Height, 25);
+        java.awt.Image newimg = img.getScaledInstance(w, h, 25);
         ImageIcon i = new ImageIcon(newimg);
         return i;
     }

@@ -4,10 +4,6 @@ import com.calculate.number.CNumber;
 import java.util.ArrayList;
 import programmer.Base;
 
-/**
- *
- * @author AW Developer
- */
 public abstract class RadixSelector extends javax.swing.JPanel {
 
     RadixButton hexButton;
@@ -15,9 +11,6 @@ public abstract class RadixSelector extends javax.swing.JPanel {
     RadixButton octButton;
     RadixButton binButton;
 
-    /**
-     * Creates new form RadixSelector
-     */
     public RadixSelector() {
         initComponents();
         hexButton = new RadixButton(Base.HEX) {
@@ -51,14 +44,14 @@ public abstract class RadixSelector extends javax.swing.JPanel {
         setRadix(Base.DEC);
     }
 
-    public void setNumber(CNumber num){
+    public void setNumber(CNumber num) {
 //        System.out.println("=================================================================\n\n--"+num.getNumber());
         hexButton.setNumber(num);
         decButton.setNumber(num);
         octButton.setNumber(num);
         binButton.setNumber(num);
     }
-    
+
     public void setRadix(Base radix) {
         ArrayList<RadixButton> l = new ArrayList<>();
         l.add(hexButton);
@@ -68,7 +61,7 @@ public abstract class RadixSelector extends javax.swing.JPanel {
         for (RadixButton b : l) {
             if (b.radix == radix) {
                 b.selected();
-            }else{
+            } else {
                 b.deselected();
             }
         }
@@ -76,7 +69,7 @@ public abstract class RadixSelector extends javax.swing.JPanel {
     }
 
     public abstract void radixChoosed(Base radix);
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -86,8 +79,6 @@ public abstract class RadixSelector extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setBackground(new java.awt.Color(102, 102, 0));
-        setAlignmentX(0.5F);
         setAlignmentY(0.0F);
         setMaximumSize(new java.awt.Dimension(10000, 1000));
         setMinimumSize(new java.awt.Dimension(300, 120));

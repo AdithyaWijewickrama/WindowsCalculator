@@ -12,15 +12,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-/**
- *
- * @author AW Developer
- */
 public class StandardFrame extends javax.swing.JPanel {
 
     public StandardNumberPanel numberPanel;
@@ -29,9 +24,6 @@ public class StandardFrame extends javax.swing.JPanel {
     public MemoryPanel memoryPanel;
     public MemoryBar memoryBar;
 
-    /**
-     * Creates new form Standard
-     */
     public StandardFrame() {
         initComponents();
         numberPanel = new StandardNumberPanel() {
@@ -43,9 +35,9 @@ public class StandardFrame extends javax.swing.JPanel {
         keyPanel = new StandardKeyPanel(numberPanel);
         historyPanel = new HistoryPanel();
         memoryPanel = new MemoryPanel();
-        memoryBar=new MemoryBar(memoryPanel, numberPanel);
-        jTabbedPane1.add("History",historyPanel);
-        jTabbedPane1.add("Memory",memoryPanel);
+        memoryBar = new MemoryBar(memoryPanel, numberPanel);
+        jTabbedPane1.add("History", historyPanel);
+        jTabbedPane1.add("Memory", memoryPanel);
         mainPanel.add(numberPanel);
         mainPanel.add(memoryBar);
         mainPanel.add(keyPanel);
@@ -101,24 +93,23 @@ public class StandardFrame extends javax.swing.JPanel {
         add(mainPanel);
     }// </editor-fold>//GEN-END:initComponents
 
-
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(new FlatDarkLaf());
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(StandardFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Color background=new Color(30,30,30);
-        Color background2=new Color(50,50,50);
-        Color foreground=new Color(200,200,200);
+        Color background = new Color(30, 30, 30);
+        Color background2 = new Color(50, 50, 50);
+        Color foreground = new Color(200, 200, 200);
         UIManager.put("Button.background", background2);
         UIManager.put("Button.foreground", foreground);
         UIManager.put("TextField.foreground", foreground);
         UIManager.put("ToggleButton.foreground", foreground);
-        UIManager.put("Button.font", new Font("Dialog",Font.PLAIN,18));
+        UIManager.put("Button.font", new Font("Dialog", Font.PLAIN, 18));
         UIManager.put("TextField.background", background);
         UIManager.put("ToggleButton.background", background);
-        UIManager.put("ToggleButton.selectedBackground", new Color(0,8,10));
+        UIManager.put("ToggleButton.selectedBackground", new Color(0, 8, 10));
         UIManager.put("Panel.background", background);
         UIManager.put("Frame.background", background);
         StandardFrame p = new StandardFrame();
@@ -141,13 +132,12 @@ public class StandardFrame extends javax.swing.JPanel {
             }
             System.exit(0);
         }).start();
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             frame.setVisible(true);
         });
     }
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane jTabbedPane1;
     public javax.swing.JPanel mainPanel;

@@ -3,7 +3,7 @@ package com.calculator.scientific.functions;
 import com.calculator.commoncalculator.button.ButtonLayout;
 import com.calculator.commoncalculator.CommonKeyPanel;
 import com.calculator.commoncalculator.CommonNumberPanel;
-import com.calculator.commoncalculator.Ui;
+import com.calculator.ui.Ui;
 import static com.calculator.commoncalculator.button.DefaultButtons.DMS;
 import static com.calculator.commoncalculator.button.DefaultButtons.RAND;
 import com.calculator.commoncalculator.popupPanel.PopupButton;
@@ -13,10 +13,6 @@ import com.tokenizing.TokenList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author AW Developer
- */
 public class FunctionsPanel extends javax.swing.JPanel {
 
     CommonKeyPanel triag;
@@ -29,9 +25,6 @@ public class FunctionsPanel extends javax.swing.JPanel {
     PopupPanel otherDialog;
     PopupButton otherButton;
 
-    /**
-     * Creates new form FunctionsPanel
-     */
     public FunctionsPanel(CommonNumberPanel numberPanel) {
         initComponents();
         try {
@@ -39,7 +32,7 @@ public class FunctionsPanel extends javax.swing.JPanel {
             atriag = new CommonKeyPanel(numberPanel, new TokenList(ASIN, ACOS, ATAN, ACSC, ASEC, ACOT), "###\n###", ButtonLayout.ROW);
             triagh = new CommonKeyPanel(numberPanel, new TokenList(SINH, COSH, TANH, CSCH, SECH, COTH), "###\n###", ButtonLayout.ROW);
             atriagh = new CommonKeyPanel(numberPanel, new TokenList(ASINH, ACOSH, ATANH, ACSCH, ASECH, ACOTH), "###\n###", ButtonLayout.ROW);
-            other = new CommonKeyPanel(numberPanel, new TokenList(ABS,FLOOR,CEILING, RAND, DMS, DEGREES), "###\n###", ButtonLayout.ROW);
+            other = new CommonKeyPanel(numberPanel, new TokenList(ABS, FLOOR, CEILING, RAND, DMS, DEGREES), "###\n###", ButtonLayout.ROW);
             Ui.setSize(triag, 180, 100);
             Ui.setSize(atriag, 180, 100);
             Ui.setSize(triagh, 180, 100);
@@ -78,7 +71,7 @@ public class FunctionsPanel extends javax.swing.JPanel {
         } else {
             p = atriagh;
         }
-        System.out.println(secnd+" "+hyp);
+        System.out.println(secnd + " " + hyp);
         triagDialog.clearAll();
         triagDialog.addComponent(jPanel2);
         triagDialog.addComponent(p);

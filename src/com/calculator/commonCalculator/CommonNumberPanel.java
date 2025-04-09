@@ -15,10 +15,6 @@ import java.awt.event.HierarchyListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author AW Developer
- */
 public abstract class CommonNumberPanel extends javax.swing.JPanel {
 
     protected TokenList tokenDigits = new TokenList();

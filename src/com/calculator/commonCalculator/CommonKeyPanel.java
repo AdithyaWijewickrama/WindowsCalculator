@@ -36,19 +36,12 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-/**
- *
- * @author AW Developer
- */
 public class CommonKeyPanel extends javax.swing.JPanel {
 
     public final ButtonList buttons;
     final ArrayList<JPanel> blocks;
     final CommonNumberPanel parentText;
 
-    /**
-     * Creates new form CommonKeyPanel
-     */
     public CommonKeyPanel(CommonNumberPanel parent, TokenList buttons, String pattern, int layout) throws Exception {
         initComponents();
         blocks = new ArrayList<>();
@@ -68,8 +61,6 @@ public class CommonKeyPanel extends javax.swing.JPanel {
     public CommonNumberPanel getParentText() {
         return parentText;
     }
-    
-    
 
     public final void setButtons() {
         int layout = 0;

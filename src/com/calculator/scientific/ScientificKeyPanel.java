@@ -13,10 +13,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
 
-/**
- *
- * @author AW Developer
- */
 public final class ScientificKeyPanel extends javax.swing.JPanel {
 
     CommonKeyPanel keyPanel;

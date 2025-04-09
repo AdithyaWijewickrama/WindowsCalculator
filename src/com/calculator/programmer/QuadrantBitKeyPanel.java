@@ -1,6 +1,6 @@
 package com.calculator.programmer;
 
-import com.calculator.commoncalculator.Ui;
+import com.calculator.ui.Ui;
 import static com.calculator.ui.AppUi.APP_THEME;
 import java.awt.Color;
 import javax.swing.JButton;
@@ -12,11 +12,8 @@ import javax.swing.UIManager;
  */
 public class QuadrantBitKeyPanel extends javax.swing.JPanel {
 
-    private int exponent;
+    private final int exponent;
 
-    /**
-     * Creates new form BitKeyPanel
-     */
     public QuadrantBitKeyPanel(int exponent) {
         this.exponent = exponent;
         initComponents();

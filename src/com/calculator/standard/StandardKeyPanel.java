@@ -13,10 +13,6 @@ import static com.calculator.commoncalculator.button.DefaultButtons.CE;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author AW Developer
- */
 public class StandardKeyPanel extends javax.swing.JPanel {
 
     CommonKeyPanel keyPanel;
@@ -33,9 +29,6 @@ public class StandardKeyPanel extends javax.swing.JPanel {
             + "####\n"
             + "####\n";
 
-    /**
-     * Creates new form StandardKeyPanel
-     */
     public StandardKeyPanel(CommonNumberPanel numberPanel) {
         this.numberPanel = numberPanel;
         initComponents();

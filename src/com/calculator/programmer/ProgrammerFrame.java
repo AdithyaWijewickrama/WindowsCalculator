@@ -2,7 +2,7 @@ package com.calculator.programmer;
 
 import com.tokenizing.TokenList;
 import com.calculate.number.CNumber;
-import com.calculator.commoncalculator.Ui;
+import com.calculator.ui.Ui;
 import com.calculator.commoncalculator.memory.MemoryCell;
 import com.calculator.commoncalculator.memory.MemoryPanel;
 import com.calculator.programmer.functions.RadixSelector;
@@ -24,10 +24,6 @@ import static programmer.Base.OCT;
 import programmer.WordSize;
 import static programmer.WordSize.BYTE;
 
-/**
- *
- * @author AW Developer
- */
 public class ProgrammerFrame extends javax.swing.JPanel {
 
     public ProgrammerNumberPanel numberPanel;
@@ -37,15 +33,13 @@ public class ProgrammerFrame extends javax.swing.JPanel {
     public MemoryPanel memoryPanel;
     public BitKeyPanel bitKeyPanel;
 
-    /**
-     * Creates new form Standard
-     */
     public ProgrammerFrame() {
         initComponents();
         numberPanel = new ProgrammerNumberPanel(Boolean.TRUE) {
             @Override
             public void addHistory(TokenList equation, CNumber answer) {
             }
+
             @Override
             public void setNumberToRadixPanel(CNumber number) {
                 if (radixSelector != null) {
@@ -239,7 +233,7 @@ public class ProgrammerFrame extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        wordSize = WordSize.values()[wordSizeIndex==3?0:++wordSizeIndex];
+        wordSize = WordSize.values()[wordSizeIndex == 3 ? 0 : ++wordSizeIndex];
         bitKeyPanel.setWordSize(wordSize);
     }//GEN-LAST:event_jButton3ActionPerformed
 

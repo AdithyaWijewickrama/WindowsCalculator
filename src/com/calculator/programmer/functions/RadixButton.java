@@ -2,24 +2,17 @@ package com.calculator.programmer.functions;
 
 import com.calculate.number.CNumber;
 import com.calculate.number.NumberFormat;
-import com.calculator.commoncalculator.Ui;
+import com.calculator.ui.Ui;
 import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
 import programmer.Base;
 
-/**
- *
- * @author AW Developer
- */
 public abstract class RadixButton extends javax.swing.JPanel {
 
     Base radix;
 
-    /**
-     * Creates new form RadixButton
-     */
     public RadixButton(Base radix) {
         initComponents();
         mouseExit();
@@ -57,7 +50,7 @@ public abstract class RadixButton extends javax.swing.JPanel {
         String s;
         try {
             s = n.setNumberFormat(NumberFormat.getGroupingNumberFormat(radix)).getNumberString();
-        jTextArea1.setText(s);
+            jTextArea1.setText(s);
 //        System.out.println(s);
         } catch (Exception ex) {
             Logger.getLogger(RadixButton.class.getName()).log(Level.SEVERE, null, ex);

@@ -17,10 +17,6 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import programmer.Base;
 
-/**
- *
- * @author AW Developer
- */
 public abstract class ProgrammerNumberPanel extends CommonNumberPanel {
 
     private TokenList tokensWithinSplitters = new TokenList();

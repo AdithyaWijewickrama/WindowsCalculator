@@ -3,10 +3,6 @@ package com.calculator.commoncalculator;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-/**
- *
- * @author AW Developer
- */
 public class CommonCalculator {
 
     public String name;

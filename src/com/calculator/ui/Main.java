@@ -19,10 +19,6 @@ import javax.swing.ButtonGroup;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-/**
- *
- * @author AW Developer
- */
 public class Main extends javax.swing.JFrame {
 
     public static final int MARGIN = 5;
@@ -35,9 +31,6 @@ public class Main extends javax.swing.JFrame {
     private final GraphingFrame graphingFrame = new GraphingFrame();
     private final DateCalculation dateCalculation = new DateCalculation();
 
-    /**
-     * Creates new form Main
-     */
     public Main() {
         initComponents();
         ButtonGroup group = new ButtonGroup();

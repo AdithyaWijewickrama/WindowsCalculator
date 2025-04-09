@@ -4,10 +4,6 @@ import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.Color;
 import javax.swing.LookAndFeel;
 
-/**
- *
- * @author adith
- */
 public class AppUi {
 
     public static Color APP_THEME = getAppColor();

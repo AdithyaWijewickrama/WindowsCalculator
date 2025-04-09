@@ -2,7 +2,7 @@ package com.calculator.scientific;
 
 import com.tokenizing.TokenList;
 import com.calculate.number.CNumber;
-import com.calculator.commoncalculator.Ui;
+import com.calculator.ui.Ui;
 import com.calculator.commoncalculator.history.HistoryCell;
 import com.calculator.commoncalculator.history.HistoryPanel;
 import com.calculator.commoncalculator.memory.MemoryBar;
@@ -19,10 +19,6 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-/**
- *
- * @author AW Developer
- */
 public class ScientificFrame extends javax.swing.JPanel {
 
     public ScientificNumberPanel numberPanel;
@@ -32,9 +28,6 @@ public class ScientificFrame extends javax.swing.JPanel {
     public MemoryPanel memoryPanel;
     public MemoryBar memoryBar;
 
-    /**
-     * Creates new form Standard
-     */
     public ScientificFrame() {
         initComponents();
         numberPanel = new ScientificNumberPanel(Boolean.TRUE) {

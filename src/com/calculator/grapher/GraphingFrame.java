@@ -10,10 +10,6 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-/**
- *
- * @author AW Developer
- */
 public class GraphingFrame extends javax.swing.JPanel {
 
     GraphPanel graphPanel;
