@@ -11,15 +11,11 @@ import com.calculator.programmer.ProgrammerFrame;
 import com.calculator.scientific.ScientificFrame;
 import com.calculator.standard.StandardFrame;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.PopupMenu;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -33,11 +29,11 @@ public class Main extends javax.swing.JFrame {
     public static final int TOP_HEIGHT = 40;
     public static Dimension maxSize = new Dimension(6000, 6000);
     public static Dimension minSize = new Dimension(400, 600);
-    private final StandardFrame standardFrame=new StandardFrame();
-    private final ScientificFrame scientificFrame=new ScientificFrame();
-    private final ProgrammerFrame programmerFrame=new ProgrammerFrame();
-    private final GraphingFrame graphingFrame=new GraphingFrame();
-    private final DateCalculation dateCalculation=new DateCalculation();
+    private final StandardFrame standardFrame = new StandardFrame();
+    private final ScientificFrame scientificFrame = new ScientificFrame();
+    private final ProgrammerFrame programmerFrame = new ProgrammerFrame();
+    private final GraphingFrame graphingFrame = new GraphingFrame();
+    private final DateCalculation dateCalculation = new DateCalculation();
 
     /**
      * Creates new form Main
@@ -45,6 +41,8 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         ButtonGroup group = new ButtonGroup();
+        graphingFrame.getGraghingPanelThread().start();
+        setFrame(STANDARD);
         group.add(jToggleButton1);
         group.add(jToggleButton2);
         group.add(jToggleButton3);
@@ -621,6 +619,7 @@ public class Main extends javax.swing.JFrame {
 
     public void setFrame(int type) {
         calculatorPanel.removeAll();
+        graphingFrame.getGraphPanel().stopRunning();
         switch (type) {
             case STANDARD:
                 calculatorPanel.add(standardFrame);
@@ -632,6 +631,7 @@ public class Main extends javax.swing.JFrame {
                 calculatorPanel.add(programmerFrame);
                 break;
             case GRAPHING:
+                graphingFrame.getGraphPanel().continueRunning();
                 calculatorPanel.add(graphingFrame);
                 break;
             case DATE_CALCULATION:

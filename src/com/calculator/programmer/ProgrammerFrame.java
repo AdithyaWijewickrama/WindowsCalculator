@@ -1,10 +1,16 @@
 package com.calculator.programmer;
 
-import com.tokenizing.TokenList;
-import com.calculate.CNumber;
-import com.calculator.commonCalculator.Ui;
-import com.calculator.commonCalculator.memory.MemoryCell;
-import com.calculator.commonCalculator.memory.MemoryPanel;
+import com.amath.advacedmath.calculate.CNumber;
+import com.amath.advacedmath.programmer.Base;
+import static com.amath.advacedmath.programmer.Base.BIN;
+import static com.amath.advacedmath.programmer.Base.DEC;
+import static com.amath.advacedmath.programmer.Base.OCT;
+import com.amath.advacedmath.programmer.WordSize;
+import static com.amath.advacedmath.programmer.WordSize.BYTE;
+import com.amath.advacedmath.tokenizing.TokenList;
+import com.calculator.ui.Ui;
+import com.calculator.commoncalculator.memory.MemoryCell;
+import com.calculator.commoncalculator.memory.MemoryPanel;
 import com.calculator.programmer.functions.RadixSelector;
 import com.calculator.programmer.functions.FunctionsPanel;
 import com.calculator.programmer.wordSize.BitKeyPanel;
@@ -17,17 +23,7 @@ import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import programmer.Base;
-import static programmer.Base.BIN;
-import static programmer.Base.DEC;
-import static programmer.Base.OCT;
-import programmer.WordSize;
-import static programmer.WordSize.BYTE;
 
-/**
- *
- * @author AW Developer
- */
 public class ProgrammerFrame extends javax.swing.JPanel {
 
     public ProgrammerNumberPanel numberPanel;
@@ -37,15 +33,13 @@ public class ProgrammerFrame extends javax.swing.JPanel {
     public MemoryPanel memoryPanel;
     public BitKeyPanel bitKeyPanel;
 
-    /**
-     * Creates new form Standard
-     */
     public ProgrammerFrame() {
         initComponents();
         numberPanel = new ProgrammerNumberPanel(Boolean.TRUE) {
             @Override
             public void addHistory(TokenList equation, CNumber answer) {
             }
+
             @Override
             public void setNumberToRadixPanel(CNumber number) {
                 if (radixSelector != null) {
@@ -239,7 +233,7 @@ public class ProgrammerFrame extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        wordSize = WordSize.values()[wordSizeIndex==3?0:++wordSizeIndex];
+        wordSize = WordSize.values()[wordSizeIndex == 3 ? 0 : ++wordSizeIndex];
         bitKeyPanel.setWordSize(wordSize);
     }//GEN-LAST:event_jButton3ActionPerformed
 

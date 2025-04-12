@@ -1,22 +1,37 @@
 package com.calculator.standard;
 
-import com.tokenizing.Token;
-import static com.tokenizing.Token.*;
-import com.tokenizing.TokenList;
-import com.tokenizing.TokenType;
-import com.calculator.commonCalculator.button.ButtonLayout;
-import com.calculator.commonCalculator.CommonKeyPanel;
-import com.calculator.commonCalculator.CommonNumberPanel;
-import static com.calculator.commonCalculator.button.DefaultButtons.BACK;
-import static com.calculator.commonCalculator.button.DefaultButtons.C;
-import static com.calculator.commonCalculator.button.DefaultButtons.CE;
+import com.amath.advacedmath.tokenizing.Token;
+import static com.amath.advacedmath.tokenizing.Token.DIVIDE;
+import static com.amath.advacedmath.tokenizing.Token.DOT;
+import static com.amath.advacedmath.tokenizing.Token.EIGHT;
+import static com.amath.advacedmath.tokenizing.Token.EQUAL;
+import static com.amath.advacedmath.tokenizing.Token.FIVE;
+import static com.amath.advacedmath.tokenizing.Token.FOUR;
+import static com.amath.advacedmath.tokenizing.Token.MINUS;
+import static com.amath.advacedmath.tokenizing.Token.MODULO;
+import static com.amath.advacedmath.tokenizing.Token.MULTIPLY;
+import static com.amath.advacedmath.tokenizing.Token.NINE;
+import static com.amath.advacedmath.tokenizing.Token.ONE;
+import static com.amath.advacedmath.tokenizing.Token.PLUS;
+import static com.amath.advacedmath.tokenizing.Token.PLUS_OR_MINUS;
+import static com.amath.advacedmath.tokenizing.Token.SEVEN;
+import static com.amath.advacedmath.tokenizing.Token.SIX;
+import static com.amath.advacedmath.tokenizing.Token.SQUARED;
+import static com.amath.advacedmath.tokenizing.Token.SQUREROOT;
+import static com.amath.advacedmath.tokenizing.Token.THREE;
+import static com.amath.advacedmath.tokenizing.Token.TWO;
+import static com.amath.advacedmath.tokenizing.Token.ZERO;
+import com.amath.advacedmath.tokenizing.TokenList;
+import com.amath.advacedmath.tokenizing.TokenType;
+import com.calculator.commoncalculator.button.ButtonLayout;
+import com.calculator.commoncalculator.CommonKeyPanel;
+import com.calculator.commoncalculator.CommonNumberPanel;
+import static com.calculator.commoncalculator.button.DefaultButtons.BACK;
+import static com.calculator.commoncalculator.button.DefaultButtons.C;
+import static com.calculator.commoncalculator.button.DefaultButtons.CE;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author AW Developer
- */
 public class StandardKeyPanel extends javax.swing.JPanel {
 
     CommonKeyPanel keyPanel;
@@ -33,9 +48,6 @@ public class StandardKeyPanel extends javax.swing.JPanel {
             + "####\n"
             + "####\n";
 
-    /**
-     * Creates new form StandardKeyPanel
-     */
     public StandardKeyPanel(CommonNumberPanel numberPanel) {
         this.numberPanel = numberPanel;
         initComponents();

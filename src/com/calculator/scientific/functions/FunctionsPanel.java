@@ -1,22 +1,45 @@
 package com.calculator.scientific.functions;
 
-import com.calculator.commonCalculator.button.ButtonLayout;
-import com.calculator.commonCalculator.CommonKeyPanel;
-import com.calculator.commonCalculator.CommonNumberPanel;
-import com.calculator.commonCalculator.Ui;
-import static com.calculator.commonCalculator.button.DefaultButtons.DMS;
-import static com.calculator.commonCalculator.button.DefaultButtons.RAND;
-import com.calculator.commonCalculator.popupPanel.PopupButton;
-import com.calculator.commonCalculator.popupPanel.PopupPanel;
-import static com.tokenizing.Token.*;
-import com.tokenizing.TokenList;
+import static com.amath.advacedmath.tokenizing.Token.ABS;
+import static com.amath.advacedmath.tokenizing.Token.ACOS;
+import static com.amath.advacedmath.tokenizing.Token.ACOSH;
+import static com.amath.advacedmath.tokenizing.Token.ACOT;
+import static com.amath.advacedmath.tokenizing.Token.ACOTH;
+import static com.amath.advacedmath.tokenizing.Token.ACSC;
+import static com.amath.advacedmath.tokenizing.Token.ACSCH;
+import static com.amath.advacedmath.tokenizing.Token.ASEC;
+import static com.amath.advacedmath.tokenizing.Token.ASECH;
+import static com.amath.advacedmath.tokenizing.Token.ASIN;
+import static com.amath.advacedmath.tokenizing.Token.ASINH;
+import static com.amath.advacedmath.tokenizing.Token.ATAN;
+import static com.amath.advacedmath.tokenizing.Token.ATANH;
+import static com.amath.advacedmath.tokenizing.Token.CEILING;
+import static com.amath.advacedmath.tokenizing.Token.COS;
+import static com.amath.advacedmath.tokenizing.Token.COSH;
+import static com.amath.advacedmath.tokenizing.Token.COT;
+import static com.amath.advacedmath.tokenizing.Token.COTH;
+import static com.amath.advacedmath.tokenizing.Token.CSC;
+import static com.amath.advacedmath.tokenizing.Token.CSCH;
+import static com.amath.advacedmath.tokenizing.Token.DEGREES;
+import static com.amath.advacedmath.tokenizing.Token.FLOOR;
+import static com.amath.advacedmath.tokenizing.Token.SEC;
+import static com.amath.advacedmath.tokenizing.Token.SECH;
+import static com.amath.advacedmath.tokenizing.Token.SIN;
+import static com.amath.advacedmath.tokenizing.Token.SINH;
+import static com.amath.advacedmath.tokenizing.Token.TAN;
+import static com.amath.advacedmath.tokenizing.Token.TANH;
+import com.amath.advacedmath.tokenizing.TokenList;
+import com.calculator.commoncalculator.button.ButtonLayout;
+import com.calculator.commoncalculator.CommonKeyPanel;
+import com.calculator.commoncalculator.CommonNumberPanel;
+import com.calculator.ui.Ui;
+import static com.calculator.commoncalculator.button.DefaultButtons.DMS;
+import static com.calculator.commoncalculator.button.DefaultButtons.RAND;
+import com.calculator.commoncalculator.popupPanel.PopupButton;
+import com.calculator.commoncalculator.popupPanel.PopupPanel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author AW Developer
- */
 public class FunctionsPanel extends javax.swing.JPanel {
 
     CommonKeyPanel triag;
@@ -29,9 +52,6 @@ public class FunctionsPanel extends javax.swing.JPanel {
     PopupPanel otherDialog;
     PopupButton otherButton;
 
-    /**
-     * Creates new form FunctionsPanel
-     */
     public FunctionsPanel(CommonNumberPanel numberPanel) {
         initComponents();
         try {
@@ -39,7 +59,7 @@ public class FunctionsPanel extends javax.swing.JPanel {
             atriag = new CommonKeyPanel(numberPanel, new TokenList(ASIN, ACOS, ATAN, ACSC, ASEC, ACOT), "###\n###", ButtonLayout.ROW);
             triagh = new CommonKeyPanel(numberPanel, new TokenList(SINH, COSH, TANH, CSCH, SECH, COTH), "###\n###", ButtonLayout.ROW);
             atriagh = new CommonKeyPanel(numberPanel, new TokenList(ASINH, ACOSH, ATANH, ACSCH, ASECH, ACOTH), "###\n###", ButtonLayout.ROW);
-            other = new CommonKeyPanel(numberPanel, new TokenList(ABS,FLOOR,CEILING, RAND, DMS, DEGREES), "###\n###", ButtonLayout.ROW);
+            other = new CommonKeyPanel(numberPanel, new TokenList(ABS, FLOOR, CEILING, RAND, DMS, DEGREES), "###\n###", ButtonLayout.ROW);
             Ui.setSize(triag, 180, 100);
             Ui.setSize(atriag, 180, 100);
             Ui.setSize(triagh, 180, 100);
@@ -78,7 +98,7 @@ public class FunctionsPanel extends javax.swing.JPanel {
         } else {
             p = atriagh;
         }
-        System.out.println(secnd+" "+hyp);
+        System.out.println(secnd + " " + hyp);
         triagDialog.clearAll();
         triagDialog.addComponent(jPanel2);
         triagDialog.addComponent(p);

@@ -1,22 +1,15 @@
-package com.calculator.commonCalculator.history;
+package com.calculator.commoncalculator.history;
 
-import com.tokenizing.TokenList;
-import com.calculate.CNumber;
-import com.calculator.commonCalculator.Ui;
+import com.amath.advacedmath.calculate.CNumber;
+import com.amath.advacedmath.tokenizing.TokenList;
+import com.calculator.ui.Ui;
 import java.awt.Color;
 
-/**
- *
- * @author AW Developer
- */
 public abstract class HistoryCell extends javax.swing.JPanel {
 
     TokenList equation;
     CNumber answer;
 
-    /**
-     * Creates new form HistoryCell
-     */
     public HistoryCell(TokenList equation, CNumber answer) {
         initComponents();
         this.equation = equation;
@@ -30,7 +23,8 @@ public abstract class HistoryCell extends javax.swing.JPanel {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 mouseExit();
             }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
+
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 historyItemClicked(equation, answer);
             }
         };

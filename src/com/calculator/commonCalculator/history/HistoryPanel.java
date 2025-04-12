@@ -1,9 +1,9 @@
-package com.calculator.commonCalculator.history;
+package com.calculator.commoncalculator.history;
 
-import com.tokenizing.TokenList;
-import com.codes.test;
+import com.amath.advacedmath.calculate.CNumber;
+import com.amath.advacedmath.tokenizing.TokenList;
+import com.helper.test;
 import javax.swing.JPanel;
-import com.calculate.CNumber;
 import java.awt.Dimension;
 import java.util.ArrayList;
 

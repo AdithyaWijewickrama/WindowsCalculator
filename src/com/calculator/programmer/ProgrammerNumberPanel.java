@@ -1,13 +1,18 @@
 package com.calculator.programmer;
 
-import com.tokenizing.Token;
-import com.tokenizing.TokenList;
-import com.tokenizing.TokenType;
-import com.calculate.CNumber;
-import com.calculate.NumberFormat;
-import com.calculate.equation.ExpressionEvaluator;
-import static com.calculate.equation.ExpressionEvaluator.scanFor;
-import com.calculator.commonCalculator.CommonNumberPanel;
+import com.amath.advacedmath.calculate.CNumber;
+import com.amath.advacedmath.calculate.NumberFormat;
+import com.amath.advacedmath.calculate.equation.ExpressionEvaluator;
+import static com.amath.advacedmath.calculate.equation.ExpressionEvaluator.scanFor;
+import com.amath.advacedmath.programmer.Base;
+import com.amath.advacedmath.tokenizing.Token;
+import com.amath.advacedmath.tokenizing.TokenList;
+import com.amath.advacedmath.tokenizing.TokenType;
+import static com.amath.advacedmath.tokenizing.TokenType.DIGIT;
+import static com.amath.advacedmath.tokenizing.TokenType.FUNCTION_;
+import static com.amath.advacedmath.tokenizing.TokenType.SYMBOL;
+import static com.amath.advacedmath.tokenizing.TokenType._FUNCTION_;
+import com.calculator.commoncalculator.CommonNumberPanel;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.event.KeyEvent;
 import java.util.logging.Level;
@@ -15,17 +20,12 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import programmer.Base;
 
-/**
- *
- * @author AW Developer
- */
 public abstract class ProgrammerNumberPanel extends CommonNumberPanel {
 
     private TokenList tokensWithinSplitters = new TokenList();
-    private TokenList enter = new TokenList();
-    private TokenList show = new TokenList();
+    private final TokenList enter = new TokenList();
+    private final TokenList show = new TokenList();
     private int pranthesis = 0;
 
     public ProgrammerNumberPanel(boolean showEquation) {
@@ -62,7 +62,6 @@ public abstract class ProgrammerNumberPanel extends CommonNumberPanel {
             } else {
                 t = Token.getTokenByKey(key);
             }
-//            System.out.println(key);
             if (KeyEvent.VK_ENTER == key) {
                 if (getLastShowedToken() == Token.EQUAL) {
                     int i = scanFor(show, TokenType.OPARATOR);
@@ -97,7 +96,6 @@ public abstract class ProgrammerNumberPanel extends CommonNumberPanel {
                     tokenDigits.clear();
                     tokenDigits.addToken(ZEROTOKEN);
                 }
-//                System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"+getTypedNumber().getNumberString()+"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
                 setNumber(getTypedNumber());
                 setNumberToRadixPanel(currentNumber.number);
             } else if (t != null) {
@@ -254,22 +252,31 @@ public abstract class ProgrammerNumberPanel extends CommonNumberPanel {
                         show.addToken(token);
                         show.addTokens(tokensWithinSplitters.pranthesise());
                     }
-                    if (getLastTokenType() == TokenType.OPARATOR) {
-                        show.addToken(token);
-                        show.addTokens(tokensWithinSplitters.pranthesise());
-                    } else if (getLastTokenType() == TokenType.NUMBER) {
-                        show.addToken(token);
-                        show.addTokens(tokensWithinSplitters.pranthesise());
-                    } else if (getLastTokenType() == TokenType.FUNCTION_) {
-                        deleteLastTokens(show);
-                        deleteLastTokens(enter);
-                        show.addToken(token);
-                        show.addTokens(tokensWithinSplitters.pranthesise());
-                    } else if (getLastTokenType() == TokenType._FUNCTION_) {
-                        int scan = ExpressionEvaluator.scanFor(show, getLastToken());
-                        show.addToken(token);
-                        show.addTokens(tokensWithinSplitters.pranthesise());
-                        tokensWithinSplitters = new TokenList();
+                    if (null != getLastTokenType()) {
+                        switch (getLastTokenType()) {
+                            case OPARATOR:
+                                show.addToken(token);
+                                show.addTokens(tokensWithinSplitters.pranthesise());
+                                break;
+                            case NUMBER:
+                                show.addToken(token);
+                                show.addTokens(tokensWithinSplitters.pranthesise());
+                                break;
+                            case FUNCTION_:
+                                deleteLastTokens(show);
+                                deleteLastTokens(enter);
+                                show.addToken(token);
+                                show.addTokens(tokensWithinSplitters.pranthesise());
+                                break;
+                            case _FUNCTION_:
+                                int scan = ExpressionEvaluator.scanFor(show, getLastToken());
+                                show.addToken(token);
+                                show.addTokens(tokensWithinSplitters.pranthesise());
+                                tokensWithinSplitters = new TokenList();
+                                break;
+                            default:
+                                break;
+                        }
                     }
                     tokensWithinSplitters = tokensWithinSplitters.pranthesise();
                     tokensWithinSplitters.insertToken(token, 0);
@@ -277,6 +284,7 @@ public abstract class ProgrammerNumberPanel extends CommonNumberPanel {
                     tokenDigits.clear();
                     tokenDigits.addToken(ZEROTOKEN);
                     break;
+
                 case SYMBOL:
                     if (token == Token.OPEN_PRANTHESIS) {
                         if (getLastShowedTokenType() == TokenType.NUMBER) {
@@ -427,7 +435,7 @@ public abstract class ProgrammerNumberPanel extends CommonNumberPanel {
             Logger.getLogger(ProgrammerNumberPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     private boolean isTokensEmpty() {
         return tokensWithinSplitters.size() == 0;
     }

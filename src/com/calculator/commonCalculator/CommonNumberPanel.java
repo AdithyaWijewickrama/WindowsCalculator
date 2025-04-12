@@ -1,11 +1,11 @@
-package com.calculator.commonCalculator;
+package com.calculator.commoncalculator;
 
-import com.tokenizing.Token;
-import com.tokenizing.TokenList;
-import com.tokenizing.TokenType;
-import com.calculate.CNumber;
-import com.calculate.NumberFormat;
-import com.calculate.equation.ExpressionEvaluator;
+import com.amath.advacedmath.calculate.CNumber;
+import com.amath.advacedmath.calculate.NumberFormat;
+import com.amath.advacedmath.calculate.equation.ExpressionEvaluator;
+import com.amath.advacedmath.tokenizing.Token;
+import com.amath.advacedmath.tokenizing.TokenList;
+import com.amath.advacedmath.tokenizing.TokenType;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ComponentAdapter;
@@ -15,10 +15,6 @@ import java.awt.event.HierarchyListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author AW Developer
- */
 public abstract class CommonNumberPanel extends javax.swing.JPanel {
 
     protected TokenList tokenDigits = new TokenList();

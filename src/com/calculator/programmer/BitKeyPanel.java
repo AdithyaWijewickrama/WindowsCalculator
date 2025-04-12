@@ -3,17 +3,10 @@ package com.calculator.programmer;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
-/**
- *
- * @author AW Developer
- */
 public class BitKeyPanel extends javax.swing.JPanel {
 
     QuadrantBitKeyPanel[][] fourBitKeys = new QuadrantBitKeyPanel[4][4];
 
-    /**
-     * Creates new form BitKeyPanel
-     */
     public BitKeyPanel() {
         initComponents();
         for (int i = 0; i <= 64; i += 4) {

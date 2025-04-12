@@ -1,5 +1,6 @@
 package com.calculator.programmer.wordSize;
 
+import com.amath.advacedmath.programmer.WordSize;
 import com.calculator.programmer.ProgrammerFrame;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Color;
@@ -10,24 +11,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import programmer.WordSize;
 
-/**
- *
- * @author AW Developer
- */
 public class BitKeyPanel extends javax.swing.JPanel {
 
     QuadrantBitKeyPanel[][] fourBitKeyPanels = new QuadrantBitKeyPanel[4][4];
 
-    /**
-     * Creates new form BitKeyPanel
-     */
     public BitKeyPanel() {
         initComponents();
         for (int i = 0; i < 64; i += 16) {
             for (int j = 0; j < 16; j += 4) {
-//                System.out.println(i+"|"+j);
                 fourBitKeyPanels[i / 16][j / 4] = new QuadrantBitKeyPanel(i + j);
             }
         }

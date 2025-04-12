@@ -1,30 +1,30 @@
-package com.calculator.commonCalculator;
+package com.calculator.commoncalculator;
 
-import com.calculator.commonCalculator.button.CommonButton;
-import com.calculator.commonCalculator.button.ButtonLayout;
-import com.calculator.commonCalculator.button.ButtonList;
-import com.tokenizing.Token;
-import static com.tokenizing.Token.DIVIDE;
-import static com.tokenizing.Token.DOT;
-import static com.tokenizing.Token.EIGHT;
-import static com.tokenizing.Token.EQUAL;
-import static com.tokenizing.Token.FIVE;
-import static com.tokenizing.Token.FOUR;
-import static com.tokenizing.Token.MINUS;
-import static com.tokenizing.Token.MODULO;
-import static com.tokenizing.Token.MULTIPLY;
-import static com.tokenizing.Token.NINE;
-import static com.tokenizing.Token.ONE;
-import static com.tokenizing.Token.PLUS;
-import static com.tokenizing.Token.SEVEN;
-import static com.tokenizing.Token.SIX;
-import static com.tokenizing.Token.SQUARED;
-import static com.tokenizing.Token.SQUREROOT;
-import static com.tokenizing.Token.THREE;
-import static com.tokenizing.Token.TWO;
-import static com.tokenizing.Token.ZERO;
-import com.tokenizing.TokenList;
-import com.tokenizing.TokenType;
+import com.amath.advacedmath.tokenizing.Token;
+import static com.amath.advacedmath.tokenizing.Token.DIVIDE;
+import static com.amath.advacedmath.tokenizing.Token.DOT;
+import static com.amath.advacedmath.tokenizing.Token.EIGHT;
+import static com.amath.advacedmath.tokenizing.Token.EQUAL;
+import static com.amath.advacedmath.tokenizing.Token.FIVE;
+import static com.amath.advacedmath.tokenizing.Token.FOUR;
+import static com.amath.advacedmath.tokenizing.Token.MINUS;
+import static com.amath.advacedmath.tokenizing.Token.MODULO;
+import static com.amath.advacedmath.tokenizing.Token.MULTIPLY;
+import static com.amath.advacedmath.tokenizing.Token.NINE;
+import static com.amath.advacedmath.tokenizing.Token.ONE;
+import static com.amath.advacedmath.tokenizing.Token.PLUS;
+import static com.amath.advacedmath.tokenizing.Token.SEVEN;
+import static com.amath.advacedmath.tokenizing.Token.SIX;
+import static com.amath.advacedmath.tokenizing.Token.SQUARED;
+import static com.amath.advacedmath.tokenizing.Token.SQUREROOT;
+import static com.amath.advacedmath.tokenizing.Token.THREE;
+import static com.amath.advacedmath.tokenizing.Token.TWO;
+import static com.amath.advacedmath.tokenizing.Token.ZERO;
+import com.amath.advacedmath.tokenizing.TokenList;
+import com.amath.advacedmath.tokenizing.TokenType;
+import com.calculator.commoncalculator.button.CommonButton;
+import com.calculator.commoncalculator.button.ButtonLayout;
+import com.calculator.commoncalculator.button.ButtonList;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -36,19 +36,12 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-/**
- *
- * @author AW Developer
- */
 public class CommonKeyPanel extends javax.swing.JPanel {
 
     public final ButtonList buttons;
     final ArrayList<JPanel> blocks;
     final CommonNumberPanel parentText;
 
-    /**
-     * Creates new form CommonKeyPanel
-     */
     public CommonKeyPanel(CommonNumberPanel parent, TokenList buttons, String pattern, int layout) throws Exception {
         initComponents();
         blocks = new ArrayList<>();
@@ -68,8 +61,6 @@ public class CommonKeyPanel extends javax.swing.JPanel {
     public CommonNumberPanel getParentText() {
         return parentText;
     }
-    
-    
 
     public final void setButtons() {
         int layout = 0;
@@ -186,7 +177,6 @@ public class CommonKeyPanel extends javax.swing.JPanel {
             }
             System.exit(0);
         }).start();
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             frame.setVisible(true);
         });

@@ -1,7 +1,7 @@
-package com.calculator.commonCalculator.memory;
+package com.calculator.commoncalculator.memory;
 
-import com.calculate.CNumber;
-import com.codes.test;
+import com.amath.advacedmath.calculate.CNumber;
+import com.helper.test;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.util.ArrayList;

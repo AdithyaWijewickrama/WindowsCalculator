@@ -1,5 +1,6 @@
 package com.calculator.graphing;
 
+import com.amath.advacedmath.calculate.CNumber;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
@@ -60,10 +61,10 @@ public class GraphPanel extends JPanel implements Runnable {
                     xScale = xScaleFactor;
                     yScale = yScaleFactor;
                 } else {
-//                    xScaleFactor = (newWidth - margin * 2) / xScaleFactor;
-//                    yScaleFactor = (newHeight - margin * 2) / yScaleFactor;
-//                    xScale = xScaleFactor;
-//                    yScale = yScaleFactor;
+                    xScaleFactor = (newWidth - margin * 2) / xScaleFactor;
+                    yScaleFactor = (newHeight - margin * 2) / yScaleFactor;
+                    xScale = xScaleFactor;
+                    yScale = yScaleFactor;
                 }
                 if (center == null) {
                     center = new Point();
@@ -115,7 +116,14 @@ public class GraphPanel extends JPanel implements Runnable {
                 }
             }
         });
-
+    }
+    
+    public void stopRunning(){
+        running=false;
+    }
+    
+    public void continueRunning(){
+        running=true;
     }
 
     public void checkGaps() {
@@ -227,15 +235,16 @@ public class GraphPanel extends JPanel implements Runnable {
     }
 
     public static double getXIncrement(BasicFunction f, double x) {
-        double y = f.evaluateAt(com.calculate.CNumber.parseNumber(x)).doubleValue();
+        double y = f.evaluateAt(CNumber.parseNumber(x)).doubleValue();
         double x0 = x + 1;
-        double y0 = f.evaluateAt(com.calculate.CNumber.parseNumber(x0)).doubleValue();
+        double y0 = f.evaluateAt(CNumber.parseNumber(x0)).doubleValue();
         return (y - y0) / (x - x0);
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        if(!running)return;
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 //        float[] dashPattern = {1, 1};  // 10 pixels on, 10 pixels off
@@ -305,7 +314,7 @@ public class GraphPanel extends JPanel implements Runnable {
                 double xv[] = new double[2];
                 double yv[] = new double[2];
                 xv[1] = margin;
-                yv[1] = getYOnPanel(function.evaluateAt(com.calculate.CNumber.parseNumber(getXOnGrid(margin))).doubleValue());
+                yv[1] = getYOnPanel(function.evaluateAt(CNumber.parseNumber(getXOnGrid(margin))).doubleValue());
                 path.moveTo(xv[1], yv[1]);
                 double x = margin;
                 boolean lineBreak = false;
@@ -313,7 +322,7 @@ public class GraphPanel extends JPanel implements Runnable {
                     double m = Math.abs(getXIncrement(function, x));
                     x += inc;
                     double xVal = getXOnGrid(x);
-                    double yVal = function.evaluateAt(com.calculate.CNumber.parseNumber(xVal)).doubleValue();
+                    double yVal = function.evaluateAt(CNumber.parseNumber(xVal)).doubleValue();
                     if (x > width - margin) {
                         break;
                     }
@@ -404,7 +413,7 @@ public class GraphPanel extends JPanel implements Runnable {
                 running = false;
             }
             try {
-                Thread.sleep((long) 10.0);
+                Thread.sleep((long) 100.0);
             } catch (InterruptedException ex) {
                 Logger.getLogger(GraphPanel.class.getName()).log(Level.SEVERE, null, ex);
             }

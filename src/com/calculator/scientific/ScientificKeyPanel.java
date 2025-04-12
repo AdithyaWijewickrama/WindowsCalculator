@@ -1,22 +1,53 @@
 package com.calculator.scientific;
 
-import com.tokenizing.Token;
-import static com.tokenizing.Token.*;
-import com.tokenizing.TokenList;
-import com.tokenizing.TokenType;
-import com.calculator.commonCalculator.button.ButtonLayout;
-import com.calculator.commonCalculator.CommonKeyPanel;
-import com.calculator.commonCalculator.CommonNumberPanel;
-import static com.calculator.commonCalculator.button.DefaultButtons.BACK;
-import static com.calculator.commonCalculator.button.DefaultButtons.C;
+import com.amath.advacedmath.tokenizing.Token;
+import static com.amath.advacedmath.tokenizing.Token.ABS;
+import static com.amath.advacedmath.tokenizing.Token.CLOSE_PRANTHESIS;
+import static com.amath.advacedmath.tokenizing.Token.CUBE;
+import static com.amath.advacedmath.tokenizing.Token.CUBEROOT;
+import static com.amath.advacedmath.tokenizing.Token.DIVIDE;
+import static com.amath.advacedmath.tokenizing.Token.DOT;
+import static com.amath.advacedmath.tokenizing.Token.EIGHT;
+import static com.amath.advacedmath.tokenizing.Token.EQUAL;
+import static com.amath.advacedmath.tokenizing.Token.FACTORIAL;
+import static com.amath.advacedmath.tokenizing.Token.FIVE;
+import static com.amath.advacedmath.tokenizing.Token.FOUR;
+import static com.amath.advacedmath.tokenizing.Token.LN;
+import static com.amath.advacedmath.tokenizing.Token.LOG10;
+import static com.amath.advacedmath.tokenizing.Token.LOGBASEY;
+import static com.amath.advacedmath.tokenizing.Token.MINUS;
+import static com.amath.advacedmath.tokenizing.Token.MODULO;
+import static com.amath.advacedmath.tokenizing.Token.MULTIPLY;
+import static com.amath.advacedmath.tokenizing.Token.NINE;
+import static com.amath.advacedmath.tokenizing.Token.ONE;
+import static com.amath.advacedmath.tokenizing.Token.OPEN_PRANTHESIS;
+import static com.amath.advacedmath.tokenizing.Token.PLUS;
+import static com.amath.advacedmath.tokenizing.Token.PLUS_OR_MINUS;
+import static com.amath.advacedmath.tokenizing.Token.RAISED;
+import static com.amath.advacedmath.tokenizing.Token.SEVEN;
+import static com.amath.advacedmath.tokenizing.Token.SIX;
+import static com.amath.advacedmath.tokenizing.Token.SQUARED;
+import static com.amath.advacedmath.tokenizing.Token.SQUREROOT;
+import static com.amath.advacedmath.tokenizing.Token.TENRAISED;
+import static com.amath.advacedmath.tokenizing.Token.THREE;
+import static com.amath.advacedmath.tokenizing.Token.TWO;
+import static com.amath.advacedmath.tokenizing.Token.TWORAISED;
+import static com.amath.advacedmath.tokenizing.Token.YROOT;
+import static com.amath.advacedmath.tokenizing.Token.ZERO;
+import static com.amath.advacedmath.tokenizing.Token.e;
+import static com.amath.advacedmath.tokenizing.Token.PI;
+import static com.amath.advacedmath.tokenizing.Token.eRAISED;
+import com.amath.advacedmath.tokenizing.TokenList;
+import com.amath.advacedmath.tokenizing.TokenType;
+import com.calculator.commoncalculator.button.ButtonLayout;
+import com.calculator.commoncalculator.CommonKeyPanel;
+import com.calculator.commoncalculator.CommonNumberPanel;
+import static com.calculator.commoncalculator.button.DefaultButtons.BACK;
+import static com.calculator.commoncalculator.button.DefaultButtons.C;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
 
-/**
- *
- * @author AW Developer
- */
 public final class ScientificKeyPanel extends javax.swing.JPanel {
 
     CommonKeyPanel keyPanel;

@@ -1,14 +1,16 @@
 package com.calculator.standard;
 
-import com.tokenizing.Token;
-import com.tokenizing.TokenList;
-import com.tokenizing.TokenType;
-import com.calculate.CNumber;
-import com.calculate.equation.ExpressionEvaluator;
-import static com.calculate.equation.ExpressionEvaluator.scanFor;
-import com.calculator.commonCalculator.CommonNumberPanel;
+import com.amath.advacedmath.calculate.CNumber;
+import com.amath.advacedmath.calculate.equation.ExpressionEvaluator;
+import static com.amath.advacedmath.calculate.equation.ExpressionEvaluator.scanFor;
+import com.amath.advacedmath.tokenizing.Token;
+import com.amath.advacedmath.tokenizing.TokenList;
+import com.amath.advacedmath.tokenizing.TokenType;
+import static com.amath.advacedmath.tokenizing.TokenType.DIGIT;
+import static com.amath.advacedmath.tokenizing.TokenType.FUNCTION_;
+import static com.amath.advacedmath.tokenizing.TokenType._FUNCTION_;
+import com.calculator.commoncalculator.CommonNumberPanel;
 import com.formdev.flatlaf.FlatDarculaLaf;
-import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,14 +18,10 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-/**
- *
- * @author AW Developer
- */
 public abstract class StandardNumberPanel extends CommonNumberPanel {
 
-    private TokenList show = new TokenList();
-    private TokenList enter = new TokenList();
+    private final TokenList show = new TokenList();
+    private final TokenList enter = new TokenList();
     private TokenList tokensWithinSplitters = new TokenList();
 
     public StandardNumberPanel() {

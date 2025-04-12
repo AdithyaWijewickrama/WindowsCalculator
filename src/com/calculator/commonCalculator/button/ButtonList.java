@@ -1,13 +1,9 @@
-package com.calculator.commonCalculator.button;
+package com.calculator.commoncalculator.button;
 
-import com.tokenizing.Token;
-import com.tokenizing.TokenList;
+import com.amath.advacedmath.tokenizing.Token;
+import com.amath.advacedmath.tokenizing.TokenList;
 import java.util.ArrayList;
 
-/**
- *
- * @author AW Developer
- */
 public class ButtonList extends ButtonLayout {
 
     TokenList buttonTokens;

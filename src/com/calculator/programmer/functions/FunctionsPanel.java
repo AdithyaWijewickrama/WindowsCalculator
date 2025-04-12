@@ -1,20 +1,21 @@
 package com.calculator.programmer.functions;
 
-import com.calculator.commonCalculator.button.ButtonLayout;
-import com.calculator.commonCalculator.CommonKeyPanel;
-import com.calculator.commonCalculator.CommonNumberPanel;
-import com.calculator.commonCalculator.Ui;
-import com.calculator.commonCalculator.popupPanel.PopupButton;
-import com.calculator.commonCalculator.popupPanel.PopupPanel;
-import static com.tokenizing.Token.*;
-import com.tokenizing.TokenList;
+import static com.amath.advacedmath.tokenizing.Token.AND;
+import static com.amath.advacedmath.tokenizing.Token.NAND;
+import static com.amath.advacedmath.tokenizing.Token.NOR;
+import static com.amath.advacedmath.tokenizing.Token.NOT;
+import static com.amath.advacedmath.tokenizing.Token.OR;
+import static com.amath.advacedmath.tokenizing.Token.XOR;
+import com.amath.advacedmath.tokenizing.TokenList;
+import com.calculator.commoncalculator.button.ButtonLayout;
+import com.calculator.commoncalculator.CommonKeyPanel;
+import com.calculator.commoncalculator.CommonNumberPanel;
+import com.calculator.ui.Ui;
+import com.calculator.commoncalculator.popupPanel.PopupButton;
+import com.calculator.commoncalculator.popupPanel.PopupPanel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author AW Developer
- */
 public class FunctionsPanel extends javax.swing.JPanel {
 
     CommonKeyPanel bitwise;
@@ -23,13 +24,10 @@ public class FunctionsPanel extends javax.swing.JPanel {
     PopupPanel bitshiftDialog;
     PopupButton bitshiftButton;
 
-    /**
-     * Creates new form FunctionsPanel
-     */
     public FunctionsPanel(CommonNumberPanel numberPanel) {
         initComponents();
         try {
-            bitwise = new CommonKeyPanel(numberPanel, new TokenList(AND,OR,NOT,NAND,NOR,XOR), "###\n###", ButtonLayout.ROW);
+            bitwise = new CommonKeyPanel(numberPanel, new TokenList(AND, OR, NOT, NAND, NOR, XOR), "###\n###", ButtonLayout.ROW);
             Ui.setSize(bitwise, 180, 100);
         } catch (Exception ex) {
             Logger.getLogger(FunctionsPanel.class.getName()).log(Level.SEVERE, null, ex);

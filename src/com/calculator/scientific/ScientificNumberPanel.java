@@ -1,12 +1,16 @@
 package com.calculator.scientific;
 
-import com.tokenizing.Token;
-import com.tokenizing.TokenList;
-import com.tokenizing.TokenType;
-import com.calculate.CNumber;
-import com.calculate.equation.ExpressionEvaluator;
-import static com.calculate.equation.ExpressionEvaluator.scanFor;
-import com.calculator.commonCalculator.CommonNumberPanel;
+import com.amath.advacedmath.calculate.CNumber;
+import com.amath.advacedmath.calculate.equation.ExpressionEvaluator;
+import static com.amath.advacedmath.calculate.equation.ExpressionEvaluator.scanFor;
+import com.amath.advacedmath.tokenizing.Token;
+import com.amath.advacedmath.tokenizing.TokenList;
+import com.amath.advacedmath.tokenizing.TokenType;
+import static com.amath.advacedmath.tokenizing.TokenType.DIGIT;
+import static com.amath.advacedmath.tokenizing.TokenType.FUNCTION_;
+import static com.amath.advacedmath.tokenizing.TokenType.SYMBOL;
+import static com.amath.advacedmath.tokenizing.TokenType._FUNCTION_;
+import com.calculator.commoncalculator.CommonNumberPanel;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.event.KeyEvent;
 import java.util.logging.Level;
@@ -15,10 +19,6 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-/**
- *
- * @author AW Developer
- */
 public abstract class ScientificNumberPanel extends CommonNumberPanel {
 
     private TokenList tokensWithisSplitters = new TokenList();

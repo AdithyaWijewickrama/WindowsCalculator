@@ -1,12 +1,12 @@
 package com.calculator.graphing;
 
-import com.calculate.VariableList;
-import com.calculate.equation.Calculate;
-import com.calculate.equation.ExpressionEvaluator;
+import com.amath.advacedmath.calculate.CNumber;
+import com.amath.advacedmath.calculate.VariableList;
+import com.amath.advacedmath.calculate.equation.Calculate;
+import com.amath.advacedmath.calculate.equation.ExpressionEvaluator;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Stroke;
-import com.calculate.CNumber;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

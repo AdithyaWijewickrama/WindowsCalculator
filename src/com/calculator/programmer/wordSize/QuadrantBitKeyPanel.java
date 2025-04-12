@@ -1,24 +1,14 @@
 package com.calculator.programmer.wordSize;
 
-import com.calculator.commonCalculator.Ui;
-import static com.main.FrontFrame.APP_THEME;
+import com.calculator.ui.Ui;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.UIManager;
 
-/**
- *
- * @author AW Developer
- */
 public class QuadrantBitKeyPanel extends javax.swing.JPanel {
 
-    private int exponent;
+    private final int exponent;
 
-    /**
-     * Creates new form BitKeyPanel
-     *
-     * @param exponent
-     */
     public QuadrantBitKeyPanel(int exponent) {
         this.exponent = exponent;
         initComponents();
@@ -72,7 +62,7 @@ public class QuadrantBitKeyPanel extends javax.swing.JPanel {
 
     public void enablePanel(boolean enable) {
         if (enabled != enable) {
-            if(!enable){
+            if (!enable) {
                 bin1.setText("0");
                 bin2.setText("0");
                 bin3.setText("0");
@@ -82,7 +72,7 @@ public class QuadrantBitKeyPanel extends javax.swing.JPanel {
             bin2.setEnabled(enable);
             bin3.setEnabled(enable);
             bin4.setEnabled(enable);
-            enabled=!enabled;
+            enabled = !enabled;
         }
     }
 
