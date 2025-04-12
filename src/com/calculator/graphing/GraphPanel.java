@@ -1,4 +1,4 @@
-package com.calculator.grapher;
+package com.calculator.graphing;
 
 import com.amath.advacedmath.calculate.CNumber;
 import javax.swing.*;

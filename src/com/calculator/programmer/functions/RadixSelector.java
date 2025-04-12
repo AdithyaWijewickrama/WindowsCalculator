@@ -1,8 +1,8 @@
 package com.calculator.programmer.functions;
 
-import com.calculate.number.CNumber;
+import com.amath.advacedmath.calculate.CNumber;
+import com.amath.advacedmath.programmer.Base;
 import java.util.ArrayList;
-import programmer.Base;
 
 public abstract class RadixSelector extends javax.swing.JPanel {
 

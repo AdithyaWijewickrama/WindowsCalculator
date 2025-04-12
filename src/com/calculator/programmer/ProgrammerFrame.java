@@ -1,7 +1,13 @@
 package com.calculator.programmer;
 
-import com.tokenizing.TokenList;
-import com.calculate.number.CNumber;
+import com.amath.advacedmath.calculate.CNumber;
+import com.amath.advacedmath.programmer.Base;
+import static com.amath.advacedmath.programmer.Base.BIN;
+import static com.amath.advacedmath.programmer.Base.DEC;
+import static com.amath.advacedmath.programmer.Base.OCT;
+import com.amath.advacedmath.programmer.WordSize;
+import static com.amath.advacedmath.programmer.WordSize.BYTE;
+import com.amath.advacedmath.tokenizing.TokenList;
 import com.calculator.ui.Ui;
 import com.calculator.commoncalculator.memory.MemoryCell;
 import com.calculator.commoncalculator.memory.MemoryPanel;
@@ -17,12 +23,6 @@ import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import programmer.Base;
-import static programmer.Base.BIN;
-import static programmer.Base.DEC;
-import static programmer.Base.OCT;
-import programmer.WordSize;
-import static programmer.WordSize.BYTE;
 
 public class ProgrammerFrame extends javax.swing.JPanel {
 

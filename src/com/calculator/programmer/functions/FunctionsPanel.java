@@ -1,13 +1,18 @@
 package com.calculator.programmer.functions;
 
+import static com.amath.advacedmath.tokenizing.Token.AND;
+import static com.amath.advacedmath.tokenizing.Token.NAND;
+import static com.amath.advacedmath.tokenizing.Token.NOR;
+import static com.amath.advacedmath.tokenizing.Token.NOT;
+import static com.amath.advacedmath.tokenizing.Token.OR;
+import static com.amath.advacedmath.tokenizing.Token.XOR;
+import com.amath.advacedmath.tokenizing.TokenList;
 import com.calculator.commoncalculator.button.ButtonLayout;
 import com.calculator.commoncalculator.CommonKeyPanel;
 import com.calculator.commoncalculator.CommonNumberPanel;
 import com.calculator.ui.Ui;
 import com.calculator.commoncalculator.popupPanel.PopupButton;
 import com.calculator.commoncalculator.popupPanel.PopupPanel;
-import static com.tokenizing.Token.*;
-import com.tokenizing.TokenList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

@@ -1,8 +1,8 @@
 package com.calculator.commoncalculator.button;
 
+import com.amath.advacedmath.tokenizing.Token;
+import com.amath.advacedmath.tokenizing.TokenList;
 import com.calculator.commoncalculator.CommonNumberPanel;
-import com.tokenizing.Token;
-import com.tokenizing.TokenList;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;

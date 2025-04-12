@@ -1,23 +1,16 @@
 package com.calculator.commoncalculator.memory;
 
-import com.calculate.number.CNumber;
+import com.amath.advacedmath.calculate.CNumber;
 import com.calculator.ui.Ui;
 import java.awt.Color;
 import java.awt.Container;
 
-/**
- *
- * @author AW Developer
- */
 public abstract class MemoryCell extends javax.swing.JPanel {
 
     protected CNumber value;
     public static CNumber INCREMENT = CNumber.parseNumber(0);
     public static int CURRENT_CELL_COUNT = 0;
 
-    /**
-     * Creates new form HistoryCell
-     */
     public MemoryCell(CNumber value) {
         CURRENT_CELL_COUNT++;
         initComponents();
@@ -64,8 +57,8 @@ public abstract class MemoryCell extends javax.swing.JPanel {
         value = value.add(n);
         setValue(value);
     }
-    
-    public CNumber getValue(){
+
+    public CNumber getValue() {
         return value;
     }
 

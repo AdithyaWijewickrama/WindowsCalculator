@@ -1,22 +1,15 @@
 package com.calculator.commoncalculator.memory;
 
-import com.calculate.number.CNumber;
+import com.amath.advacedmath.calculate.CNumber;
 import com.calculator.commoncalculator.CommonNumberPanel;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
-/**
- *
- * @author AW Developer
- */
 public class MemoryBar extends javax.swing.JPanel {
 
     public final MemoryPanel memoryPanel;
     CommonNumberPanel numberPanel;
 
-    /**
-     * Creates new form MemoryBar
-     */
     public MemoryBar(MemoryPanel memoryPanel, CommonNumberPanel numberPanel) {
         initComponents();
         this.memoryPanel = memoryPanel;

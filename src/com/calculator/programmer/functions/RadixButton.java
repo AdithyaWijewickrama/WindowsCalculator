@@ -1,13 +1,13 @@
 package com.calculator.programmer.functions;
 
-import com.calculate.number.CNumber;
-import com.calculate.number.NumberFormat;
+import com.amath.advacedmath.calculate.CNumber;
+import com.amath.advacedmath.calculate.NumberFormat;
+import com.amath.advacedmath.programmer.Base;
 import com.calculator.ui.Ui;
 import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
-import programmer.Base;
 
 public abstract class RadixButton extends javax.swing.JPanel {
 

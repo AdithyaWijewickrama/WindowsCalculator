@@ -1,6 +1,6 @@
 package com.calculator.commoncalculator.memory;
 
-import com.calculate.number.CNumber;
+import com.amath.advacedmath.calculate.CNumber;
 import com.helper.test;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
